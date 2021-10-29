@@ -1,6 +1,8 @@
 package IMEModel;
 
 
+import java.io.IOException;
+
 /**
  * This class represents the model in the M,V,C format, and implements the ImageModel interface.
  * It is responsible for several actions, some simple such as returning the rgb values of all
@@ -83,8 +85,6 @@ public class ImageModelImpl implements ImageModel {
     int[][][] pixels = image.getPixels();
     int width = image.getWidth();
     int height = image.getHeight();
-    int newWidth = 0;
-
 
     for (int i = 0; i < height/2; i++) {
       for (int j = 0; j < width; j++) {
@@ -102,17 +102,41 @@ public class ImageModelImpl implements ImageModel {
     int width = image.getWidth();
     int height = image.getHeight();
 
-    int newHeight = 0;
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width/2; j++) {
         pixels[i][j] = pixels[i][width - j - 1];
-
-
       }
     }
 
     image.setPixels(pixels);
+
+  }
+
+  @Override
+  public String toString() {
+    Appendable str = new StringBuilder();
+    try {
+      str.append("P3\n");
+      str.append(image.getWidth() + " " + image.getHeight() + "\n");
+
+      str.append("255\n");
+      for (int i = 0; i < image.getHeight(); i ++) {
+        for (int j = 0; j < image.getWidth(); j++) {
+
+          str.append( " " + getImageValues()[i][j][0] + " " + getImageValues()[i][j][1] + " " +
+                  getImageValues()[i][j][2]);
+
+
+        }
+        str.append("\n");
+      }
+      return str.toString();
+
+    } catch (IOException e) {
+      throw new IllegalStateException("gET COOL BRO");
+    }
+
 
   }
 

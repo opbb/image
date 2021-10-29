@@ -60,6 +60,8 @@ public class ImageImpl implements Image {
     return this.pixels;
   }
 
+
+
   public void setPixels(int[][][] newList) {
     pixels = newList;
   }

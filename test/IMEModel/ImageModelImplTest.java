@@ -82,6 +82,35 @@ public class ImageModelImplTest {
   }
 
   @Test
+  public void testBrighten() {
+    model1.brighten(100);
+    assertEquals("[[[125, 125, 125], [150, 175, 200]]]", Arrays.deepToString(model1.
+            getImageValues()));
+
+
+    model2.brighten(15);
+
+    assertEquals("[[[40, 40, 40], [65, 90, 115], [220, 225, 175], [184, 83, 21]]]",
+            Arrays.deepToString(model2.
+            getImageValues()));
+
+    int[][][] newList = new int[][][]{{{0, 0, 0}}};
+    Image img = new ImageImpl(newList);
+    model2 = new ImageModelImpl(img);
+    model2.brighten(255);
+    assertEquals("[[[255, 255, 255]]]", Arrays.deepToString(model2.
+            getImageValues()));
+
+    newList = new int[][][]{{{255, 255, 245}}};
+    img = new ImageImpl(newList);
+    model2 = new ImageModelImpl(img);
+    model2.brighten(1);
+    assertEquals("[[[255, 255, 246]]]", Arrays.deepToString(model2.
+            getImageValues()));
+
+  }
+
+  @Test
   public void testFlipV() {
     model2.flipVertical();
     assertEquals(1, image2.getHeight());
