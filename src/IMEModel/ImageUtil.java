@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
@@ -164,10 +165,18 @@ public class ImageUtil {
 
     try {
 
-      Scanner sc = new Scanner(System.in);
-      String text = sc.nextLine();
+      Scanner sc = new Scanner(new FileInputStream(filename));
+      StringBuilder builder = new StringBuilder();
+      //read the file line by line, and populate a string. This will throw away any comment lines
+      while (sc.hasNextLine()) {
+        String s = sc.nextLine();
+        if (s.charAt(0) != '#') {
+          builder.append(s + System.lineSeparator());
+        }
+      }
+
       FileOutputStream fileOut = new FileOutputStream(filename);
-      fileOut.write(text.getBytes());
+      fileOut.write(builder.toString().getBytes());
       fileOut.flush();
       fileOut.close();
       System.out.println("fresher gorceries delivered!");
@@ -184,12 +193,7 @@ public class ImageUtil {
 //      System.out.println("File " + filename + " not found!");
 //      return;
 //    }
-//    StringBuilder builder = new StringBuilder();
-//    //read the file line by line, and populate a string. This will throw away any comment lines
-//    while (sc.hasNextLine()) {
-//      String s = sc.nextLine();
-//      if (s.charAt(0) != '#') {
-//        builder.append(s + System.lineSeparator());
+
 //      }
 //    }
 //    try {
@@ -285,12 +289,15 @@ public class ImageUtil {
     filename = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm";
     //   }
 
-    if (args[0].equals("flipvertical")) {
-      ImageModel model = new ImageModelImpl(filename);
-      model.brighten(200);
-
-      ImageUtil.saveImage(filename);
-      System.out.println("successful!");
+    ImageModel model1 = new ImageModelImpl();
+    String str = Arrays.deepToString(model1.getImageValues());
+    System.out.println(str);
+//    if (args[0].equals("flipvertical")) {
+//      ImageModel model = new ImageModelImpl(filename);
+//      model.brighten(200);
+//
+//      ImageUtil.saveImage(filename);
+//      System.out.println("successful!");
 
 
 //    try {
@@ -300,6 +307,6 @@ public class ImageUtil {
 //    }
 
     }
-  }
+
 }
 

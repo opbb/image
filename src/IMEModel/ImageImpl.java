@@ -101,7 +101,6 @@ public class ImageImpl implements Image {
   }
 
 
-
   public int getLuma() {
     double result = 0;
     for (int i = 0; i < pixels.length; i++) {

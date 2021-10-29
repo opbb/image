@@ -21,7 +21,7 @@ public interface Application {
    * @param effect the effect as a 2d integer array.
    * @return the image changed by the given effect.
    */
-  Image applyAddedEffect(Image image, double[][] effect);
+  Image applyAddedEffect(Image image, double effect);
 
 
   /**

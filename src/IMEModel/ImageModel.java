@@ -21,7 +21,7 @@ public interface ImageModel {
    * Brightens the image by the given amount, either increasing or decreasing if positive/negative.
    * @param increase the integer by which to brighten the image.
    */
-  void brighten(int increase);
+  void brighten(double increase);
 
   /**
    * Vertically flips the image.

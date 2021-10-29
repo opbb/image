@@ -28,6 +28,9 @@ public class ImageModelImpl implements ImageModel {
     this.image = new ImageImpl(filename);
   }
 
+  public ImageModelImpl(Image image) {
+    this.image = image;
+  }
 
   @Override
   public int[][][] getImageValues() {
@@ -58,15 +61,13 @@ public class ImageModelImpl implements ImageModel {
 
 
   @Override
-  public void brighten(int increase) {
+  public void brighten(double increase) {
 
     if (increase > 0) {
-      double[][] brighten = {{increase, increase, increase}, {increase, increase, increase}, {increase,
-              increase, increase}};
+      double brighten = increase;
       this.image = new ApplicationImpl().applyAddedEffect(this.image, brighten);
     } else {
-      double[][] darken = {{increase, increase, increase}, {increase, increase, increase}, {increase,
-              increase, increase}};
+      double darken = increase;
       this.image = new ApplicationImpl().applyAddedEffect(this.image, darken);
 
     }
