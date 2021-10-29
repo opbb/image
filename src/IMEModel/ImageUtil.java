@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.io.StringReader;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -79,13 +81,13 @@ public class ImageUtil {
         results[i][j][0] = r;
         results[i][j][1] = g;
         results[i][j][2] = b;
-        System.out.println(results[i][j][0] + ", " + results[i][j][1] + ", " + results[i][j][2]);
+       // System.out.println(results[i][j][0] + ", " + results[i][j][1] + ", " + results[i][j][2]);
       }
     }
     return results;
   }
 
-  public static void writePPM(ImageModelImpl model, String filename) throws IOException {
+  public static void writePPM(ImageModelImpl model) throws IOException {
 
 //    Scanner sc;
 //
@@ -106,11 +108,20 @@ public class ImageUtil {
 //      }
 //
 //    }
+
     try {
 
-      OutputStream out = new PrintStream(filename);
-      out.write(model.toString().getBytes());
+      Writer out = new FileWriter("/Users/thomasgrbic/Downloads/code (10)/koala-vertical1.txt");
+
+      //out.write(model.toString());
+
+      System.out.println(model.toString());
+
+
       out.close();
+
+//      out.write(model.toString().getBytes());
+//      out.close();
     } catch (IOException e) {
       throw new IllegalStateException("failed at cat2");
     }
@@ -261,97 +272,7 @@ public class ImageUtil {
   }
 
 
-//    Scanner sc;
-//    try {
-//      sc = new Scanner(new FileInputStream(filename));
-//    } catch (FileNotFoundException e) {
-//      System.out.println("File " + filename + " not found!");
-//      return;
-//    }
 
-//      }
-//    }
-//    try {
-//      FileWriter writer = new FileWriter(filename);
-//      writer.write(builder.toString());
-//      writer.close();
-//    } catch (IOException e) {
-//      throw new IllegalStateException("physical products");
-//    }
-//  }
-//    //now set up the scanner to read from the string we just built
-//    sc = new Scanner(builder.toString());
-//
-//    String token;
-//
-//    token = sc.next();
-//    if (!token.equals("P3")) {
-//      System.out.println("Invalid PPM file: plain RAW file should begin with P3");
-//    }
-//    int width = sc.nextInt();
-//
-//    int height = sc.nextInt();
-//
-//    int maxValue = sc.nextInt();
-//
-//
-//    int[][][] results = new int[height][width][3];
-//    for (int i = 0; i < height; i++) {
-//      for (int j = 0; j < width; j++) {
-//
-//        int r = sc.nextInt();
-//        int g = sc.nextInt();
-//        int b = sc.nextInt();
-////        results = new ArrayList<ArrayList<ArrayList<Integer>>>(3);
-////        results.get(i).get(j).add(r);
-////        results.get(i).get(j).add(g);
-////        results.get(i).get(j).add(b);
-//        results[i][j][0] = r;
-//        results[i][j][1] = g;
-//        results[i][j][2] = b;
-//        System.out.println(results[i][j][0] + ", " + results[i][j][1] + ", " + results[i][j][2]);
-//      }
-//    }
-//    return results;
-//  }
-
-//    try {
-//      File file = new File(filename);
-//      ImageModel img = new ImageModelImpl(filename);
-//      BufferedImage bw = ImageIO.read(file);
-//
-//      String header = String.format("P6\n%d %d\n255\n", getWidth(filename), getHeight(filename));
-//      bw.write(header.getBytes(StandardCharsets.US_ASCII));
-//      for (int i = 0; i < getHeight(filename); i++) {
-//        for (int j = 0; j < getWidth(filename); j++) {
-//
-//          bw.write(img.getImageValues()[i][j][0]);
-//          bw.write(img.getImageValues()[i][j][1]);
-//          bw.write(img.getImageValues()[i][j][2]);
-//        }
-//      }
-//    } catch (FileNotFoundException e) {
-//      throw new IllegalStateException("ur mom sucks.");
-//    } catch (IOException e) {
-//      throw new IllegalStateException("ur mom sucks 2");
-//    }
-//  }
-
-
-//    FileOutputStream file;
-//
-//    try {
-//      file = new FileOutputStream(filename);
-//
-//    } catch (FileNotFoundException e) {
-//      return;
-//    }
-//
-//    try {
-//      file.close();
-//    } catch (IOException e) {
-//      throw new IOException("Was not able to save image correctly.");
-//    }
 
 
   //demo main
@@ -368,10 +289,11 @@ public class ImageUtil {
     if (args[0].equals("flipvertical")) {
       Image img = new ImageImpl(filename);
       ImageModelImpl model = new ImageModelImpl(img);
-      model.brighten(300);
+      System.out.println(model.toString());
+//      model.brighten(300);
 
       try {
-        ImageUtil.writePPM(model, filename);
+        ImageUtil.writePPM(model);
       } catch (IOException e) {
         System.out.println("failed at dog");
       }

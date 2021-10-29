@@ -115,29 +115,19 @@ public class ImageModelImpl implements ImageModel {
 
   @Override
   public String toString() {
-    Appendable str = new StringBuilder();
-    try {
-      str.append("P3\n");
-      str.append(image.getWidth() + " " + image.getHeight() + "\n");
+    StringBuilder str = new StringBuilder();
+    str.append("P3\n");
+    str.append(image.getWidth()).append(" ").append(image.getHeight()).append("\n");
+    str.append("255").append("\n");
 
-      str.append("255\n");
-      for (int i = 0; i < image.getHeight(); i ++) {
-        for (int j = 0; j < image.getWidth(); j++) {
-
-          str.append( " " + getImageValues()[i][j][0] + " " + getImageValues()[i][j][1] + " " +
-                  getImageValues()[i][j][2]);
-
-
-        }
-        str.append("\n");
+//      str.append("255\n");
+    for (int i = 0; i < image.getHeight(); i++) {
+      for (int j = 0; j < image.getWidth(); j++) {
+        int[] vals = getImageValues()[i][j];
+        str.append(vals[0]).append(" ").append(vals[1]).append(" ").append(vals[2]).append(" ");
       }
-      return str.toString();
-
-    } catch (IOException e) {
-      throw new IllegalStateException("gET COOL BRO");
+      str.append("\n");
     }
-
-
+    return str.toString();
   }
-
 }

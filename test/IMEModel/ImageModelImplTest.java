@@ -130,6 +130,11 @@ public class ImageModelImplTest {
 
   }
 
+  @Test
+  public void testToStrign() {
+    ImageModelImpl newModel = new ImageModelImpl("/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm");
+    assertEquals("", newModel.toString());
+  }
 
 
 
