@@ -83,9 +83,8 @@ public class ImageModelImplTest {
 
   @Test
   public void testFlipV() {
-    model1.flipVertical();
-    assertEquals("[[[25, 25, 25], [71, 71, 71]]]", Arrays.deepToString(model1.
-            getImageValues()));
+    model2.flipVertical();
+    assertEquals(1, image2.getHeight());
 
 
 //    model2.greyscaleByLuma();

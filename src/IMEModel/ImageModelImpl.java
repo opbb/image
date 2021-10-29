@@ -86,12 +86,13 @@ public class ImageModelImpl implements ImageModel {
     int newWidth = 0;
 
 
-    for (int i = 0; i < height; i++) {
+    for (int i = 0; i < height/2; i++) {
       for (int j = 0; j < width; j++) {
-        newWidth = width - j - 1;
-        this.image = new ImageImpl(image.getPixels(), height, newWidth);
+       pixels[i][j] = pixels[height - i - 1][j];
       }
     }
+
+    image.setPixels(pixels);
 
   }
 
@@ -104,11 +105,14 @@ public class ImageModelImpl implements ImageModel {
     int newHeight = 0;
 
     for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        newHeight = height - i - 1;
-        this.image = new ImageImpl(image.getPixels(), newHeight, width);
+      for (int j = 0; j < width/2; j++) {
+        pixels[i][j] = pixels[i][width - j - 1];
+
+
       }
     }
+
+    image.setPixels(pixels);
 
   }
 
