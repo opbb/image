@@ -87,7 +87,27 @@ public class ImageUtil {
     return results;
   }
 
-  public static void writePPM(ImageModelImpl model) throws IOException {
+  public static void writePPM(Image image, String filename) throws IOException {
+
+    FileOutputStream out = new FileOutputStream(filename);
+    PrintStream p = new PrintStream(out);
+    StringBuilder str;
+
+    p.println("P3");
+    p.println(image.getWidth() + " " + image.getHeight());
+    p.println(255);
+
+
+    for (int i = 0; i < image.getHeight(); i++) {
+      for (int j = 0; j < image.getWidth(); j++) {
+        int[] vals = image.getPixels()[i][j];
+        p.println((vals[0]) + " " + (vals[1]) + " " + (vals[2]) + " ");
+      }
+
+    }
+
+  }
+
 
 //    Scanner sc;
 //
@@ -109,22 +129,22 @@ public class ImageUtil {
 //
 //    }
 
-    try {
-
-      Writer out = new FileWriter("/Users/thomasgrbic/Downloads/code (10)/koala-vertical1.txt");
-
-      //out.write(model.toString());
-
-      System.out.println(model.toString());
-
-
-      out.close();
+//    try {
+//
+//      Writer out = new FileWriter("/Users/thomasgrbic/Downloads/code (10)/koala-vertical1.txt");
+//
+//      out.write(model.toString());
+//
+////      System.out.println(model.toString());
+//
+//
+//      out.close();
 
 //      out.write(model.toString().getBytes());
 //      out.close();
-    } catch (IOException e) {
-      throw new IllegalStateException("failed at cat2");
-    }
+//    } catch (IOException e) {
+//      throw new IllegalStateException("failed at cat2");
+//    }
 
 
 
@@ -163,8 +183,7 @@ public class ImageUtil {
 //
 //      }
 //    }
-    return;
-  }
+
 
   /**
    * Returns the width of the given file.
@@ -288,12 +307,12 @@ public class ImageUtil {
 
     if (args[0].equals("flipvertical")) {
       Image img = new ImageImpl(filename);
-      ImageModelImpl model = new ImageModelImpl(img);
-      System.out.println(model.toString());
-//      model.brighten(300);
+      ImageModelImpl model = new ImageModelImpl(filename);
+
+      model.brighten(filename, img, 300);
 
       try {
-        ImageUtil.writePPM(model);
+        ImageUtil.writePPM(img, filename);
       } catch (IOException e) {
         System.out.println("failed at dog");
       }
