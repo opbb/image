@@ -43,10 +43,10 @@ public class ImageModelImpl implements ImageModel {
 
   @Override
   public int[][][] getImageValues(String name, Image image) {
-    int[][][] values = new int[map.get(name).getHeight()][image.getWidth()][3];
+    int[][][] values = new int[image.getHeight()][image.getWidth()][3];
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
-        values[i][j] = map.get(name).getPixels()[i][j];
+        values[i][j] = image.getPixels()[i][j];
       }
     }
     return values;
@@ -61,13 +61,17 @@ public class ImageModelImpl implements ImageModel {
     map.put(name, image);
   }
 
+  public Image getImage(String name) {
+    return map.get(name);
+  }
+
 
   @Override
   public void greyscaleByLuma(String name, Image image) {
     double[][] greyscale = {{0.2126, 0.7152, 0.0722}, {0.2126, 0.7152, 0.0722}, {0.2126,
             0.7152, 0.0722}};
-    Image image1 = new ApplicationImpl().applyMultipliedEffect(map.get(name), greyscale);
-    map.put(name, image1);
+    Image image1 = new ApplicationImpl().applyMultipliedEffect(image, greyscale);
+    map.replace(name, image1);
 
   }
 
@@ -77,12 +81,12 @@ public class ImageModelImpl implements ImageModel {
 
     if (increase > 0) {
       double brighten = increase;
-      Image image1 = new ApplicationImpl().applyAddedEffect(map.get(name), brighten);
-      map.put(name, image1);
+      Image image1 = new ApplicationImpl().applyAddedEffect(image, brighten);
+      map.replace(name, image1);
     } else {
       double darken = increase;
-      Image image1 = new ApplicationImpl().applyAddedEffect(map.get(name), darken);
-      map.put(name, image1);
+      Image image1 = new ApplicationImpl().applyAddedEffect(image, darken);
+      map.replace(name, image1);
 
     }
   }
@@ -101,9 +105,11 @@ public class ImageModelImpl implements ImageModel {
       }
     }
 
-    map.get(name).setPixels(pixels);
+    image.setPixels(pixels);
 
+    map.replace(name, image);
   }
+
 
   @Override
   public void flipHorizontal(String name, Image image) {

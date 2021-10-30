@@ -17,6 +17,8 @@ public interface ImageModel {
    */
   void loadImage(String name, Image image);
 
+  Image getImage(String name);
+
   /**
    * Brightens the image by the given amount, either increasing or decreasing if positive/negative.
    * @param increase the integer by which to brighten the image.

@@ -66,7 +66,7 @@ public class ImageUtil {
     System.out.println("Height of image: " + height);
     int maxValue = sc.nextInt();
     System.out.println("Maximum value of a color in this file (usually 255): " + maxValue);
-//    ArrayList<ArrayList<ArrayList<Integer>>> results = new ArrayList<ArrayList<ArrayList<Integer>>>();
+
     int[][][] results = new int[height][width][3];
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
@@ -74,10 +74,7 @@ public class ImageUtil {
         int r = sc.nextInt();
         int g = sc.nextInt();
         int b = sc.nextInt();
-//        results = new ArrayList<ArrayList<ArrayList<Integer>>>(3);
-//        results.get(i).get(j).add(r);
-//        results.get(i).get(j).add(g);
-//        results.get(i).get(j).add(b);
+
         results[i][j][0] = r;
         results[i][j][1] = g;
         results[i][j][2] = b;
@@ -107,82 +104,6 @@ public class ImageUtil {
     }
 
   }
-
-
-//    Scanner sc;
-//
-//    File file = new File(filename);
-//    try {
-//      sc = new Scanner(new FileInputStream(file));
-//    } catch (FileNotFoundException e) {
-//      System.out.println("File " + filename + " not found!");
-//      return;
-//    }
-//    int[][][] newList = new int[image.getWidth()][image.getHeight()][3];
-//    StringBuilder builder = new StringBuilder();
-//    //read the file line by line, and populate a string. This will throw away any comment lines
-//    while (sc.hasNextLine()) {
-//      String s = sc.nextLine();
-//      if (s.charAt(0) != '#') {
-//        builder.append(s + System.lineSeparator());
-//      }
-//
-//    }
-
-//    try {
-//
-//      Writer out = new FileWriter("/Users/thomasgrbic/Downloads/code (10)/koala-vertical1.txt");
-//
-//      out.write(model.toString());
-//
-////      System.out.println(model.toString());
-//
-//
-//      out.close();
-
-//      out.write(model.toString().getBytes());
-//      out.close();
-//    } catch (IOException e) {
-//      throw new IllegalStateException("failed at cat2");
-//    }
-
-
-
-
-
-//    //now set up the scanner to read from the string we just built
-//    sc = new Scanner(builder.toString());
-//
-//    String token;
-//
-//    token = sc.next();
-//    if (!token.equals("P3")) {
-//      System.out.println("Invalid PPM file: plain RAW file should begin with P3");
-//    }
-//    int width = sc.nextInt();
-//    System.out.println("Width of image: " + width);
-//    int height = sc.nextInt();
-//    System.out.println("Height of image: " + height);
-//    int maxValue = sc.nextInt();
-//    System.out.println("Maximum value of a color in this file (usually 255): " + maxValue);
-////    ArrayList<ArrayList<ArrayList<Integer>>> results = new ArrayList<ArrayList<ArrayList<Integer>>>();
-//    int[][][] results = new int[height][width][3];
-//    for (int i = 0; i < height; i++) {
-//      for (int j = 0; j < width; j++) {
-//
-//        int r = sc.nextInt();
-//        int g = sc.nextInt();
-//        int b = sc.nextInt();
-////        results = new ArrayList<ArrayList<ArrayList<Integer>>>(3);
-////        results.get(i).get(j).add(r);
-////        results.get(i).get(j).add(g);
-////        results.get(i).get(j).add(b);
-//        results[i][j][0] = r;
-//        results[i][j][1] = g;
-//        results[i][j][2] = b;
-//
-//      }
-//    }
 
 
   /**
@@ -261,69 +182,30 @@ public class ImageUtil {
     return height;
   }
 
-  /**
-   * Saves the given image back to its former directory with any updated changes.
-   **/
-  public static void saveImage(Image image, String filename) throws IllegalStateException {
-
-    File file = new File(filename);
-    int color = 0;
-    BufferedImage bf = new BufferedImage(image.getWidth(), image.getWidth(), BufferedImage.TYPE_3BYTE_BGR);
-
-    for (int i = 0; i < image.getHeight(); i++) {
-      for (int j = 0; j < image.getWidth(); j++) {
-        color = bf.getRGB(i, j);
-        image.getPixels()[i][j][0] = (color & 0xff0000) >> 16;
-        image.getPixels()[i][j][1] = (color & 0xff00) >> 8;
-        image.getPixels()[i][j][2] = color & 0xff;
-        color = (image.getPixels()[i][j][0] << 16) + (image.getPixels()[i][j][1] << 8) + image.getPixels()[i][j][2];
-        bf.setRGB(i, j, color);
-      }
-    }
-
-    try {
-      ImageIO.write(bf, "ppm", new FileOutputStream(filename));
-      System.out.println("worked");
-    } catch (IOException e) {
-      throw new IllegalStateException("sorry account closed");
-    }
-
-  }
-
-
-
 
 
   //demo main
   public static void main(String[] args) {
     String filename;
 
-//    if (args.length > 0) {
-//      filename = args[0];
-//    } else {
-    filename = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm";
-    //   }
 
+    filename = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm";
 
     if (args[0].equals("flipvertical")) {
       Image img = new ImageImpl(filename);
+
       ImageModelImpl model = new ImageModelImpl(filename);
 
-      model.brighten(filename, img, 300);
+      //Image img2 = new ApplicationImpl().applySetEffect(img, "red");
 
+      model.flipVertical(filename, img);
       try {
-        ImageUtil.writePPM(img, filename);
+        ImageUtil.writePPM(model.getImage(filename), filename);
       } catch (IOException e) {
         System.out.println("failed at dog");
       }
       System.out.println("successful!");
 
-
-//    try {
-//      ImageUtil.readPPM(filename);
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
 
     }
   }
