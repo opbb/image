@@ -12,30 +12,46 @@ import java.util.Map;
  */
 public class ImageModelImpl implements ImageModel {
 
-  // Image object
-//  private Image image;
-  private Map<String, Image> map;
+
+  // A map containing a String as its keys and Image objects as its values. This allows for ease
+  // of use in loading multiple images and setting their keys to be accessible by different names.
+  private final Map<String, Image> map;
 
   //every method needs a string input
 
   /**
-   * Defualt constructor for test cases.
+   * Default constructor for test cases, that takes in no parameters, but initializes the hashmap.
    */
   public ImageModelImpl() {
     this.map = new HashMap<String, Image>();
   }
 
   /**
-   * Constructor for manipulating a file that will be taken in as a String.
+   * This constructor takes in a filename, as to what the key within the map will be addressed by,
+   * along with a filepath to create the image object set by this filepath, acting as the value
+   * within the map.
    *
-   * @param filename the file path.
+   * @param filename the file name as to be addressed by within the hashmap.
+   * @param filepath the file path used to make the image object.
    */
   public ImageModelImpl(String filename, String filepath) {
+    if (filename == null || filepath == null) {
+      throw new IllegalArgumentException("The given filename or filepath do not exist or must not" +
+              "be null!");
+    }
     this.map = new HashMap<String, Image>();
     loadImage(filename, new ImageImpl(filepath));
   }
 
+  /**
+   * A 3rd constructor used for testing, takes in an Image object, but not a String as to be loaded
+   * by the tester.
+   * @param image an image object.
+   */
   public ImageModelImpl(Image image) {
+    if (image == null) {
+      throw new IllegalArgumentException("The given image cannot be null!");
+    }
     this.map = new HashMap<String, Image>();
   }
 
@@ -107,7 +123,7 @@ public class ImageModelImpl implements ImageModel {
     int height = map.get(name).getHeight();
     int[] temp;
 
-    for (int i = 0; i < height; i++) {
+    for (int i = 0; i < height/2; i++) {
       for (int j = 0; j < width; j++) {
         temp = map.get(name).getPixels()[i][j];
         pixels[i][j] = pixels[height - i - 1][j];
@@ -121,20 +137,22 @@ public class ImageModelImpl implements ImageModel {
 
   @Override
   public void flipHorizontal(String name) {
+
     int[][][] pixels = map.get(name).getPixels();
     int width = map.get(name).getWidth();
     int height = map.get(name).getHeight();
-
+    int[] temp;
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width / 2; j++) {
+        temp = map.get(name).getPixels()[i][j];
         pixels[i][j] = pixels[i][width - j - 1];
+        pixels[i][width - j - 1] = temp;
       }
     }
 
     map.get(name).setPixels(pixels);
-
-    }
+  }
 
   @Override
   public String toString() {
@@ -146,21 +164,4 @@ public class ImageModelImpl implements ImageModel {
     return str;
   }
 }
-//  @Override
-//  public String toString() {
-//    StringBuilder str = new StringBuilder();
-//    str.append("P3\n");
-//    str.append(image.getWidth()).append(" ").append(image.getHeight()).append("\n");
-//    str.append("255").append("\n");
-//
-////      str.append("255\n");
-//    for (int i = 0; i < image.getHeight(); i++) {
-//      for (int j = 0; j < image.getWidth(); j++) {
-//        int[] vals = getImageValues()[i][j];
-//        str.append(vals[0]).append(" ").append(vals[1]).append(" ").append(vals[2]).append(" ");
-//      }
-//      str.append("\n");
-//    }
-//    return str.toString();
-//  }
-//}
+

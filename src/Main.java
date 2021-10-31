@@ -9,6 +9,7 @@ import IMEController.ICommand.HoriFlipCommand;
 import IMEController.ICommand.ICommand;
 import IMEController.ICommand.LoadCommand;
 import IMEController.ICommand.SaveCommand;
+import IMEController.ICommand.VertFlipCommand;
 import IMEController.IMEController;
 import IMEController.IMEControllerImpl;
 import IMEModel.ImageModel;
@@ -24,6 +25,7 @@ public class Main {
             new GrayscaleCommand(),
             new HoriFlipCommand(),
             new LoadCommand(),
+            new VertFlipCommand(),
             new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl();

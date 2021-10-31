@@ -34,7 +34,13 @@ public interface ImageModel {
   boolean hasImage(String name);
 
 
+  /**
+   * Gets the greyscale component by which to alter the image and performs this change.
+   * @param name the name of the file.
+   * @param comp the name of the greyscale component.
+   */
   void getByComponent(String name, String comp);
+
   /**
    * Brightens the image by the given amount, either increasing or decreasing if positive/negative.
    * @param increase the integer by which to brighten the image.

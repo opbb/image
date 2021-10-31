@@ -8,5 +8,5 @@ public interface IMEController {
   /**
    * Runs the image processing program. This is the master method.
    */
-  public void run();
+  void run();
 }
