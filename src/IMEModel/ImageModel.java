@@ -27,6 +27,13 @@ public interface ImageModel {
   Image getImage(String name);
 
   /**
+   * Determines whether this model has an image under the given name.
+   * @param name the name to check for
+   * @return whether this model has an image of the given name
+   */
+  boolean hasImage(String name);
+
+  /**
    * Brightens the image by the given amount, either increasing or decreasing if positive/negative.
    * @param increase the integer by which to brighten the image.
    */

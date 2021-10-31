@@ -60,14 +60,25 @@ public class ImageModelImpl implements ImageModel {
     map.put(name, image);
   }
 
+  @Override
   public void duplicateImage(String name, String newName) {
     loadImage(newName, map.get(name));
   }
 
+  @Override
   public Image getImage(String name) {
     return map.get(name);
   }
 
+  @Override
+  public boolean hasImage(String name) {
+    for (String key : map.keySet()) {
+      if (key.equals(name)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   @Override
   public void greyscaleByLuma(String name) {

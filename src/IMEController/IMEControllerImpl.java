@@ -70,7 +70,7 @@ public class IMEControllerImpl implements IMEController{
         boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
         for (Map.Entry<String,ICommand> entry : commands.entrySet()) {
           if (entry.getKey().equals(input)) {
-            entry.getValue().excecute(model, sc);
+            entry.getValue().execute(model, view, sc);
             executedCommand = true; // Record that we have executed.
             break; // Breaks loop so that we don't waste energy checking the remaining commands.
           }

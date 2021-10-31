@@ -13,20 +13,16 @@ import IMEView.IMEView;
  */
 public class BrightenCommand extends AbstractCommand {
   @Override
-  public void excecute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     try {
-      double amount = sc.nextDouble();
-      String fromName = sc.next();
-      String toName = sc.next();
+      double amount = getDoubleInput(view, sc);
+      String fromName = getStringInput(sc);
+      String toName = getStringInput(sc);
 
       model.duplicateImage(fromName,toName);
-      model.brighten();
+      model.brighten(toName, amount);
     } catch (InputMismatchException e) {
-      view.renderMessage("Please input a double for [amount to brighten], and the command should"
-              + "be structured as shown below:\nbrighten [amount to brighten] [image to brighten] "
-              + "[new image name]\n\n");
-    } catch (NoSuchElementException e) {
-      throw new IllegalStateException("Ran out of inputs.");
+      // An error message has already been rendered, so we simply ignore the exception.
     }
   }
 

@@ -6,8 +6,11 @@ import IMEView.IMEView;
 
 public class LoadCommand extends AbstractCommand {
   @Override
-  public void excecute(ImageModel model, IMEView view, Scanner sc) {
+  public void execute(ImageModel model, IMEView view, Scanner sc) {
+    String path = getStringInput(sc);
+    String fileName = getStringInput(sc);
 
+    
   }
 
   @Override

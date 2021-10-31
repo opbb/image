@@ -3,6 +3,7 @@ package IMEController;
 import java.util.Scanner;
 
 import IMEModel.ImageModel;
+import IMEView.IMEView;
 
 public class MockCommand implements ICommand {
 
@@ -13,7 +14,7 @@ public class MockCommand implements ICommand {
   }
 
   @Override
-  public void excecute(ImageModel model, Scanner sc) {
+  public void execute(ImageModel model, IMEView view, Scanner sc) {
     log.append("model: " + model.toString() + " scanner: " + sc.next());
   }
 }
