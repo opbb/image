@@ -195,12 +195,12 @@ public class ImageUtil {
     if (args[0].equals("flipvertical")) {
       Image img = new ImageImpl(filename);
 
-      ImageModelImpl model = new ImageModelImpl(filename);
+      ImageModelImpl model = new ImageModelImpl(filename, filename);
 
 //     Image img2 = new ApplicationImpl().applySetEffect(img, "red");
 
 //     model.brighten(filename, img, -200);
-      model.flipVertical(filename, img);
+      model.flipVertical(filename);
       try {
         ImageUtil.writePPM(model.getImage(filename), filename);
       } catch (IOException e) {

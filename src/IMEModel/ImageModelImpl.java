@@ -1,7 +1,6 @@
 package IMEModel;
 
-
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,18 +30,18 @@ public class ImageModelImpl implements ImageModel {
    *
    * @param filename the file path.
    */
-  public ImageModelImpl(String filename) {
+  public ImageModelImpl(String filename, String filepath) {
     this.map = new HashMap<String, Image>();
-    loadImage(filename, new ImageImpl(filename));
+    loadImage(filename, new ImageImpl(filepath));
   }
 
   public ImageModelImpl(Image image) {
     this.map = new HashMap<String, Image>();
-
   }
 
   @Override
-  public int[][][] getImageValues(String name, Image image) {
+  public int[][][] getImageValues(String name) {
+    Image image = map.get(name);
     int[][][] values = new int[image.getHeight()][image.getWidth()][3];
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
@@ -61,39 +60,31 @@ public class ImageModelImpl implements ImageModel {
     map.put(name, image);
   }
 
+  public void duplicateImage(String name, String newName) {
+    loadImage(newName, map.get(name));
+  }
+
   public Image getImage(String name) {
     return map.get(name);
   }
 
 
   @Override
-  public void greyscaleByLuma(String name, Image image) {
+  public void greyscaleByLuma(String name) {
     double[][] greyscale = {{0.2126, 0.7152, 0.0722}, {0.2126, 0.7152, 0.0722}, {0.2126,
             0.7152, 0.0722}};
-    Image image1 = new ApplicationImpl().applyMultipliedEffect(image, greyscale);
-    map.replace(name, image1);
-
+    map.replace(name, Application.applyMultipliedEffect(map.get(name), greyscale));
   }
 
 
   @Override
-  public void brighten(String name, Image image, double increase) {
-
-    if (increase > 0) {
-      double brighten = increase;
-      Image image1 = new ApplicationImpl().applyAddedEffect(image, brighten);
-      map.replace(name, image1);
-    } else {
-      double darken = increase;
-      Image image1 = new ApplicationImpl().applyAddedEffect(image, darken);
-      map.replace(name, image1);
-
-    }
+  public void brighten(String name, double increase) {
+    map.replace(name, Application.applyAddedEffect(map.get(name), increase));
   }
 
 
   @Override
-  public void flipVertical(String name, Image image) {
+  public void flipVertical(String name) {
 
     int[][][] pixels = map.get(name).getPixels();
     int width = map.get(name).getWidth();
@@ -102,20 +93,18 @@ public class ImageModelImpl implements ImageModel {
 
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        temp = image.getPixels()[i][j];
+        temp = map.get(name).getPixels()[i][j];
         pixels[i][j] = pixels[height - i - 1][j];
         pixels[height - i -1][j] = temp;
       }
     }
 
-    image.setPixels(pixels);
-
-    map.replace(name, image);
+    map.get(name).setPixels(pixels);
   }
 
 
   @Override
-  public void flipHorizontal(String name, Image image) {
+  public void flipHorizontal(String name) {
     int[][][] pixels = map.get(name).getPixels();
     int width = map.get(name).getWidth();
     int height = map.get(name).getHeight();
@@ -129,6 +118,16 @@ public class ImageModelImpl implements ImageModel {
 
     map.get(name).setPixels(pixels);
 
+    }
+
+  @Override
+  public String toString() {
+    String str = "";
+    for(Map.Entry<String, Image> entry : map.entrySet()) {
+      str.concat(entry.getKey() + "\n"
+              + Arrays.deepToString(entry.getValue().getPixels()) + "\n\n");
+    }
+    return str;
   }
 }
 //  @Override
