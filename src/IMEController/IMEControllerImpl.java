@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.Scanner;
 
+import IMEController.ICommand.ICommand;
 import IMEModel.ImageModel;
 import IMEView.IMEView;
 
@@ -13,7 +14,7 @@ import IMEView.IMEView;
  */
 public class IMEControllerImpl implements IMEController{
 
-  private final Map<String,ICommand> commands;
+  private final Map<String, ICommand> commands;
   private final ImageModel model;
   private final IMEView view;
   private final Scanner sc;
@@ -70,7 +71,7 @@ public class IMEControllerImpl implements IMEController{
         boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
         for (Map.Entry<String,ICommand> entry : commands.entrySet()) {
           if (entry.getKey().equals(input)) {
-            entry.getValue().excecute(model, sc);
+            entry.getValue().execute(model, view, sc);
             executedCommand = true; // Record that we have executed.
             break; // Breaks loop so that we don't waste energy checking the remaining commands.
           }
