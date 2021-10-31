@@ -194,7 +194,7 @@ public class ImageUtil {
     if (args[0].equals("flipvertical")) {
       Image img = new ImageImpl(filename);
 
-      ImageModelImpl model = new ImageModelImpl(filename);
+      ImageModelImpl model = new ImageModelImpl(filename, filename);
 
       //Image img2 = new ApplicationImpl().applySetEffect(img, "red");
 

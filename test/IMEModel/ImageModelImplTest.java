@@ -32,6 +32,8 @@ public class ImageModelImplTest {
     model2 = new ImageModelImpl(image2);
   }
 
+/*
+
   @Test
   public void testValueGreyscale() {
     Image image2 = new ApplicationImpl().applySetEffect(image1, "value");
@@ -110,11 +112,13 @@ public class ImageModelImplTest {
 
   }
 
+*/
+  /*
   @Test
   public void testFlipV() {
     model2.flipVertical();
     assertEquals(1, image2.getHeight());
-
+/*
 
 //    model2.greyscaleByLuma();
 //
@@ -132,11 +136,11 @@ public class ImageModelImplTest {
 
   @Test
   public void testToStrign() {
-    ImageModelImpl newModel = new ImageModelImpl("/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm");
+    ImageModelImpl newModel = new ImageModelImpl("/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm", "/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm");
     assertEquals("", newModel.toString());
   }
 
 
-
+*/
 
 }
