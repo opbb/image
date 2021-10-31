@@ -3,12 +3,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import IMEController.ICommand.BlueValueCommand;
 import IMEController.ICommand.BrightenCommand;
 import IMEController.ICommand.GrayscaleCommand;
+import IMEController.ICommand.GreenValueCommand;
 import IMEController.ICommand.HoriFlipCommand;
 import IMEController.ICommand.ICommand;
+import IMEController.ICommand.IntensityValueCommand;
 import IMEController.ICommand.LoadCommand;
+import IMEController.ICommand.RedValueCommand;
 import IMEController.ICommand.SaveCommand;
+import IMEController.ICommand.ValueCommand;
 import IMEController.ICommand.VertFlipCommand;
 import IMEController.IMEController;
 import IMEController.IMEControllerImpl;
@@ -26,6 +31,11 @@ public class Main {
             new HoriFlipCommand(),
             new LoadCommand(),
             new VertFlipCommand(),
+            new RedValueCommand(),
+            new GreenValueCommand(),
+            new BlueValueCommand(),
+            new ValueCommand(),
+            new IntensityValueCommand(),
             new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl();

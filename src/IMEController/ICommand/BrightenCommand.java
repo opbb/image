@@ -11,6 +11,7 @@ import IMEView.IMEView;
  * are all supplied by the user as input.
  */
 public class BrightenCommand extends AbstractCommand {
+
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     try {
