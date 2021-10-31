@@ -5,6 +5,7 @@ import java.util.Map;
 
 import IMEController.ICommand.BlueValueCommand;
 import IMEController.ICommand.BrightenCommand;
+import IMEController.ICommand.CloseImageCommand;
 import IMEController.ICommand.GrayscaleCommand;
 import IMEController.ICommand.GreenValueCommand;
 import IMEController.ICommand.HoriFlipCommand;
@@ -36,6 +37,7 @@ public class Main {
             new BlueValueCommand(),
             new ValueCommand(),
             new IntensityValueCommand(),
+            new CloseImageCommand(),
             new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl();

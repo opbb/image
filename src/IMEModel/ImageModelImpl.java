@@ -134,6 +134,11 @@ public class ImageModelImpl implements ImageModel {
     map.get(name).setPixels(pixels);
   }
 
+  @Override
+  public void closeImage(String name) {
+    map.remove(name);
+  }
+
 
   @Override
   public void flipHorizontal(String name) {

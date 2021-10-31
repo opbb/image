@@ -39,8 +39,18 @@ public class ImageModelMock implements ImageModel {
   }
 
   @Override
+  public void getByComponent(String name, String comp) {
+
+  }
+
+  @Override
   public void brighten(String name, double increase) {
     log.append("name: " + name + " increase: " + increase + "\n");
+  }
+
+  @Override
+  public void closeImage(String name) {
+
   }
 
   @Override

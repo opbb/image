@@ -47,6 +47,8 @@ public interface ImageModel {
    */
   void brighten(String name, double increase);
 
+  void closeImage(String name);
+
   /**
    * Vertically flips the image.
    */

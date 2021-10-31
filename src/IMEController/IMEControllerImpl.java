@@ -55,6 +55,7 @@ public class IMEControllerImpl implements IMEController{
       String input = sc.next().toLowerCase(); // Input is converted to lowercase for easier parsing.
       // Block below check for the quit command.
       if(input.equals("q") || input.equals("quit")) { // "q" or "quit" quits the program.
+        view.renderMessage("You have quit the program.");
         break; // Breaks loop to end program.
       }
 
