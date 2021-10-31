@@ -98,10 +98,13 @@ public class ImageModelImpl implements ImageModel {
     int[][][] pixels = map.get(name).getPixels();
     int width = map.get(name).getWidth();
     int height = map.get(name).getHeight();
+    int[] temp;
 
-    for (int i = 0; i < height / 2; i++) {
+    for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
+        temp = image.getPixels()[i][j];
         pixels[i][j] = pixels[height - i - 1][j];
+        pixels[height - i -1][j] = temp;
       }
     }
 

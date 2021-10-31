@@ -86,9 +86,10 @@ public class ImageUtil {
 
   public static void writePPM(Image image, String filename) throws IOException {
 
+//    String newFile = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical3.ppm";
     FileOutputStream out = new FileOutputStream(filename);
     PrintStream p = new PrintStream(out);
-    StringBuilder str;
+
 
     p.println("P3");
     p.println(image.getWidth() + " " + image.getHeight());
@@ -189,15 +190,16 @@ public class ImageUtil {
     String filename;
 
 
-    filename = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical.ppm";
+    filename = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical3.ppm";
 
     if (args[0].equals("flipvertical")) {
       Image img = new ImageImpl(filename);
 
       ImageModelImpl model = new ImageModelImpl(filename);
 
-      //Image img2 = new ApplicationImpl().applySetEffect(img, "red");
+//     Image img2 = new ApplicationImpl().applySetEffect(img, "red");
 
+//     model.brighten(filename, img, -200);
       model.flipVertical(filename, img);
       try {
         ImageUtil.writePPM(model.getImage(filename), filename);
