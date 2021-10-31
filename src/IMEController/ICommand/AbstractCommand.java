@@ -1,8 +1,10 @@
-package IMEController;
+package IMEController.ICommand;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import IMEModel.ImageModel;
 import IMEView.IMEView;
 
 /**
@@ -42,6 +44,27 @@ public abstract class AbstractCommand implements ICommand {
       return sc.next();
     } catch (NoSuchElementException e) {
       throw new IllegalStateException("Ran out of inputs.");
+    }
+  }
+
+  /**
+   * Ensures that the given image to edit exists, and returns false if it doesn't.
+   * If the given image exists, then it makes a renamed duplicate of it to execute the command on.
+   * @param model the model in which the images are stored
+   * @param view the view to which error messages are rendered
+   * @param fromImage the given image name of the image to edit
+   * @param toImage the given image name for the resulting image
+   * @return true if the given image to edit exists, false otherwise
+   */
+  protected boolean setUpImage(ImageModel model, IMEView view, String fromImage, String toImage) {
+    if (model.hasImage(fromImage)) {
+      if (!fromImage.equals(toImage)) {
+        model.duplicateImage(fromImage, toImage);
+      }
+      return true;
+    } else {
+      view.renderMessage("The given image name " + fromImage + " does not exist.\n\n");
+      return false;
     }
   }
 }

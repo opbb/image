@@ -39,8 +39,7 @@ public class ImageUtil {
     try {
       sc = new Scanner(new FileInputStream(filename));
     } catch (FileNotFoundException e) {
-      System.out.println("File " + filename + " not found!");
-      return new int[1][1][3];
+      throw e;
     }
     StringBuilder builder = new StringBuilder();
     //read the file line by line, and populate a string. This will throw away any comment lines
@@ -183,7 +182,7 @@ public class ImageUtil {
   }
 
 
-
+/*
   //demo main
   public static void main(String[] args) {
     String filename;
@@ -198,7 +197,7 @@ public class ImageUtil {
 
       //Image img2 = new ApplicationImpl().applySetEffect(img, "red");
 
-      model.flipVertical(filename, img);
+      model.flipVertical(filename);
       try {
         ImageUtil.writePPM(model.getImage(filename), filename);
       } catch (IOException e) {
@@ -209,6 +208,7 @@ public class ImageUtil {
 
     }
   }
+  */
 
 }
 

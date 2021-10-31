@@ -1,7 +1,6 @@
-package IMEController;
+package IMEController.ICommand;
 
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import IMEModel.ImageModel;
 import IMEView.IMEView;
@@ -16,11 +15,13 @@ public class BrightenCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     try {
       double amount = getDoubleInput(view, sc);
-      String fromName = getStringInput(sc);
-      String toName = getStringInput(sc);
+      String fromImage = getStringInput(sc);
+      String toImage = getStringInput(sc);
 
-      model.duplicateImage(fromName,toName);
-      model.brighten(toName, amount);
+
+      if (setUpImage(model,view,fromImage,toImage)) {
+        model.brighten(toImage, amount);
+      }
     } catch (InputMismatchException e) {
       // An error message has already been rendered, so we simply ignore the exception.
     }
@@ -29,5 +30,10 @@ public class BrightenCommand extends AbstractCommand {
   @Override
   public String helpMessage() {
     return "brighten [amount to brighten] [image to brighten] [new image name]";
+  }
+
+  @Override
+  public String commandText() {
+    return "brighten";
   }
 }

@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.Scanner;
 
+import IMEController.ICommand.ICommand;
 import IMEModel.ImageModel;
 import IMEView.IMEView;
 
@@ -13,7 +14,7 @@ import IMEView.IMEView;
  */
 public class IMEControllerImpl implements IMEController{
 
-  private final Map<String,ICommand> commands;
+  private final Map<String, ICommand> commands;
   private final ImageModel model;
   private final IMEView view;
   private final Scanner sc;
