@@ -1,5 +1,7 @@
 package IMEView;
 
+import IMEModel.ImageModel;
+
 public interface IMEView {
 
   /**
@@ -7,4 +9,10 @@ public interface IMEView {
    * @param message the message to be rendered.
    */
   void renderMessage(String message);
+
+  /**
+   * Returns a string representing the state of the model this view represents.
+   * @return a string representing the state of the model.
+   */
+  String toString();
 }
