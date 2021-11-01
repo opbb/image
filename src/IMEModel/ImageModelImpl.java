@@ -3,6 +3,7 @@ package IMEModel;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This class represents the model in the M,V,C format, and implements the ImageModel interface.
@@ -17,7 +18,7 @@ public class ImageModelImpl implements ImageModel {
   // of use in loading multiple images and setting their keys to be accessible by different names.
   private final Map<String, Image> map;
 
-  //every method needs a string input
+
 
   /**
    * Default constructor for test cases, that takes in no parameters, but initializes the hashmap.
@@ -68,7 +69,7 @@ public class ImageModelImpl implements ImageModel {
   }
 
 
-  //check null
+  @Override
   public void loadImage(String name, Image image) {
     if (name == null || image == null) {
       throw new IllegalArgumentException("Name or image cannot be null!");
@@ -155,7 +156,6 @@ public class ImageModelImpl implements ImageModel {
         pixels[i][width - j - 1] = temp;
       }
     }
-
     map.get(name).setPixels(pixels);
   }
 
@@ -167,6 +167,11 @@ public class ImageModelImpl implements ImageModel {
               + Arrays.deepToString(entry.getValue().getPixels()) + "\n\n");
     }
     return str;
+  }
+
+  @Override
+  public Set<String> getKeys() {
+    return map.keySet();
   }
 }
 

@@ -12,6 +12,9 @@ public interface Application {
    * @return the image changed by the given effect.
    */
   static Image applyMultipliedEffect(Image image, double[][] effect) {
+    if (image == null) {
+      throw new IllegalArgumentException("The given image cannot be null!");
+    }
     int width = image.getWidth();
     int height = image.getHeight();
     int[][][] newImage = new int[height][width][3];
@@ -34,6 +37,9 @@ public interface Application {
    * @return the image changed by the given effect.
    */
   static Image applyAddedEffect(Image image, double effect) {
+    if (image == null) {
+      throw new IllegalArgumentException("The given image cannot be null!");
+    }
     int width = image.getWidth();
     int height = image.getHeight();
     int[][][] newImage = new int[height][width][3];
@@ -56,6 +62,9 @@ public interface Application {
    * @return the image changed by the given effect.
    */
   static Image applySetEffect(Image image, String component) {
+    if (image == null) {
+      throw new IllegalArgumentException("The given image cannot be null!");
+    }
     int width = image.getWidth();
     int height = image.getHeight();
     int[][][] newImage = new int[height][width][3];
