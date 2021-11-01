@@ -1,25 +1,11 @@
 package IMEModel;
 
-
-import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
-
-import javax.imageio.ImageIO;
 
 
 /**
@@ -77,7 +63,6 @@ public class ImageUtil {
         results[i][j][0] = r;
         results[i][j][1] = g;
         results[i][j][2] = b;
-       // System.out.println(results[i][j][0] + ", " + results[i][j][1] + ", " + results[i][j][2]);
       }
     }
     return results;
@@ -85,24 +70,19 @@ public class ImageUtil {
 
   public static void writePPM(Image image, String filename) throws IOException {
 
-//    String newFile = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical3.ppm";
     FileOutputStream out = new FileOutputStream(filename);
     PrintStream p = new PrintStream(out);
-
 
     p.println("P3");
     p.println(image.getWidth() + " " + image.getHeight());
     p.println(255);
-
 
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
         int[] vals = image.getPixels()[i][j];
         p.println((vals[0]) + " " + (vals[1]) + " " + (vals[2]) + " ");
       }
-
     }
-
   }
 
 
@@ -183,37 +163,6 @@ public class ImageUtil {
   }
 
 
-/*
-  //demo main
-  public static void main(String[] args) {
-    String filename;
-
-
-    filename = "/Users/thomasgrbic/Downloads/code (10)/koala-vertical3.ppm";
-
-    if (args[0].equals("flipvertical")) {
-      Image img = new ImageImpl(filename);
-
-      ImageModelImpl model = new ImageModelImpl(filename, filename);
-
-//     Image img2 = new ApplicationImpl().applySetEffect(img, "red");
-
-<<<<<<< HEAD
-//     model.brighten(filename, img, -200);
-=======
->>>>>>> 5f47b70d63fa02ae9c77761f5a362dac60049e75
-      model.flipVertical(filename);
-      try {
-        ImageUtil.writePPM(model.getImage(filename), filename);
-      } catch (IOException e) {
-        System.out.println("failed at dog");
-      }
-      System.out.println("successful!");
-
-
-    }
-  }
-  */
 
 }
 

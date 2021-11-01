@@ -13,10 +13,10 @@ public class ImageImpl implements Image {
   private int[][][] pixels;
 
   //the height of the image
-  private int height;
+  private final int height;
 
   //the width of the image
-  private int width;
+  private final int width;
 
 
   /**
@@ -32,6 +32,13 @@ public class ImageImpl implements Image {
     this.width = image[0].length;
   }
 
+  /**
+   * This constructor allows for a different sized image, in which the array of integers is
+   * completely customizable and therefore subject to change.
+   * @param image the array of integers expressing the coordinates and rgb values of each pixel.
+   * @param height the height of the image as an integer.
+   * @param width the width of the image as an integer.
+   */
   public ImageImpl(int[][][] image, int height, int width) {
     this.pixels = image;
     this.height = height;
@@ -59,8 +66,6 @@ public class ImageImpl implements Image {
   public int[][][] getPixels() {
     return this.pixels;
   }
-
-
 
   public void setPixels(int[][][] newList) {
     pixels = newList;
