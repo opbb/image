@@ -5,10 +5,17 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * Mock command class used for ICommands and Controller testing.
+ */
 public class MockCommand implements ICommand {
 
   StringBuilder log;
 
+  /**
+   * Command mock constructor.
+   * @param log Stringbuilder object acting as the required Appendable.
+   */
   public MockCommand(StringBuilder log) {
     this.log = log;
   }

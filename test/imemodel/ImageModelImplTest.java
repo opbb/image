@@ -10,13 +10,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-
+/**
+ * This class is the main tester class for the ImageModelImpl class, in which all of its public
+ * facing methods and constructors are tested.
+ */
 public class ImageModelImplTest {
 
   private ImageModel model1;
   private Image image1;
   private int[][][] list1;
-  private String str1;
 
   private ImageModel model2;
   private Image image2;
@@ -27,7 +29,7 @@ public class ImageModelImplTest {
 
     list1 = new int[][][]{{{25, 25, 25}, {50, 75, 100}}};
     image1 = new ImageImpl(list1);
-    str1 = "Image1";
+    String str1 = "Image1";
     model1 = new ImageModelImpl();
     model1.loadImage(str1, image1);
 
@@ -52,13 +54,13 @@ public class ImageModelImplTest {
 
   @Test
   public void testLoadImage() {
-    model1.loadImage("Trevor", new ImageImpl(new int[][][]{{{2, 2,2}}, {{1, 12, 178}}}));
-    assertEquals(Arrays.deepToString(new int[][][]{{{2, 2,2}}, {{1, 12, 178}}}),
+    model1.loadImage("Trevor", new ImageImpl(new int[][][]{{{2, 2, 2}}, {{1, 12, 178}}}));
+    assertEquals(Arrays.deepToString(new int[][][]{{{2, 2, 2}}, {{1, 12, 178}}}),
             Arrays.deepToString(model1.getImageValues("Trevor")));
     model1.loadImage("silverware", new ImageImpl(new int[][][]{{{1}}}));
     assertArrayEquals(new int[][][]{{{1}}}, model1.getImage("silverware").getPixels());
 
-    Image img5 = new ImageImpl(new int[][][]{{{2 , 129, 189}}});
+    Image img5 = new ImageImpl(new int[][][]{{{2, 129, 189}}});
     model2.loadImage("Sparking", img5);
     assertEquals(Arrays.deepToString(img5.getPixels()), Arrays.deepToString(model2
             .getImageValues("Sparking")));
@@ -67,11 +69,11 @@ public class ImageModelImplTest {
 
   @Test
   public void testDuplicate() {
-    model1.loadImage("Trevor", new ImageImpl(new int[][][]{{{2, 2,2}}, {{1, 12, 178}}}));
+    model1.loadImage("Trevor", new ImageImpl(new int[][][]{{{2, 2, 2}}, {{1, 12, 178}}}));
     model1.duplicateImage("Trevor", "Bixxy");
-    assertEquals(Arrays.deepToString(new int[][][]{{{2, 2,2}}, {{1, 12, 178}}}),
+    assertEquals(Arrays.deepToString(new int[][][]{{{2, 2, 2}}, {{1, 12, 178}}}),
             Arrays.deepToString(model1.getImageValues("Trevor")));
-    assertEquals(Arrays.deepToString(new int[][][]{{{2, 2,2}}, {{1, 12, 178}}}),
+    assertEquals(Arrays.deepToString(new int[][][]{{{2, 2, 2}}, {{1, 12, 178}}}),
             Arrays.deepToString(model1.getImageValues("Bixxy")));
 
   }
@@ -218,17 +220,16 @@ public class ImageModelImplTest {
 
     //testing with new image.
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     model2.flipVertical("Horses");
     assertArrayEquals(new int[][][]{{{56, 89, 191}},
-                    {{34, 90, 249}}, {{56, 109, 215 }}, {{77, 189, 208}}},
+                    {{34, 90, 249}}, {{56, 109, 215}}, {{77, 189, 208}}},
             model2.getImageValues("Horses"));
     //flip the same image back to its original.
     model2.flipVertical("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-                    {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}},
+                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
-
 
 
   }
@@ -254,17 +255,16 @@ public class ImageModelImplTest {
 
     //testing with new image.
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     model2.flipHorizontal("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-                    {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}},
+                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
     //flip the same image back to its original.
     model2.flipHorizontal("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-                    {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}},
+                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
-
 
 
   }
@@ -304,7 +304,7 @@ public class ImageModelImplTest {
 
 
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     assertEquals("Over\n" +
             "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
             "\n" +
@@ -332,26 +332,20 @@ public class ImageModelImplTest {
     assertEquals("[Image1, Img2]", model2.getKeys().toString());
 
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     assertEquals("[Horses, Image1, Img2]", model2.getKeys().toString());
 
 
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testConst1() {
     new ImageModelImpl(null);
   }
 
 
-  @Test
-  public void testConst2() {
-    //this test will pass if the grader/user has the images/folder with the contained image.
-//    ImageModel mod1 = new ImageModelImpl("walk", "images/when-you-walking.ppm");
-//    assertTrue(mod1.hasImage("walk"));
-  }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testConst3() {
     new ImageModelImpl("", "");
   }

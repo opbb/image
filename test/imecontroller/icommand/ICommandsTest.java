@@ -13,6 +13,10 @@ import imeview.IMEView;
 import imeview.IMEViewMock;
 import imemodel.ImageModelMockTrue;
 
+/**
+ * ICommands tester class in which all commands are tested with varying given inputs and checks for
+ * correct commands and managing failures correctly.
+ */
 public class ICommandsTest {
 
   StringBuilder log;

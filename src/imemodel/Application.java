@@ -7,7 +7,8 @@ public interface Application {
 
   /**
    * This method multiplies the pixels by the given effect.
-   * @param image the given image to which its pixels will be affected.
+   *
+   * @param image  the given image to which its pixels will be affected.
    * @param effect the effect as a 2d integer array.
    * @return the image changed by the given effect.
    */
@@ -32,7 +33,8 @@ public interface Application {
 
   /**
    * This method adds to the pixels the given effect.
-   * @param image the given image to which its pixels will be affected.
+   *
+   * @param image  the given image to which its pixels will be affected.
    * @param effect the effect as a 2d integer array.
    * @return the image changed by the given effect.
    */
@@ -57,7 +59,8 @@ public interface Application {
 
   /**
    * This method sets the given component to the pixels.
-   * @param image the given image to which its pixels will be affected.
+   *
+   * @param image     the given image to which its pixels will be affected.
    * @param component the component by which to change/set the image by.
    * @return the image changed by the given effect.
    */
@@ -81,7 +84,8 @@ public interface Application {
 
   /**
    * Helper method that helps to mathematically multiplies effects to an image.
-   * @param pixel the given pixel and its rgb values to be affected.
+   *
+   * @param pixel  the given pixel and its rgb values to be affected.
    * @param effect the effect as an array of what to add to the pixels.
    * @return
    */
@@ -95,7 +99,8 @@ public interface Application {
 
   /**
    * Helper method that helps to mathematically add effects to an image.
-   * @param pixel the given pixel and its rgb values to be affected.
+   *
+   * @param pixel  the given pixel and its rgb values to be affected.
    * @param effect the effect as an array of what to add to the pixels.
    * @return
    */
@@ -107,7 +112,8 @@ public interface Application {
 
   /**
    * Helper method that helps to set a component greyscale to an image.
-   * @param pixel the given pixel's rgb values.
+   *
+   * @param pixel     the given pixel's rgb values.
    * @param component the component by which to set the image's rgb values.
    * @return the new pixel by which the rest of the rgb should be set equal.
    */
@@ -119,7 +125,7 @@ public interface Application {
           newPixel = pixel[0];
           break;
         case "green":
-          newPixel= pixel[1];
+          newPixel = pixel[1];
           break;
         case "blue":
           newPixel = pixel[2];
@@ -132,6 +138,8 @@ public interface Application {
             newPixel = pixel[i];
           }
           break;
+        default:
+          //nothing required
       }
     }
     return newPixel;

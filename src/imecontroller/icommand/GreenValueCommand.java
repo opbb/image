@@ -5,6 +5,11 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * Command which gets the green component of a specific Image in the given model.
+ * The command to get the green component, image to change, and name to store the green component
+ * image under are all supplied by the user as input.
+ */
 public class GreenValueCommand extends AbstractCommand {
 
   @Override

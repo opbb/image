@@ -11,6 +11,10 @@ public class ImageModelMockTrue implements ImageModel {
 
   protected final StringBuilder log;
 
+  /**
+   * Mock constructor.
+   * @param log Stringbuilder object.
+   */
   public ImageModelMockTrue(StringBuilder log) {
     this.log = log;
   }

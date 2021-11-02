@@ -6,28 +6,42 @@ import java.io.PrintStream;
 import imemodel.ImageModel;
 
 /**
- * A view class for rendering messages to the user.
+ * The view class representative of the View in the M, V, C design. This View class for now has
+ * two methods, rendering a given message and an overridden toString method to display the images
+ * loaded and/or available to the user.
  */
 public class IMEViewImpl implements IMEView {
 
+  //Appendable object for messages.
   private final Appendable out;
 
-  ImageModel model;
+  //The ImageModel object.
+  private final ImageModel model;
 
 
   /**
-   * A basic constructor. Sets the output stream to System.out.
+   * Main constructor that sets a default PrintStream to System.out.
+   * @param model the ImageModel object by which the view displays needed info.
+   * @throws IllegalArgumentException if the model object is null.
    */
-  public IMEViewImpl(ImageModel model) {
+  public IMEViewImpl(ImageModel model) throws IllegalArgumentException {
+    if (model == null) {
+      throw new IllegalArgumentException("The given model must not be null!");
+    }
     this.model = model;
     this.out = new PrintStream(System.out);
   }
 
   /**
    * A testing constructor. Sets the output stream to the given appendable.
-   * @param out
+   * @param model the ImageModel object by which to display its info given the View's methods.
+   * @param out the appendable object in which the view's methods will be displayed.
+   * @throws IllegalArgumentException if either the model or appendable object are null.
    */
-  public IMEViewImpl(ImageModel model, Appendable out) {
+  public IMEViewImpl(ImageModel model, Appendable out) throws IllegalArgumentException {
+    if (model == null || out == null) {
+      throw new IllegalArgumentException("The given model or appendable object must not be null!");
+    }
     this.model = model;
     this.out = out;
   }

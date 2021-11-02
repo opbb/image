@@ -19,7 +19,6 @@ public class ImageModelImpl implements ImageModel {
   private final Map<String, Image> map;
 
 
-
   /**
    * Default constructor for test cases, that takes in no parameters, but initializes the hashmap.
    */
@@ -49,6 +48,7 @@ public class ImageModelImpl implements ImageModel {
   /**
    * A 3rd constructor used for testing, takes in an Image object, but not a String as to be loaded
    * by the tester.
+   *
    * @param image an image object.
    * @throws IllegalArgumentException if the image object is null.
    */
@@ -127,11 +127,11 @@ public class ImageModelImpl implements ImageModel {
     int height = map.get(name).getHeight();
     int[] temp;
 
-    for (int i = 0; i < height/2; i++) {
+    for (int i = 0; i < height / 2; i++) {
       for (int j = 0; j < width; j++) {
         temp = map.get(name).getPixels()[i][j];
         pixels[i][j] = pixels[height - i - 1][j];
-        pixels[height - i -1][j] = temp;
+        pixels[height - i - 1][j] = temp;
       }
     }
 
@@ -165,7 +165,7 @@ public class ImageModelImpl implements ImageModel {
   @Override
   public String toString() {
     StringBuilder str = new StringBuilder();
-    for(Map.Entry<String, Image> entry : map.entrySet()) {
+    for (Map.Entry<String, Image> entry : map.entrySet()) {
       str.append(entry.getKey()).append("\n").append(Arrays.deepToString(entry.getValue()
               .getPixels())).append("\n\n");
     }

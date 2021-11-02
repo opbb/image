@@ -1,9 +1,16 @@
 package imeview;
 
+/**
+ * This class is a mock of the IMEView.
+ */
 public class IMEViewMock implements IMEView {
 
   private final StringBuilder log;
 
+  /**
+   * Mock constructor.
+   * @param log stringbuilder object.
+   */
   public IMEViewMock(StringBuilder log) {
     this.log = log;
   }

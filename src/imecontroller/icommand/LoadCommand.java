@@ -8,6 +8,10 @@ import imemodel.ImageModel;
 import imemodel.ImageUtil;
 import imeview.IMEView;
 
+/**
+ * This command will load an image to the application by calling the readPPM method with the
+ * associated file and loads it into the model.
+ */
 public class LoadCommand extends AbstractCommand {
 
   @Override

@@ -9,8 +9,8 @@ import java.io.FileInputStream;
 
 
 /**
- * This class contains utility methods to read a PPM image from file and simply print its contents. Feel free to change this method
- * as required.
+ * This class contains utility methods to read a PPM image from file and simply print its contents.
+ * Feel free to change this method as required.
  */
 public class ImageUtil {
 
@@ -69,7 +69,13 @@ public class ImageUtil {
   }
 
 
-
+  /**
+   * This method saves/writes a ppm file of the given image to the given directory.
+   *
+   * @param image    the Image by which to save/write.
+   * @param filename the file name/path by which to save/write the ppm to.
+   * @throws IOException when checking if the filename is valid.
+   */
   public static void writePPM(Image image, String filename) throws IOException {
 
     FileOutputStream out = new FileOutputStream(filename);
@@ -163,7 +169,6 @@ public class ImageUtil {
     int height = sc.nextInt();
     return height;
   }
-
 
 
 }

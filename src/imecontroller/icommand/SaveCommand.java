@@ -8,6 +8,10 @@ import imemodel.ImageModel;
 import imemodel.ImageUtil;
 import imeview.IMEView;
 
+/**
+ * This command will load an image to the application by calling the writePPM method with the
+ * associated file and saves/writes it to the desired destination.
+ */
 public class SaveCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {

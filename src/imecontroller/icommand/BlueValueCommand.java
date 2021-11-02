@@ -5,6 +5,12 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+
+/**
+ * Command which gets the blue component of a specific Image in the given model.
+ * The command to get the blue component, image to change, and name to store the blue component
+ * image under are all supplied by the user as input.
+ */
 public class BlueValueCommand extends AbstractCommand {
 
   @Override

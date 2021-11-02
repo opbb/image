@@ -13,11 +13,12 @@ public interface InputUtils {
 
   /**
    * Returns the inputted double, or renders an error message and/or passes on any exceptions.
+   *
    * @param view the view to which error messages will be rendered
-   * @param sc the scanner from which inputs are read
+   * @param sc   the scanner from which inputs are read
    * @return the inputted double
    * @throws InputMismatchException if something other than a double is inputted
-   * @throws IllegalStateException if there are no more inputs or the scanner is closed
+   * @throws IllegalStateException  if there are no more inputs or the scanner is closed
    */
   static double getDoubleInput(IMEView view, Scanner sc)
           throws InputMismatchException, IllegalStateException {
@@ -33,11 +34,12 @@ public interface InputUtils {
 
   /**
    * Returns the inputted String, or throws an exception if there are issues with the scanner.
+   *
    * @param sc the scanner from which inputs are read
    * @return the inputted string
    * @throws IllegalStateException if there are no more inputs or the scanner is closed
    */
-  static String getStringInput(Scanner sc) throws IllegalStateException{
+  static String getStringInput(Scanner sc) throws IllegalStateException {
     try {
       return sc.next();
     } catch (NoSuchElementException e) {

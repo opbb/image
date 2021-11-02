@@ -5,6 +5,10 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * This class holds acts as the close command to be given to the map of commands, effectively
+ * closing out an image from the application.
+ */
 public class CloseCommand extends AbstractCommand {
 
   @Override

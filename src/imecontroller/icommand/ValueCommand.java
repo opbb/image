@@ -5,6 +5,10 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * This command is triggered via user input and will greyscale the associated image by its pixels'
+ * value component.
+ */
 public class ValueCommand extends AbstractCommand {
 
   @Override

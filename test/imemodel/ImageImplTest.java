@@ -6,9 +6,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 
+
+/**
+ * This class is the main tester class for the ImageImpl class, in which all of its public
+ * facing methods and constructors are tested.
+ */
 public class ImageImplTest {
 
   private Image image1;

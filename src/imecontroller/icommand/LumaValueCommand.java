@@ -5,6 +5,11 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+
+/**
+ * This command is triggered via user input and will greyscale the associated image by its pixels'
+ * luma component.
+ */
 public class LumaValueCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {

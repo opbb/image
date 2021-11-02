@@ -7,15 +7,18 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This class is the tester class for the Application inteface, in which its static methods are
+ * being tested.
+ */
 public class ApplicationTest {
 
   private Image img1;
-  private Image img2;
 
   @Before
   public void setUp() {
     img1 = new ImageImpl(new int[][][]{{{1, 2, 3}}});
-    img2 = new ImageImpl(new int[][][]{{{12, 124, 209}},  {{16, 17, 124}}});
+    Image img2 = new ImageImpl(new int[][][]{{{12, 124, 209}}, {{16, 17, 124}}});
   }
 
 
@@ -108,16 +111,17 @@ public class ApplicationTest {
 
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNullMultiplied() {
     Image img = Application.applyMultipliedEffect(null, new double[][]{{2.0}});
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testNullAdded() {
     Image img = Application.applyAddedEffect(null, 234.4332);
   }
-  @Test (expected = IllegalArgumentException.class)
+
+  @Test(expected = IllegalArgumentException.class)
   public void testNullSet() {
     Image img = Application.applySetEffect(null, "WRong mesgea");
   }

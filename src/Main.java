@@ -21,8 +21,17 @@ import imemodel.ImageModelImpl;
 import imeview.IMEView;
 import imeview.IMEViewImpl;
 
+/**
+ * Main class to which the commands, model, view, and controller are instantiated and the
+ * application begins.
+ */
 public class Main {
 
+  /**
+   * Main class as described in the class javadoc, initializes a map of commands, the model,
+   * view, and controller.
+   * @param args That of which commands are read in.
+   */
   public static void main(String[] args) {
     Map<String, ICommand> commands = ICommand.generateMapFromList(Arrays.asList(
             new BrightenCommand(),

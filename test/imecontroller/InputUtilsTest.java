@@ -22,7 +22,7 @@ public class InputUtilsTest {
   IMEView mockView;
 
   @Before
-  public void setUp(){
+  public void setUp() {
     log = new StringBuilder();
     mockView = new IMEViewMock(log);
   }
@@ -58,7 +58,9 @@ public class InputUtilsTest {
     sc = new Scanner(new StringReader("bazinga!"));
 
     Assert.assertThrows("Ran out of inputs.", NoSuchElementException.class,
-            () -> {InputUtils.getDoubleInput(mockView, sc);});
+            () -> {
+              InputUtils.getDoubleInput(mockView, sc);
+            });
     Assert.assertEquals("renderMessage) message: Invalid input, expected a double.\n\n",
             log.toString());
   }
@@ -69,7 +71,9 @@ public class InputUtilsTest {
 
     Assert.assertEquals(0.0, InputUtils.getDoubleInput(mockView, sc), 0);
     Assert.assertThrows("Ran out of inputs.", NoSuchElementException.class,
-            () -> {InputUtils.getDoubleInput(mockView, sc);});
+            () -> {
+              InputUtils.getDoubleInput(mockView, sc);
+            });
     Assert.assertEquals("renderMessage) message: Invalid input, expected a double.\n\n",
             log.toString());
   }

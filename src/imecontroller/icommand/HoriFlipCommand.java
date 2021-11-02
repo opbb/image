@@ -5,6 +5,11 @@ import java.util.Scanner;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+
+/**
+ * This command horizontally flips the image when advised by the user to do so, via user inputs
+ * and will call for the model to use its flipHorizontal method.
+ */
 public class HoriFlipCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
