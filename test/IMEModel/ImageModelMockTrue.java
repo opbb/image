@@ -79,4 +79,9 @@ public class ImageModelMockTrue implements ImageModel {
     log.append("getKeys)\n");
     return null;
   }
+
+  @Override
+  public String toString() {
+    return "toString) This is a mock model.\n";
+  }
 }
