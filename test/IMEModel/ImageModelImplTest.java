@@ -59,9 +59,9 @@ public class ImageModelImplTest {
     model1.loadImage("silverware", new ImageImpl(new int[][][]{{{1}}}));
     assertArrayEquals(new int[][][]{{{1}}}, model1.getImage("silverware").getPixels());
 
-    Image img2 = new ImageImpl(new int[][][]{{{2 , 129, 189}}});
-    model2.loadImage("Sparking", img2);
-    assertEquals(Arrays.deepToString(img2.getPixels()), Arrays.deepToString(model1
+    Image img5 = new ImageImpl(new int[][][]{{{2 , 129, 189}}});
+    model2.loadImage("Sparking", img5);
+    assertEquals(Arrays.deepToString(img5.getPixels()), Arrays.deepToString(model2
             .getImageValues("Sparking")));
 
   }
@@ -357,7 +357,7 @@ public class ImageModelImplTest {
     new ImageModelImpl("", "");
   }
 
-  //testing default constructor 
+  //testing default constructor
   @Test
   public void testConst4() {
     model1 = new ImageModelImpl();
