@@ -9,10 +9,10 @@ public interface Image {
 
 
   /**
-   * This method gets the 3d array of integer values representing the rgb values of
+   * This method returns the 3d array of integer values representing the rgb values of
    * each pixel in an Image object.
    *
-   * @return a 3d array of integers representing the pixels of an image.
+   * @return a list of list of list of integers as the pixels in an object.
    */
   int[][][] getPixels();
 
@@ -24,14 +24,16 @@ public interface Image {
   void setPixels(int[][][] newList) throws IllegalArgumentException;
 
   /**
-   * This method gets the height of the Image object, as in how many pixels tall the image is.
-   * @return the height of the image file as an integer.
+   * This method returns the height of the Image object, as in how many pixels tall the image is.
+   *
+   * @return an integer representing the height of the image.
    */
   int getHeight();
 
   /**
-   * This method gets the width of the Image object, as in how many pixels wide the image is.
-   * @return the width of the image file as an integer.
+   * This method returns the width of the Image object, as in how many pixels wide the image is.
+   *
+   * @return an integer representing the width of the image.
    */
   int getWidth();
 

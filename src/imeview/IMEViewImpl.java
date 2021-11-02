@@ -21,7 +21,6 @@ public class IMEViewImpl implements IMEView {
 
   /**
    * Main constructor that sets a default PrintStream to System.out.
-   *
    * @param model the ImageModel object by which the view displays needed info.
    * @throws IllegalArgumentException if the model object is null.
    */
@@ -35,9 +34,8 @@ public class IMEViewImpl implements IMEView {
 
   /**
    * A testing constructor. Sets the output stream to the given appendable.
-   *
    * @param model the ImageModel object by which to display its info given the View's methods.
-   * @param out   the appendable object in which the view's methods will be displayed.
+   * @param out the appendable object in which the view's methods will be displayed.
    * @throws IllegalArgumentException if either the model or appendable object are null.
    */
   public IMEViewImpl(ImageModel model, Appendable out) throws IllegalArgumentException {
@@ -61,7 +59,7 @@ public class IMEViewImpl implements IMEView {
   public String toString() {
     String str = "|===============\n| Loaded images:\n";
     for (String image : model.getKeys()) {
-      str += "| " + image + "\n";
+      str += "| "+ image + "\n";
     }
     str += "|===============";
     return str;

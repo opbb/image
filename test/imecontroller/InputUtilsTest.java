@@ -57,9 +57,10 @@ public class InputUtilsTest {
   public void testGetDoubleInputException2() {
     sc = new Scanner(new StringReader("bazinga!"));
 
-    Assert.assertThrows("Ran out of inputs.", NoSuchElementException.class, () -> {
-      InputUtils.getDoubleInput(mockView, sc);
-    });
+    Assert.assertThrows("Ran out of inputs.", NoSuchElementException.class,
+            () -> {
+              InputUtils.getDoubleInput(mockView, sc);
+            });
     Assert.assertEquals("renderMessage) message: Invalid input, expected a double.\n\n",
             log.toString());
   }
@@ -69,9 +70,10 @@ public class InputUtilsTest {
     sc = new Scanner(new StringReader("0.0 bazinga!"));
 
     Assert.assertEquals(0.0, InputUtils.getDoubleInput(mockView, sc), 0);
-    Assert.assertThrows("Ran out of inputs.", NoSuchElementException.class, () -> {
-      InputUtils.getDoubleInput(mockView, sc);
-    });
+    Assert.assertThrows("Ran out of inputs.", NoSuchElementException.class,
+            () -> {
+              InputUtils.getDoubleInput(mockView, sc);
+            });
     Assert.assertEquals("renderMessage) message: Invalid input, expected a double.\n\n",
             log.toString());
   }
