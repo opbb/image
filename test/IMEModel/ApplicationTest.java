@@ -25,13 +25,25 @@ public class ApplicationTest {
     Image img2 = Application.applySetEffect(img1, "red");
     assertEquals("[[[3, 3, 3]]]", Arrays.deepToString(img2.getPixels()));
 
+    img2.setPixels(new int[][][]{{{251, 25, 78}}});
+    img2 = Application.applySetEffect(img2, "red");
+    assertEquals("[[[251, 251, 251]]]", Arrays.deepToString(img2.getPixels()));
+
     img2.setPixels(new int[][][]{{{5, 8, 0}}});
     img2 = Application.applySetEffect(img2, "blue");
     assertEquals("[[[0, 0, 0]]]", Arrays.deepToString(img2.getPixels()));
 
+    img2.setPixels(new int[][][]{{{89, 12, 208}}});
+    img2 = Application.applySetEffect(img2, "blue");
+    assertEquals("[[[208, 208, 208]]]", Arrays.deepToString(img2.getPixels()));
+
     img2.setPixels(new int[][][]{{{52, 128, 20}}});
     img2 = Application.applySetEffect(img2, "green");
     assertEquals("[[[128, 128, 128]]]", Arrays.deepToString(img2.getPixels()));
+
+    img2.setPixels(new int[][][]{{{67, 255, 234}}});
+    img2 = Application.applySetEffect(img2, "green");
+    assertEquals("[[[255, 255, 255]]]", Arrays.deepToString(img2.getPixels()));
 
   }
 

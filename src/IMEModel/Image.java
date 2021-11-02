@@ -21,7 +21,7 @@ public interface Image {
    * Sets the pixels to a new 3d array of integers.
    * @param newList a 3d integer array to which the pixels of the image will be set to.
    */
-  void setPixels(int[][][] newList);
+  void setPixels(int[][][] newList) throws IllegalArgumentException;
 
   /**
    * This method returns the height of the Image object, as in how many pixels tall the image is.
@@ -34,26 +34,5 @@ public interface Image {
    * @return an integer representing the width of the image.
    */
   int getWidth();
-
-
-  /**
-   * This method returns the maximum value of the three rgb components of the Image for each pixel.
-   * @return the maximum value of the three rgb components of each pixel as an integer.
-   */
-  int getValue();
-
-  /**
-   * This method returns the average of the three components for each pixel.
-   * @return the average of the three rgb component values of each pixel.
-   */
-  int getIntensity();
-
-  /**
-   * This method returns the luma, a weigthed sum of a formula.
-   * @return the luma of a pixel.
-   */
-  int getLuma();
-
-
 
 }

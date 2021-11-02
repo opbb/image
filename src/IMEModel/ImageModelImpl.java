@@ -27,6 +27,7 @@ public class ImageModelImpl implements ImageModel {
     this.map = new HashMap<String, Image>();
   }
 
+
   /**
    * This constructor takes in a filename, as to what the key within the map will be addressed by,
    * along with a filepath to create the image object set by this filepath, acting as the value
@@ -34,9 +35,10 @@ public class ImageModelImpl implements ImageModel {
    *
    * @param filename the file name as to be addressed by within the hashmap.
    * @param filepath the file path used to make the image object.
+   * @throws IllegalArgumentException if the filename or filepath are empty or null.
    */
-  public ImageModelImpl(String filename, String filepath) {
-    if (filename == null || filepath == null) {
+  public ImageModelImpl(String filename, String filepath) throws IllegalArgumentException {
+    if (filename == null || filename.equals("") || filepath.equals("") || filepath == null) {
       throw new IllegalArgumentException("The given filename or filepath do not exist or must not" +
               "be null!");
     }
@@ -48,8 +50,9 @@ public class ImageModelImpl implements ImageModel {
    * A 3rd constructor used for testing, takes in an Image object, but not a String as to be loaded
    * by the tester.
    * @param image an image object.
+   * @throws IllegalArgumentException if the image object is null.
    */
-  public ImageModelImpl(Image image) {
+  public ImageModelImpl(Image image) throws IllegalArgumentException {
     if (image == null) {
       throw new IllegalArgumentException("The given image cannot be null!");
     }

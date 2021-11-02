@@ -25,8 +25,12 @@ public class ImageImpl implements Image {
    *
    * @param image a list of list of list of integers that will act as a preconfigured list of
    *              pixels.
+   * @throws IllegalArgumentException if the 3d array of integers is null.
    */
-  public ImageImpl(int[][][] image) {
+  public ImageImpl(int[][][] image) throws IllegalArgumentException {
+    if (image == null) {
+      throw new IllegalArgumentException("The given 3d array must not be null!");
+    }
     this.pixels = image;
     this.height = image.length;
     this.width = image[0].length;
@@ -35,11 +39,18 @@ public class ImageImpl implements Image {
   /**
    * This constructor allows for a different sized image, in which the array of integers is
    * completely customizable and therefore subject to change.
-   * @param image the array of integers expressing the coordinates and rgb values of each pixel.
+   *
+   * @param image  the array of integers expressing the coordinates and rgb values of each pixel.
    * @param height the height of the image as an integer.
-   * @param width the width of the image as an integer.
+   * @param width  the width of the image as an integer.
+   * @throws IllegalArgumentException if the image (3d array) is null or the height or width is
+   *                                  less than zero.
    */
-  public ImageImpl(int[][][] image, int height, int width) {
+  public ImageImpl(int[][][] image, int height, int width) throws IllegalArgumentException {
+    if (image == null || height < 0 || width < 0) {
+      throw new IllegalArgumentException("The 3d array cannot be null and the height and " +
+              "weight must not be less than zero!");
+    }
     this.pixels = image;
     this.height = height;
     this.width = width;
@@ -50,8 +61,12 @@ public class ImageImpl implements Image {
    * of this class correspondent to that of the file/image.
    *
    * @param file the source path of the file as a String.
+   * @throws IllegalArgumentException if the given filename is null or empty.
    */
   public ImageImpl(String file) throws IllegalArgumentException {
+    if (file == null || file.equals("")) {
+      throw new IllegalArgumentException("The given filename must not be null!");
+    }
     try {
       this.pixels = ImageUtil.readPPM(file);
       this.height = ImageUtil.getHeight(file);
@@ -63,63 +78,30 @@ public class ImageImpl implements Image {
   }
 
 
+  @Override
   public int[][][] getPixels() {
     return this.pixels;
   }
 
-  public void setPixels(int[][][] newList) {
+  @Override
+  public void setPixels(int[][][] newList) throws IllegalArgumentException {
+    if (newList == null) {
+      throw new IllegalArgumentException("The new given list must not be null!");
+    }
     pixels = newList;
   }
 
+  @Override
   public int getHeight() {
     return this.height;
   }
 
+  @Override
   public int getWidth() {
     return this.width;
   }
 
-  public int getValue() {
-    int result = 0;
-    for (int i = 0; i < pixels.length; i++) {
-      for (int j = 0; j < pixels[i].length; j++) {
-        for (int k = 0; k < pixels[i][j].length; k++) {
-          if (pixels[i][j][k] > result) {
-            result = pixels[i][j][k];
-          }
-        }
-      }
-    }
-    return result;
-  }
 
-  public int getIntensity() {
-
-    int result = 0;
-    for (int i = 0; i < pixels.length; i++) {
-      for (int j = 0; j < pixels[i].length; j++) {
-        for (int k = 0; k < pixels[i][j].length; k++) {
-          result = ((pixels[i][j][k] + pixels[i][j][1] +
-                  pixels[i][j][2]) / 3);
-        }
-      }
-    }
-    return result;
-  }
-
-
-  public int getLuma() {
-    double result = 0;
-    for (int i = 0; i < pixels.length; i++) {
-      for (int j = 0; j < pixels[i].length; j++) {
-        for (int k = 0; k < pixels[i][j].length; k++) {
-          result = ((pixels[i][j][k] * 0.2126) + (pixels[i][j][1] * 0.7152) +
-                  (pixels[i][j][2] * 0.0722));
-        }
-      }
-    }
-    return (int) result;
-  }
 
 
 }
