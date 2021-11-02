@@ -1,4 +1,4 @@
-package IMEController;
+package IMEController.ICommand;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -417,8 +417,8 @@ public class ICommandsTest {
     ICommand command = new BrightenCommand();
     sc = new Scanner(new StringReader("bazinga! input0 input1"));
     command.execute(mockModelFalse, mockView, sc);
-    Assert.assertEquals("renderMessage) message: Invalid input, expected a double.\n" +
-                    "The command should be structured as shown below:\n" +
+    Assert.assertEquals("renderMessage) message: Invalid input, expected a double.\n\n" +
+                    "renderMessage) message: The command should be structured as shown below:\n" +
                     "brighten [amount to brighten] [image to brighten] [new image name]\n\n\n",
             log.toString());
   }
