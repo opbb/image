@@ -548,7 +548,16 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc);
   }
 
-  // We can't truly test the functionality of the load command as that requires reading files :(
+  @Test
+  public void testLoadCommand() {
+    ICommand command = new LoadCommand();
+    sc = new Scanner(new StringReader("res/test-input.ppm test"));
+    command.execute(mockModelTrue, mockView, sc);
+    Assert.assertEquals("loadImage) name: test image: [[[204, 204, 204], " +
+                    "[188, 188, 188], [68, 68, 68]], [[201, 201, 201], [23, 23, 23], " +
+            "[207, 207, 207]], [[235, 235, 235], [165, 165, 165], [255, 255, 255]]]\n",
+            log.toString());
+  }
 
   @Test
   public void testLoadCommandFail() {
@@ -581,8 +590,6 @@ public class ICommandsTest {
     sc = new Scanner(new StringReader("input0"));
     command.execute(mockModelTrue, mockView, sc);
   }
-
-  // Nor can we truly test the functionality of the save command as it requires writing files :((
 
   @Test
   public void testSaveCommandFail() {
