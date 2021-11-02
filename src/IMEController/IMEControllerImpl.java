@@ -2,6 +2,7 @@ package IMEController;
 
 import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import IMEController.ICommand.ICommand;
@@ -50,9 +51,11 @@ public class IMEControllerImpl implements IMEController{
   public void run() {
 
     while(true) {
-      view.renderMessage(view.toString() + "\n\nInput new command: ");
+      view.renderMessage(view + "\n\nInput new command: ");
 
-      String input = sc.next().toLowerCase(); // Input is converted to lowercase for easier parsing.
+      // Input is converted to lowercase for easier parsing.
+      String input = InputUtils.getStringInput(sc).toLowerCase();
+
       // Block below check for the quit command.
       if(input.equals("q") || input.equals("quit")) { // "q" or "quit" quits the program.
         view.renderMessage("You have quit the program.");
@@ -85,6 +88,20 @@ public class IMEControllerImpl implements IMEController{
                   "input \"help\" for a list of available commands.\n\n");
         }
       }
+    }
+  }
+
+  /**
+   * Returns the inputted String, or throws an exception if there are issues with the scanner.
+   * @param sc the scanner from which inputs are read
+   * @return the inputted string
+   * @throws IllegalStateException if there are no more inputs or the scanner is closed
+   */
+  protected String getStringInput(Scanner sc) throws IllegalStateException{
+    try {
+      return sc.next();
+    } catch (NoSuchElementException e) {
+      throw new IllegalStateException("Ran out of inputs.");
     }
   }
 }

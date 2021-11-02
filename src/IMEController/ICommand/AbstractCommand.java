@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import IMEController.InputUtils;
 import IMEModel.ImageModel;
 import IMEView.IMEView;
 
@@ -23,13 +24,11 @@ public abstract class AbstractCommand implements ICommand {
   protected double getDoubleInput(IMEView view, Scanner sc)
           throws InputMismatchException, IllegalStateException {
     try {
-      return sc.nextDouble();
+      return InputUtils.getDoubleInput(view, sc);
     } catch (InputMismatchException e) {
-      view.renderMessage("Invalid input, expected a double.\nThe command should be structured as "
-              + "shown below:\n" + this.helpMessage() + "\n\n");
+      view.renderMessage("The command should be structured as shown below:\n"
+              + this.helpMessage() + "\n\n");
       throw e; // Propagates the exception up so that the invalid input can be addressed.
-    } catch (NoSuchElementException e) {
-      throw new IllegalStateException("Ran out of inputs.");
     }
   }
 
@@ -40,11 +39,7 @@ public abstract class AbstractCommand implements ICommand {
    * @throws IllegalStateException if there are no more inputs or the scanner is closed
    */
   protected String getStringInput(Scanner sc) throws IllegalStateException{
-    try {
-      return sc.next();
-    } catch (NoSuchElementException e) {
-      throw new IllegalStateException("Ran out of inputs.");
-    }
+    return InputUtils.getStringInput(sc);
   }
 
   /**
