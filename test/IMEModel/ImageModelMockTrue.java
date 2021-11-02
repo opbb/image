@@ -23,7 +23,7 @@ public class ImageModelMockTrue implements ImageModel {
 
   @Override
   public void loadImage(String name, Image image) {
-    log.append("loadImage) name: " + name + " image:"
+    log.append("loadImage) name: " + name + " image: "
             + Arrays.deepToString(image.getPixels()) + "\n");
   }
 
