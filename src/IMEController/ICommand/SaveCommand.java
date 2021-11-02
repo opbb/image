@@ -14,9 +14,14 @@ public class SaveCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String fileName = getStringInput(sc);
+    Image image = model.getImage(fromImage);
 
     try {
-      ImageUtil.writePPM(model.getImage(fromImage), fileName);
+      if (image != null) {
+        ImageUtil.writePPM(image, fileName);
+      } else {
+        view.renderMessage("The image " + fromImage + " is null.\n\n");
+      }
     } catch (IOException e) {
       view.renderMessage("The image cannot be saved to " + fileName + ".\n\n");
     }

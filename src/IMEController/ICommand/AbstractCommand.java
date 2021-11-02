@@ -25,7 +25,7 @@ public abstract class AbstractCommand implements ICommand {
     try {
       return sc.nextDouble();
     } catch (InputMismatchException e) {
-      view.renderMessage("Invalid input, expected a double.\nThe command should be structured as"
+      view.renderMessage("Invalid input, expected a double.\nThe command should be structured as "
               + "shown below:\n" + this.helpMessage() + "\n\n");
       throw e; // Propagates the exception up so that the invalid input can be addressed.
     } catch (NoSuchElementException e) {
