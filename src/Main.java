@@ -1,25 +1,25 @@
 import java.util.Arrays;
 import java.util.Map;
 
-import IMEController.ICommand.BlueValueCommand;
-import IMEController.ICommand.BrightenCommand;
-import IMEController.ICommand.CloseCommand;
-import IMEController.ICommand.LumaValueCommand;
-import IMEController.ICommand.GreenValueCommand;
-import IMEController.ICommand.HoriFlipCommand;
-import IMEController.ICommand.ICommand;
-import IMEController.ICommand.IntensityValueCommand;
-import IMEController.ICommand.LoadCommand;
-import IMEController.ICommand.RedValueCommand;
-import IMEController.ICommand.SaveCommand;
-import IMEController.ICommand.ValueCommand;
-import IMEController.ICommand.VertFlipCommand;
-import IMEController.IMEController;
-import IMEController.IMEControllerImpl;
-import IMEModel.ImageModel;
-import IMEModel.ImageModelImpl;
-import IMEView.IMEView;
-import IMEView.IMEViewImpl;
+import imecontroller.icommand.BlueValueCommand;
+import imecontroller.icommand.BrightenCommand;
+import imecontroller.icommand.CloseCommand;
+import imecontroller.icommand.LumaValueCommand;
+import imecontroller.icommand.GreenValueCommand;
+import imecontroller.icommand.HoriFlipCommand;
+import imecontroller.icommand.ICommand;
+import imecontroller.icommand.IntensityValueCommand;
+import imecontroller.icommand.LoadCommand;
+import imecontroller.icommand.RedValueCommand;
+import imecontroller.icommand.SaveCommand;
+import imecontroller.icommand.ValueCommand;
+import imecontroller.icommand.VertFlipCommand;
+import imecontroller.IMEController;
+import imecontroller.IMEControllerImpl;
+import imemodel.ImageModel;
+import imemodel.ImageModelImpl;
+import imeview.IMEView;
+import imeview.IMEViewImpl;
 
 public class Main {
 
