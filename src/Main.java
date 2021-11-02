@@ -1,12 +1,10 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 import IMEController.ICommand.BlueValueCommand;
 import IMEController.ICommand.BrightenCommand;
-import IMEController.ICommand.CloseImageCommand;
-import IMEController.ICommand.GrayscaleCommand;
+import IMEController.ICommand.CloseCommand;
+import IMEController.ICommand.LumaValueCommand;
 import IMEController.ICommand.GreenValueCommand;
 import IMEController.ICommand.HoriFlipCommand;
 import IMEController.ICommand.ICommand;
@@ -28,7 +26,7 @@ public class Main {
   public static void main(String[] args) {
     Map<String, ICommand> commands = ICommand.generateMapFromList(Arrays.asList(
             new BrightenCommand(),
-            new GrayscaleCommand(),
+            new LumaValueCommand(),
             new HoriFlipCommand(),
             new LoadCommand(),
             new VertFlipCommand(),
@@ -37,7 +35,7 @@ public class Main {
             new BlueValueCommand(),
             new ValueCommand(),
             new IntensityValueCommand(),
-            new CloseImageCommand(),
+            new CloseCommand(),
             new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
