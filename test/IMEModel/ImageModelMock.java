@@ -1,6 +1,7 @@
 package IMEModel;
 
 import java.util.Arrays;
+import java.util.Set;
 
 public class ImageModelMock implements ImageModel {
 
@@ -66,5 +67,10 @@ public class ImageModelMock implements ImageModel {
   @Override
   public void greyscaleByLuma(String name) {
     log.append("name: " + name + "\n");
+  }
+
+  @Override
+  public Set<String> getKeys() {
+    return null;
   }
 }

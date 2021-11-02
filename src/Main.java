@@ -40,7 +40,7 @@ public class Main {
             new CloseImageCommand(),
             new SaveCommand()));
     ImageModel model = new ImageModelImpl();
-    IMEView view = new IMEViewImpl();
+    IMEView view = new IMEViewImpl(model);
     IMEController controller = new IMEControllerImpl(commands, model, view);
 
     controller.run();

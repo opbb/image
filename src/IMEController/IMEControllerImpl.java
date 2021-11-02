@@ -50,7 +50,7 @@ public class IMEControllerImpl implements IMEController{
   public void run() {
 
     while(true) {
-      view.renderMessage("Input new command: ");
+      view.renderMessage(view.toString() + "\n\nInput new command: ");
 
       String input = sc.next().toLowerCase(); // Input is converted to lowercase for easier parsing.
       // Block below check for the quit command.
@@ -63,8 +63,9 @@ public class IMEControllerImpl implements IMEController{
       else if(input.equals("help") || input.equals("\"help\"")) { // "help" or ""help"" for help.
         view.renderMessage("\nList of commands:\n\n"); // Simple spaced header.
         for (ICommand command : commands.values()) {
-          view.renderMessage(command.helpMessage() + "\n\n"); // Prints help msg for all commands.
+          view.renderMessage(command.helpMessage() + "\n"); // Prints help msg for all commands.
         }
+        view.renderMessage("\n");
       }
 
       // Block below check for all other commands.

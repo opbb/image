@@ -15,14 +15,12 @@ public class IMEViewImpl implements IMEView {
 
   ImageModel model;
 
-  public IMEViewImpl(ImageModel model) {
-    this.model = model;
-  }
 
   /**
    * A basic constructor. Sets the output stream to System.out.
    */
-  public IMEViewImpl() {
+  public IMEViewImpl(ImageModel model) {
+    this.model = model;
     this.out = new PrintStream(System.out);
   }
 
@@ -30,7 +28,8 @@ public class IMEViewImpl implements IMEView {
    * A testing constructor. Sets the output stream to the given appendable.
    * @param out
    */
-  public IMEViewImpl(Appendable out) {
+  public IMEViewImpl(ImageModel model, Appendable out) {
+    this.model = model;
     this.out = out;
   }
 
@@ -45,7 +44,11 @@ public class IMEViewImpl implements IMEView {
 
   @Override
   public String toString() {
-    String str = "|==============\n|Loaded images:\n";
-    for
+    String str = "|===============\n| Loaded images:\n";
+    for (String image : model.getKeys()) {
+      str += "| "+ image + "\n";
+    }
+    str += "|===============";
+    return str;
   }
 }

@@ -19,13 +19,11 @@ public class CloseImageCommand extends AbstractCommand {
 
   @Override
   public String helpMessage() {
-    return "close-image [image to close] [new image name]";
+    return "close-image [image to close]";
   }
 
   @Override
   public String commandText() {
     return "close-image";
   }
-
-
 }
