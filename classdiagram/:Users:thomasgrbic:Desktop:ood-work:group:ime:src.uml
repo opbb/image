@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/thomasgrbic/Desktop/ood-work/group/ime/src</OriginalElement>
+  <nodes>
+    <node x="896.1578445477476" y="1247.6422896629476">IMEModel.Image</node>
+    <node x="2073.225194903417" y="717.4175652941813">IMEController.ICommand.SaveCommand</node>
+    <node x="1990.5" y="1318.9177826539437">IMEView.IMEView</node>
+    <node x="822.1578445477476" y="1577.9177826539437">IMEModel.Application</node>
+    <node x="1560.4371971231951" y="1557.4180000137062">IMEModel.ImageUtil</node>
+    <node x="1068.9996589184009" y="717.4175652941813">IMEController.ICommand.LoadCommand</node>
+    <node x="1068.9996589184009" y="420.41756529418126">IMEController.ICommand.BrightenCommand</node>
+    <node x="1068.9996589184009" y="321.41756529418126">IMEController.ICommand.VertFlipCommand</node>
+    <node x="2073.225194903417" y="321.41756529418126">IMEController.ICommand.ValueCommand</node>
+    <node x="2498.383726001173" y="1456.9177826539437">IMEController.IMEControllerImpl</node>
+    <node x="1222.021394007087" y="1445.9177826539437">IMEModel.ImageModelImpl</node>
+    <node x="1068.9996589184009" y="618.4175652941813">IMEController.ICommand.GreenValueCommand</node>
+    <node x="896.1578445477476" y="1418.6422896629476">IMEModel.ImageImpl</node>
+    <node x="1222.021394007087" y="1076.9177826539437">IMEModel.ImageModel</node>
+    <node x="2073.225194903417" y="420.41756529418126">IMEController.ICommand.HoriFlipCommand</node>
+    <node x="2073.225194903417" y="618.4175652941813">IMEController.ICommand.CloseCommand</node>
+    <node x="1570.0624617952058" y="904.0">IMEController.ICommand.AbstractCommand</node>
+    <node x="2073.225194903417" y="519.4175652941813">IMEController.ICommand.LumaValueCommand</node>
+    <node x="1990.5" y="1445.9177826539437">IMEView.IMEViewImpl</node>
+    <node x="1534.9715130663617" y="695.4175652941813">IMEController.ICommand.ICommand</node>
+    <node x="1068.9996589184009" y="816.4175652941813">IMEController.ICommand.RedValueCommand</node>
+    <node x="2073.225194903417" y="816.4175652941813">IMEController.ICommand.IntensityValueCommand</node>
+    <node x="1068.9996589184009" y="519.4175652941813">IMEController.ICommand.BlueValueCommand</node>
+    <node x="2238.225194903417" y="1119.8211448314737">Main</node>
+    <node x="2514.883726001173" y="1334.9304942039155">IMEController.IMEController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="IMEController.ICommand.ValueCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="-165.99973310821133" y="4.3470581874771597E-4" />
+      <point x="2034.5624617952058" y="370.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.VertFlipCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="165.99980287680478" y="4.3470581874771597E-4" />
+      <point x="1468.5624617952058" y="370.918" />
+      <point x="1468.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.RedValueCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="165.99980287680478" y="4.3470581874771597E-4" />
+      <point x="1468.5624617952058" y="865.918" />
+      <point x="1468.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.IntensityValueCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="-165.99973310821133" y="4.3470581874771597E-4" />
+      <point x="2034.5624617952058" y="865.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.LumaValueCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="-165.99973310821133" y="4.3470581874771597E-4" />
+      <point x="2034.5624617952058" y="568.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.CloseCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="-165.99973310821133" y="4.3470581874771597E-4" />
+      <point x="2034.5624617952058" y="667.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.HoriFlipCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="-165.99973310821133" y="4.3470581874771597E-4" />
+      <point x="2034.5624617952058" y="469.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.LoadCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="165.99980287680478" y="4.3470581874771597E-4" />
+      <point x="1468.5624617952058" y="766.918" />
+      <point x="1468.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEModel.ImageImpl" target="IMEModel.Image" relationship="REALIZATION">
+      <point x="0.0" y="-60.5" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="IMEModel.ImageModelImpl" target="IMEModel.ImageModel" relationship="REALIZATION">
+      <point x="0.0" y="-159.5" />
+      <point x="0.0" y="159.5" />
+    </edge>
+    <edge source="IMEController.IMEControllerImpl" target="IMEController.IMEController" relationship="REALIZATION">
+      <point x="0.0" y="-27.5" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="IMEController.ICommand.AbstractCommand" target="IMEController.ICommand.ICommand" relationship="REALIZATION">
+      <point x="-11.090948728844069" y="-49.5" />
+      <point x="1764.4715130663617" y="753.0385108652699" />
+      <point x="1764.4715130663617" y="753.0385108652699" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="IMEController.ICommand.BlueValueCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="165.99980287680478" y="4.3470581874771597E-4" />
+      <point x="1468.5624617952058" y="568.918" />
+      <point x="1468.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEView.IMEViewImpl" target="IMEView.IMEView" relationship="REALIZATION">
+      <point x="0.0" y="-38.5" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="IMEController.ICommand.BrightenCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="165.99980287680478" y="4.3470581874771597E-4" />
+      <point x="1468.5624617952058" y="469.918" />
+      <point x="1468.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.GreenValueCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="165.99980287680478" y="4.3470581874771597E-4" />
+      <point x="1468.5624617952058" y="667.918" />
+      <point x="1468.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="652.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+    <edge source="IMEController.ICommand.SaveCommand" target="IMEController.ICommand.AbstractCommand" relationship="GENERALIZATION">
+      <point x="-165.99973310821133" y="4.3470581874771597E-4" />
+      <point x="2034.5624617952058" y="766.918" />
+      <point x="2034.5624617952058" y="953.5" />
+      <point x="205.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.36345380530850213" showDependencies="false" x="1792.3897084417292" y="1051.447538222874" />
+  <SelectedNodes>
+    <node>IMEController.IMEControllerImpl</node>
+    <node>IMEController.IMEController</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
