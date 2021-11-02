@@ -5,7 +5,7 @@ package IMEController.Interaction;
  * and some output to expect.  We represent it as an object that takes in two
  * StringBuilders and produces the intended effects on them
  */
-interface Interaction {
+public interface Interaction {
 
   /**
    * Applies the simulated interaction.

@@ -3,7 +3,7 @@ package IMEController.Interaction;
 /**
  * Represents the printing of a sequence of lines to output.
  */
-class PrintInteraction implements Interaction {
+public class PrintInteraction implements Interaction {
   String[] lines;
 
   /**

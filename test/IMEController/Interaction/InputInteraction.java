@@ -3,7 +3,7 @@ package IMEController.Interaction;
 /**
  * Represents a user providing the program with  an input.
  */
-class InputInteraction implements Interaction {
+public class InputInteraction implements Interaction {
   String input;
 
   /**
