@@ -16,7 +16,7 @@ public class LumaValueCommand extends AbstractCommand {
     String fromImage = getStringInput(sc);
     String toImage = getStringInput(sc);
 
-    if(setUpImage(model, view, fromImage, toImage)) {
+    if (setUpImage(model, view, fromImage, toImage)) {
       model.greyscaleByLuma(toImage);
     }
   }

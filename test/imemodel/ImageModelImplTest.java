@@ -219,16 +219,16 @@ public class ImageModelImplTest {
             model2.getImageValues("Over"));
 
     //testing with new image.
-    model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+    model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}}, {{56, 109, 215}},
+        {{34, 90, 249}}, {{56, 89, 191}}}));
     model2.flipVertical("Horses");
     assertArrayEquals(new int[][][]{{{56, 89, 191}},
-                    {{34, 90, 249}}, {{56, 109, 215}}, {{77, 189, 208}}},
+        {{34, 90, 249}}, {{56, 109, 215}}, {{77, 189, 208}}},
             model2.getImageValues("Horses"));
     //flip the same image back to its original.
     model2.flipVertical("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
+        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
 
 
@@ -255,15 +255,15 @@ public class ImageModelImplTest {
 
     //testing with new image.
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     model2.flipHorizontal("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
+        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
     //flip the same image back to its original.
     model2.flipHorizontal("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
+        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
 
 
@@ -304,7 +304,7 @@ public class ImageModelImplTest {
 
 
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     assertEquals("Over\n" +
             "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
             "\n" +
@@ -332,7 +332,7 @@ public class ImageModelImplTest {
     assertEquals("[Image1, Img2]", model2.getKeys().toString());
 
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     assertEquals("[Horses, Image1, Img2]", model2.getKeys().toString());
 
 
@@ -342,7 +342,6 @@ public class ImageModelImplTest {
   public void testConst1() {
     new ImageModelImpl(null);
   }
-
 
 
   @Test(expected = IllegalArgumentException.class)
