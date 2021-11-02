@@ -164,12 +164,12 @@ public class ImageModelImpl implements ImageModel {
 
   @Override
   public String toString() {
-    String str = "";
+    StringBuilder str = new StringBuilder();
     for(Map.Entry<String, Image> entry : map.entrySet()) {
-      str.concat(entry.getKey() + "\n"
-              + Arrays.deepToString(entry.getValue().getPixels()) + "\n\n");
+      str.append(entry.getKey()).append("\n").append(Arrays.deepToString(entry.getValue()
+              .getPixels())).append("\n\n");
     }
-    return str;
+    return str.toString();
   }
 
   @Override

@@ -198,7 +198,171 @@ public class ImageModelImplTest {
             model2.getImageValues("backTo"));
   }
 
+  @Test
+  public void testVerticalFlip() {
 
+    model1.loadImage("eaer", new ImageImpl(new int[][][]{{{1, 2, 3}}}));
+    assertTrue(model1.hasImage("eaer"));
+    model1.flipVertical("eaer");
+
+    assertArrayEquals(new int[][][]{{{1, 2, 3}}}, model1.getImageValues("eaer"));
+
+    model2.loadImage("safe", new ImageImpl(new int[][][]{{{2, 45, 12}}, {{23, 24, 90}}}));
+    model2.flipVertical("safe");
+    assertArrayEquals(new int[][][]{{{23, 24, 90}}, {{2, 45, 12}}},
+            model2.getImageValues("safe"));
+
+    model2.loadImage("Over", image2);
+    model2.flipVertical("Over");
+    assertArrayEquals(new int[][][]{{{25, 25, 25}, {50, 75, 100}, {205, 210, 160}, {169, 68, 6}}},
+            model2.getImageValues("Over"));
+
+    //testing with new image.
+    model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
+            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+    model2.flipVertical("Horses");
+    assertArrayEquals(new int[][][]{{{56, 89, 191}},
+                    {{34, 90, 249}}, {{56, 109, 215 }}, {{77, 189, 208}}},
+            model2.getImageValues("Horses"));
+    //flip the same image back to its original.
+    model2.flipVertical("Horses");
+    assertArrayEquals(new int[][][]{{{77, 189, 208}},
+                    {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}},
+            model2.getImageValues("Horses"));
+
+
+
+  }
+
+  @Test
+  public void testHorizontalFlip() {
+
+    model1.loadImage("eaer", new ImageImpl(new int[][][]{{{1, 2, 3}}}));
+    assertTrue(model1.hasImage("eaer"));
+    model1.flipHorizontal("eaer");
+
+    assertArrayEquals(new int[][][]{{{1, 2, 3}}}, model1.getImageValues("eaer"));
+
+    model2.loadImage("safe", new ImageImpl(new int[][][]{{{2, 45, 12}}, {{23, 24, 90}}}));
+    model2.flipHorizontal("safe");
+    assertArrayEquals(new int[][][]{{{2, 45, 12}}, {{23, 24, 90}}},
+            model2.getImageValues("safe"));
+
+    model2.loadImage("Over", image2);
+    model2.flipHorizontal("Over");
+    assertArrayEquals(new int[][][]{{{169, 68, 6}, {205, 210, 160}, {50, 75, 100}, {25, 25, 25}}},
+            model2.getImageValues("Over"));
+
+    //testing with new image.
+    model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
+            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+    model2.flipHorizontal("Horses");
+    assertArrayEquals(new int[][][]{{{77, 189, 208}},
+                    {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}},
+            model2.getImageValues("Horses"));
+    //flip the same image back to its original.
+    model2.flipHorizontal("Horses");
+    assertArrayEquals(new int[][][]{{{77, 189, 208}},
+                    {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}},
+            model2.getImageValues("Horses"));
+
+
+
+  }
+
+  @Test
+  public void testClose() {
+    model1.closeImage("Image1");
+    assertFalse(model1.hasImage("Image1"));
+    model1.loadImage("img2", image2);
+    model1.loadImage("Much", new ImageImpl(new int[][][]{{{}}}));
+    assertTrue(model1.hasImage("Much"));
+    assertTrue(model1.hasImage("img2"));
+    model1.closeImage("img2");
+    model1.closeImage("Much");
+    assertFalse(model1.hasImage("img2"));
+    assertFalse(model1.hasImage("Much"));
+
+  }
+
+  @Test
+  public void testToString() {
+    model2.loadImage("Img2", image2);
+    assertEquals("Img2\n[[[25, 25, 25], [50, 75, 100], [205, 210, 160], " +
+            "[169, 68, 6]]]\n\n", model2.toString());
+    assertEquals("Image1\n" +
+            "[[[25, 25, 25], [50, 75, 100]]]\n\n", model1.toString());
+
+    model2.loadImage("Over", image2);
+
+    assertEquals("Over\n" +
+                    "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
+                    "\n" +
+                    "Img2\n" +
+                    "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
+                    "\n",
+            model2.toString());
+
+
+    model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
+            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+    assertEquals("Over\n" +
+            "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
+            "\n" +
+            "Horses\n" +
+            "[[[77, 189, 208]], [[56, 109, 215]], [[34, 90, 249]], [[56, 89, 191]]]\n" +
+            "\n" +
+            "Img2\n" +
+            "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
+            "\n", model2.toString());
+
+  }
+
+  @Test
+  public void testGetKeys() {
+    assertEquals("[Image1]", model1.getKeys().toString());
+
+    model2.loadImage("Image1", image1);
+    model2.loadImage("Img2", image2);
+
+    assertEquals("[Image1, Img2]", model2.getKeys().toString());
+
+    model2.loadImage("Over", image2);
+    assertEquals("[Over, Image1, Img2]", model2.getKeys().toString());
+    model2.closeImage("Over");
+    assertEquals("[Image1, Img2]", model2.getKeys().toString());
+
+    model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
+            {{56, 109, 215}}, {{34, 90, 249 }}, {{56, 89, 191}}}));
+    assertEquals("[Horses, Image1, Img2]", model2.getKeys().toString());
+
+
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testConst1() {
+    new ImageModelImpl(null);
+  }
+
+
+  @Test
+  public void testConst2() {
+    //this test will pass if the grader/user has the images/folder with the contained image.
+//    ImageModel mod1 = new ImageModelImpl("walk", "images/when-you-walking.ppm");
+//    assertTrue(mod1.hasImage("walk"));
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testConst3() {
+    new ImageModelImpl("", "");
+  }
+
+  //testing default constructor 
+  @Test
+  public void testConst4() {
+    model1 = new ImageModelImpl();
+    assertFalse(model1.hasImage("Image1"));
+  }
 
 
 }

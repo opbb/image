@@ -1,11 +1,15 @@
 package IMEModel;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
+
+import javax.imageio.ImageIO;
 
 
 /**
@@ -67,6 +71,8 @@ public class ImageUtil {
     }
     return results;
   }
+
+
 
   public static void writePPM(Image image, String filename) throws IOException {
 
