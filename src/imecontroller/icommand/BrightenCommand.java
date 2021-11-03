@@ -26,20 +26,15 @@ public class BrightenCommand extends AbstractCommand {
         model.brighten(toImage, amount);
       }
     } catch (InputMismatchException e) {
-<<<<<<< HEAD
-      //throw away next 3 inputs
-      InputUtils.getStringInput(sc);
-      InputUtils.getStringInput(sc);
-      InputUtils.getStringInput(sc);
 
-=======
+
       // Throw out the next 3 inputs from the Scanner so they don't get interpreted as commands.
       getStringInput(sc);
       getStringInput(sc);
       getStringInput(sc);
 
       // An error message has already been rendered, so we simply ignore the exception.
->>>>>>> 50146d97d627b320863bc4686db3d901de380e08
+
     }
   }
 
