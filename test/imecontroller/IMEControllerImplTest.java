@@ -1,4 +1,4 @@
-package IMEController;
+package imecontroller;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
-<<<<<<< HEAD
+
+import imecontroller.IMEController;
+import imecontroller.IMEControllerImpl;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
@@ -40,32 +42,6 @@ import imeview.IMEViewMock;
  * user error handling are tested. This tester class utilizes mocks of both a mock view and mock
  * models in checking that the controller is correctly processing what is has been given.
  */
-=======
-import IMEController.ICommand.BlueValueCommand;
-import IMEController.ICommand.BrightenCommand;
-import IMEController.ICommand.CloseCommand;
-import IMEController.ICommand.GreenValueCommand;
-import IMEController.ICommand.HoriFlipCommand;
-import IMEController.ICommand.ICommand;
-import IMEController.ICommand.IntensityValueCommand;
-import IMEController.ICommand.LoadCommand;
-import IMEController.ICommand.LumaValueCommand;
-import IMEController.ICommand.MockCommand;
-import IMEController.ICommand.RedValueCommand;
-import IMEController.ICommand.SaveCommand;
-import IMEController.ICommand.ValueCommand;
-import IMEController.ICommand.VertFlipCommand;
-import IMEController.Interaction.InputInteraction;
-import IMEController.Interaction.Interaction;
-import IMEController.Interaction.PrintInteraction;
-import IMEModel.ImageModel;
-import IMEModel.ImageModelImpl;
-import IMEModel.ImageModelMockTrue;
-import IMEView.IMEView;
-import IMEView.IMEViewImpl;
-import IMEView.IMEViewMock;
-
->>>>>>> 50146d97d627b320863bc4686db3d901de380e08
 public class IMEControllerImplTest {
 
   StringBuilder log;
@@ -495,7 +471,7 @@ public class IMEControllerImplTest {
     Assert.assertEquals(expectedOutput.toString(), out.toString());
   }
 
-<<<<<<< HEAD
+
   @Test
   public void testRunException0() {
     StringBuilder expectedOutput = new StringBuilder();
@@ -509,6 +485,9 @@ public class IMEControllerImplTest {
     });
     Assert.assertEquals(expectedOutput.toString(), out.toString());
   }
+
+
+  
 
   @Test
   public void testRunCommandInputs() {
@@ -528,39 +507,7 @@ public class IMEControllerImplTest {
             "Input new command: \n" +
             "renderMessage) message: You have quit the program.\n", log.toString());
   }
-=======
-@Test
-public void testRunException0() {
-  StringBuilder expectedOutput = new StringBuilder();
-  Assert.assertThrows("Ran out of inputs.", IllegalStateException.class, () ->
-          {testRunHelper(expectedOutput, commands, model, view,
-          new PrintInteraction("|===============\n" +
-                  "| Loaded images:\n" +
-                  "|===============\n" +
-                  "\n" +
-                  "Input new command: "));});
-  Assert.assertEquals(expectedOutput.toString(), out.toString());
-}
 
-@Test
-public void testRunCommandInputs() {
-  StringReader input = new StringReader("mock this-is-the-next-scanner-input q");
-  new IMEControllerImpl(mockCommands, mockModelTrue, mockView, input).run();
-  Assert.assertEquals("commandText)\n" +
-          "toString) This is a mock view.\n" +
-          "renderMessage) message: null\n" +
-          "\n" +
-          "Input new command: \n" +
-          "toString) This is a mock view.\n" +
-          "model: toString) This is a mock model.\n" +
-          " view: null scanner: this-is-the-next-scanner-input\n" +
-          "toString) This is a mock view.\n" +
-          "renderMessage) message: null\n" +
-          "\n" +
-          "Input new command: \n" +
-          "renderMessage) message: You have quit the program.\n", log.toString());
-}
->>>>>>> 50146d97d627b320863bc4686db3d901de380e08
 
   private void testRunHelper(StringBuilder expectedOutput, Map<String, ICommand> commands,
                              ImageModel model, IMEView view, Interaction... interactions) {
@@ -575,4 +522,6 @@ public void testRunCommandInputs() {
     IMEController controller = new IMEControllerImpl(commands, model, view, input);
     controller.run();
   }
+
+
 }
