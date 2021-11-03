@@ -20,13 +20,12 @@ public class IMEViewImplTest {
   private IMEView view2;
 
   private ImageModel mod1;
-  private ImageModel mod2;
   private Appendable str;
 
   @Before
   public void setUp() {
     mod1 = new ImageModelImpl(new ImageImpl(new int[][][]{{{24, 2, 217}}}));
-    mod2 = new ImageModelImpl(new ImageImpl(new int[][][]{{{0}}}, 0, 0));
+    ImageModel mod2 = new ImageModelImpl(new ImageImpl(new int[][][]{{{0}}}, 0, 0));
     str = new StringBuilder();
     view1 = new IMEViewImpl(mod1);
     view2 = new IMEViewImpl(mod2, str);
