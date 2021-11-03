@@ -9,6 +9,7 @@ public class IMEViewMock implements IMEView {
 
   /**
    * Mock constructor.
+   *
    * @param log stringbuilder object.
    */
   public IMEViewMock(StringBuilder log) {
@@ -22,7 +23,7 @@ public class IMEViewMock implements IMEView {
 
   @Override
   public String toString() {
-    log.append("toString)\n");
+    log.append("toString) This is a mock view.\n");
     return null;
   }
 }

@@ -2,6 +2,8 @@ package imecontroller.icommand;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import imecontroller.InputUtils;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
@@ -24,7 +26,11 @@ public class BrightenCommand extends AbstractCommand {
         model.brighten(toImage, amount);
       }
     } catch (InputMismatchException e) {
-      // An error message has already been rendered, so we simply ignore the exception.
+      //throw away next 3 inputs
+      InputUtils.getStringInput(sc);
+      InputUtils.getStringInput(sc);
+      InputUtils.getStringInput(sc);
+
     }
   }
 

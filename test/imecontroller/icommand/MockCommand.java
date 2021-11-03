@@ -14,6 +14,7 @@ public class MockCommand implements ICommand {
 
   /**
    * Command mock constructor.
+   *
    * @param log Stringbuilder object acting as the required Appendable.
    */
   public MockCommand(StringBuilder log) {
@@ -22,16 +23,20 @@ public class MockCommand implements ICommand {
 
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) {
-    log.append("model: " + model.toString() + " scanner: " + sc.next());
+    log.append("model: " + model.toString() +
+            " view: " + view.toString() +
+            " scanner: " + sc.next() + "\n");
   }
 
   @Override
   public String helpMessage() {
-    return null;
+    log.append("helpMessage)\n");
+    return "mock";
   }
 
   @Override
   public String commandText() {
-    return null;
+    log.append("commandText)\n");
+    return "mock";
   }
 }

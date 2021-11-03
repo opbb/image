@@ -68,9 +68,9 @@ public class IMEControllerImpl implements IMEController {
       else if (input.equals("help") || input.equals("\"help\"")) { // "help" or ""help"" for help.
         view.renderMessage("\nList of commands:\n\n"); // Simple spaced header.
         for (ICommand command : commands.values()) {
-          view.renderMessage(command.helpMessage() + "\n"); // Prints help msg for all commands.
+          view.renderMessage(command.helpMessage() + "\n"); //Prints help msg for all commands.
         }
-        view.renderMessage("\n");
+        view.renderMessage("\nq or quit to quit the program\n\n");
       }
 
       // Block below check for all other commands.
@@ -86,7 +86,7 @@ public class IMEControllerImpl implements IMEController {
 
         // Block below check for if the given command was invalid (i.e. no command was executed).
         if (!executedCommand) {
-          view.renderMessage("Couldn't recognize the inputted command, " +
+          view.renderMessage("Couldn't recognize the inputted command \"" + input + "\", " +
                   "input \"help\" for a list of available commands.\n\n");
         }
       }

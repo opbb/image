@@ -13,6 +13,7 @@ public class ImageModelMockTrue implements ImageModel {
 
   /**
    * Mock constructor.
+   *
    * @param log Stringbuilder object.
    */
   public ImageModelMockTrue(StringBuilder log) {
@@ -50,7 +51,7 @@ public class ImageModelMockTrue implements ImageModel {
 
   @Override
   public void getByComponent(String name, String comp) {
-    log.append("getByComponent) name: " + name + " comp: " +  comp + "\n");
+    log.append("getByComponent) name: " + name + " comp: " + comp + "\n");
   }
 
   @Override
@@ -82,5 +83,10 @@ public class ImageModelMockTrue implements ImageModel {
   public Set<String> getKeys() {
     log.append("getKeys)\n");
     return null;
+  }
+
+  @Override
+  public String toString() {
+    return "toString) This is a mock model.\n";
   }
 }

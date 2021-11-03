@@ -1,0 +1,116 @@
+Tom and Oliver's IME:
+
+Note about sample image: I was given written permission to use this image by both its creator and subject.
+
+For our design we used the Controller, Model, View pattern. We kept those 3 packages separated and interacting only through very controlled channels.
+
+====================================================================================
+
+Controller:
+For the Controller we used the command design pattern, with ICommands carrying out all of the actual image manipulation. We also used the Interaction class pattern for testing.
+
+ICommand: An interface representing a command that can be used by the controller.
+AbstractCommand: An abstract class which allows all ICommands to inherit some shared functionality.
+
+RedValueCommand: Command which gets the red component of a specific Image in the given model.
+BlueValueCommand: Command which gets the blue component of a specific Image in the given model.
+GreenValueCommand: Command which gets the green component of a specific Image in the given model.
+LumaValueCommand : Command which will greyscale the associated image by its pixels luma component.
+IntensityValueCommand: Command which will greyscale the associated image by its pixels' intensity component.
+ValueCommand: Command which will greyscale the associated image by its pixels' value component.
+BrightenCommand: Command which brightens a specific Image in the given model by a given amount.
+HoriFlipCommand: Command which will horizontally flip the image.
+VertFlipCommand: Command which will vertically flip the image.
+LoadCommand: Command which will load a PPM file from the disk into the model.
+CloseCommand: Command which will remove an image from the model.
+SaveCommand: Command which will save an image in the model as a PPM onto the disk.
+
+IMEController: An interface defining the public methods of the controller.
+IMEControllerImpl: The main controller class with all of the implementation.
+
+InputUtils: An interface with some static utility methods used reusing code for handling exceptions related to inputs.
+
+Interaction: An interface defining the Interaction type, which is used to streamline testing the controller.
+InputInteraction: This class simulates user input for testing.
+PrintInteraction: This class simulates printing output for testing.
+
+====================================================================================
+
+Model:
+The model is responsible for managing any images given to it, and manipulating them as it is told to. We also have a utility class, ImageUtil and an interface of static methods, Application.
+
+Image: The image contains the 3d array of pixels of the given ppm file, along with knowing the height and width of the image.
+ImageImpl: This class acts merely as an object of the ppm file, allowing us to manipulate its pixels' values with ease through the Model.
+ImageModelImpl: This is the implemented class of the ImageModel interface and has multiple methods that deal with manipulating the given image within its map of images.
+ImageUtil: With the given starter code, we have manipulated it to our advantage in allowing for info of the PPM file given, such as height, width, and the ability to write a PPM.
+Application: This interface contains helper static methods designed to actually do the dirty work of manipulating pixels' values of an image. We had decided on making this interface have static methods
+just so it has the ability to be reached across other implementations of the model, while still having security through its private helper methods that perform the main manipulation.
+
+====================================================================================
+
+View:
+Our view contains the model, and is able to represent it with a toString(). It also renders messages.
+
+IMEView: The interface defining the public methods of the view.
+IMEViewImpl: The implementaion of the view. Contain a model it can represent.
+
+====================================================================================
+
+Main: This class simply holds the main method to our application, this is the class by which the user should run to start the application, within the main method, we initailize a map of commands as the values and their
+name as the key in a String, declare an image, model, and controller and call the controller's run method.
+
+ApplicationTest: Is the tester class for the Application interface's static methods.
+ImageImplTest: The tester class for the ImageImpl class, testing all of its public facing methods.
+ImageModelImplTest: The tester class for the ImageModelImplTest which tests all of its public facing methods.
+ImageUtilTest: The tester class for the ImageUtil class, this has no tests within it as the tests would not pass if not given
+the same images we would test on our machines.
+
+Script of commands:
+
+1. First run the main method within the main class of the src/ folder.
+
+2. It will prompt you to input a new command. To load an image type "load filepath name", load being
+the command to load an image, filepath being the file path of the image, and name being what you
+would like to call this image within the application.
+
+3. It will now show the given image under the loaded images border. Now we can use any command on this image.
+
+4. To brighten the image type "brighten num-to-brigthen-by name new-name". Brighten is the name of the command,
+num-to-brighten-by is any double positive or negative by which to alter the pixels of the given image, which is the name.
+New name is what this image will be called as from now on, you can either rewrite the same name you have been using
+or give it a new name, but remember this new name will be what this image is associated with from now on.
+
+5. To save this newly brightened or darkened image, please type "save name filepath", by which save is the command
+to save the image, name is the name you have been addressing this image by, and filepath being the filepath by which you
+want this image to be found.
+
+Other info:
+
+You can receive the greyscale of any image in multiple different ways, either by its luma, value,
+intensity, red-component, green-component, or blue-component.
+You can also vertically-flip an image however many times you want, along with horizontally flipping it
+
+If you no longer wish to modify an image, you can use the close command, simply type "close name" and
+this will close the given image, meaning you can no longer modify this image if you use its name.
+(This does not save any alterations made, but rather leaves the original image back where/how it was)
+
+If at any moment you would like to be reminded by what commands you can use and how to use them just
+type "help" when prompted for a new command.
+
+
+Other commands:
+red-value [image to get red-value of] [new image name]
+brighten [amount to brighten] [image to brighten] [new image name]
+intensity-value [image to get intensity-value of] [new image name]
+luma-value [image to get luma-value of] [new image name]
+load [file name] [new image name]
+vertical-flip [image to flip] [new image name]
+green-value [image to get green-value of] [new image name]
+save [image to save] [file name to save as]
+horizontal-flip [image to flip] [new image name]
+value [image to get value of] [new image name]
+close [image to close]
+blue-value [image to get blue-value of] [new image name]
+q or quit to quit the program
+
+

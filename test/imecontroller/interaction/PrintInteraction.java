@@ -8,6 +8,7 @@ public class PrintInteraction implements Interaction {
 
   /**
    * Basic constructor.
+   *
    * @param lines is the text to print
    */
   public PrintInteraction(String... lines) {
@@ -17,7 +18,7 @@ public class PrintInteraction implements Interaction {
   @Override
   public void apply(StringBuilder in, StringBuilder out) {
     for (String line : lines) {
-      out.append(line).append("\n");
+      out.append(line);
     }
   }
 }
