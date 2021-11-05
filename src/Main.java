@@ -1,9 +1,18 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+
 import imecontroller.icommand.BlueValueCommand;
+import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
+import imecontroller.icommand.LoadPNGCommand;
 import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.GreenValueCommand;
 import imecontroller.icommand.HoriFlipCommand;
@@ -11,7 +20,9 @@ import imecontroller.icommand.ICommand;
 import imecontroller.icommand.IntensityValueCommand;
 import imecontroller.icommand.LoadCommand;
 import imecontroller.icommand.RedValueCommand;
+import imecontroller.icommand.SaveBMPCommand;
 import imecontroller.icommand.SaveCommand;
+import imecontroller.icommand.SavePNGCommand;
 import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
@@ -43,13 +54,29 @@ public class Main {
             new GreenValueCommand(),
             new BlueValueCommand(),
             new ValueCommand(),
+            new BlurCommand(),
             new IntensityValueCommand(),
+            new SaveBMPCommand(),
+            new LoadPNGCommand(),
+            new SavePNGCommand(),
             new CloseCommand(),
             new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
     IMEController controller = new IMEControllerImpl(commands, model, view);
 
-    controller.run();
+//    try {
+//
+//      File input = new File("/Users/thomasgrbic/Desktop/ood-work/group/ime/res/when-you-walking-hori-sharpened1.png");
+//      System.out.println("" + ImageIO.read(input).getHeight());
+
+      controller.run();
+   // }
+//    catch (FileNotFoundException e) {
+//
+//    }
+//    catch (IOException e) {
+//
+//    }
   }
 }

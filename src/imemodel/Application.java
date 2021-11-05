@@ -5,6 +5,32 @@ package imemodel;
  */
 public interface Application {
 
+//  /**
+//   * This method multiplies the pixels by the given effect.
+//   *
+//   * @param image  the given image to which its pixels will be affected.
+//   * @param effect the effect as a 2d integer array.
+//   * @return the image changed by the given effect.
+//   */
+//  static Image applyMultipliedEffect(Image image, double[][] effect) {
+//    if (image == null) {
+//      throw new IllegalArgumentException("The given image cannot be null!");
+//    }
+//    int width = image.getWidth();
+//    int height = image.getHeight();
+//    int[][][] newImage = new int[height][width][3];
+//    for (int i = 0; i < height; i++) {
+//      for (int j = 0; j < width; j++) {
+//        for (int k = 0; k < 3; k++) {
+//          newImage[i][j][k] = clamp((int) Math.round(multiplyEffect(image.getPixels()[i][j],
+//                  effect[k])));
+//        }
+//      }
+//    }
+//    return new ImageImpl(newImage);
+//  }
+
+
   /**
    * This method multiplies the pixels by the given effect.
    *
@@ -13,21 +39,44 @@ public interface Application {
    * @return the image changed by the given effect.
    */
   static Image applyMultipliedEffect(Image image, double[][] effect) {
-    if (image == null) {
-      throw new IllegalArgumentException("The given image cannot be null!");
-    }
-    int width = image.getWidth();
     int height = image.getHeight();
-    int[][][] newImage = new int[height][width][3];
+    int width = image.getWidth();
+    int[][][] toImage = new int[height][width][3];
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        for (int k = 0; k < 3; k++) {
-          newImage[i][j][k] = clamp((int) Math.round(multiplyEffect(image.getPixels()[i][j],
-                  effect[k])));
+        toImage[i][j] = multiplyEffect(getKernels(i, j, image.getPixels(), effect.length), effect);
+      }
+    }
+    return new ImageImpl(clampPixel(toImage));
+
+
+  }
+
+
+  private static int[][][] getKernels(int row, int col, int[][][] image, int matrix) {
+    int[][][] kernel = new int[matrix][matrix][3];
+    int bound = (int) Math.floor(matrix / 2.0);
+    for (int i = 0; i < matrix; i++) {
+      for (int j = 0; j < matrix; j++) {
+        try {
+
+
+          kernel[i][j][0] = image[i + (row - bound)][j + (col - bound)][0];
+          kernel[i][j][1] = image[i + (row - bound)][j + (col - bound)][1];
+          kernel[i][j][2] = image[i + (row - bound)][j + (col - bound)][2];
+
+
+        } catch (IndexOutOfBoundsException e) {
+
+
+          kernel[i][j][0] = 0;
+          kernel[i][j][1] = 0;
+          kernel[i][j][2] = 0;
         }
       }
     }
-    return new ImageImpl(newImage);
+    return kernel;
+
   }
 
 
@@ -98,6 +147,27 @@ public interface Application {
   }
 
   /**
+   * Helper method that helps to mathematically multiplies effects to an image.
+   *
+   * @param kernel the given pixel and its rgb values to be affected.
+   * @param effect the effect as an array of what to add to the pixels.
+   * @return
+   */
+  private static int[] multiplyEffect(int[][][] kernel, double[][] effect) {
+    int[] newRGB = new int[3];
+    for (int i = 0; i < kernel.length; i++) {
+      for (int j = 0; j < kernel.length; j++) {
+        newRGB[0] += (int) Math.round(kernel[i][j][0] * effect[i][j]);
+        newRGB[1] += (int) Math.round(kernel[i][j][1] * effect[i][j]);
+        newRGB[2] += (int) Math.round(kernel[i][j][2] * effect[i][j]);
+      }
+    }
+    return newRGB;
+
+
+  }
+
+  /**
    * Helper method that helps to mathematically add effects to an image.
    *
    * @param pixel  the given pixel and its rgb values to be affected.
@@ -159,5 +229,25 @@ public interface Application {
       pixel = max;
     }
     return pixel;
+  }
+
+
+  private static int[][][] clampPixel(int[][][] image) {
+    int min = 0;
+    int max = 255;
+    for (int i = 0; i < image.length; i++) {
+      for (int j = 0; j < image[0].length; j++) {
+        for (int k = 0; k < 3; k++) {
+          if (image[i][j][k] < min) {
+            image[i][j][k] = min;
+          }
+          if (image[i][j][k] > max) {
+            image[i][j][k] = max;
+          }
+        }
+
+      }
+    }
+    return image;
   }
 }

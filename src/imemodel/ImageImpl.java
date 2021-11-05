@@ -77,6 +77,20 @@ public class ImageImpl implements Image {
 
   }
 
+  public ImageImpl(String filename, String type) throws IllegalArgumentException {
+    if (filename == null || filename.equals("")) {
+      throw new IllegalArgumentException("The given filename must not be null!");
+    }
+    try {
+      this.pixels = Formats.readPNG(filename);
+      this.height = Formats.getPNGHeight(filename);
+      this.width = Formats.getPNGWidth(filename);
+    } catch (IOException e) {
+      throw new IllegalArgumentException("Was not able to read this file.");
+    }
+
+  }
+
 
   @Override
   public int[][][] getPixels() {
