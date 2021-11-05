@@ -65,18 +65,8 @@ public class Main {
     IMEView view = new IMEViewImpl(model);
     IMEController controller = new IMEControllerImpl(commands, model, view);
 
-//    try {
-//
-//      File input = new File("/Users/thomasgrbic/Desktop/ood-work/group/ime/res/when-you-walking-hori-sharpened1.png");
-//      System.out.println("" + ImageIO.read(input).getHeight());
 
       controller.run();
-   // }
-//    catch (FileNotFoundException e) {
-//
-//    }
-//    catch (IOException e) {
-//
-//    }
+
   }
 }

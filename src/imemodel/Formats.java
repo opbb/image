@@ -22,9 +22,9 @@ public class Formats extends ImageUtil {
       BufferedImage buff = ImageIO.read(input);
       int[][][] pixels = new int[buff.getHeight()][buff.getWidth()][3];
 
-      for (int i = 0; i < buff.getWidth(); i++) {
-        for (int j = 0; j < buff.getHeight(); j++) {
-          Color colour = new Color(buff.getRGB(i, j));
+      for (int i = 0; i < buff.getHeight(); i++) {
+        for (int j = 0; j < buff.getWidth(); j++) {
+          Color colour = new Color(buff.getRGB(j, i));
           pixels[i][j][0] = colour.getRed();
           pixels[i][j][1] = colour.getGreen();
           pixels[i][j][2] = colour.getBlue();
@@ -85,7 +85,7 @@ public class Formats extends ImageUtil {
         }
       }
       File outputfile = new File(name);
-      ImageIO.write(img1, "JPEG", outputfile);
+      ImageIO.write(img1, "PNG", outputfile);
     } catch (IOException e) {
       System.out.println("Error writing file");
     }
