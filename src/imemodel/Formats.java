@@ -8,13 +8,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLConnection;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.imageio.ImageIO;
 
 public class Formats extends ImageUtil {
 
 
-  public static int[][][] readPNG(String filename) throws IOException {
+  public static int[][][] readImageFIle(String filename) throws IOException {
 
     try {
       InputStream input = new FileInputStream(filename);
@@ -42,7 +46,7 @@ public class Formats extends ImageUtil {
 
   }
 
-  public static int getPNGHeight(String filename) {
+  public static int getImageFileHeight(String filename) {
     try {
       InputStream input = new FileInputStream(filename);
 
@@ -56,7 +60,7 @@ public class Formats extends ImageUtil {
 
   }
 
-  public static int getPNGWidth(String filename) {
+  public static int getImageFIleWidth(String filename) {
     try {
       InputStream input = new FileInputStream(filename);
 
@@ -70,8 +74,7 @@ public class Formats extends ImageUtil {
 
   }
 
-  public static void writePNG(Image image, String name) throws IOException {
-
+  public static void writeImageFile(Image image, String name) throws IOException {
 
     try {
       int height = getFormatHeight(image);
@@ -84,8 +87,11 @@ public class Formats extends ImageUtil {
                   (image.getPixels()[i][j][1] << 8) | image.getPixels()[i][j][2]);
         }
       }
+
       File outputfile = new File(name);
-      ImageIO.write(img1, "PNG", outputfile);
+      String mimeType = URLConnection.guessContentTypeFromName(name);
+      String type = name.substring(name.lastIndexOf(".") + 1);
+      ImageIO.write(img1, type, outputfile);
     } catch (IOException e) {
       System.out.println("Error writing file");
     }

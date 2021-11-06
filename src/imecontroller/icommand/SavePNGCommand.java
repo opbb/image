@@ -1,11 +1,15 @@
 package imecontroller.icommand;
 
 import java.io.IOException;
+import java.net.URLConnection;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 import imemodel.Formats;
 import imemodel.Image;
 import imemodel.ImageModel;
+import imemodel.ImageUtil;
 import imeview.IMEView;
 
 public class SavePNGCommand extends AbstractCommand {
@@ -14,12 +18,19 @@ public class SavePNGCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String fileName = getStringInput(sc);
+
+    String extension = fileName.substring(0, fileName.lastIndexOf("."));
     Image image = model.getImage(fromImage);
 
     try {
-      if (image != null) {
-        Formats.writePNG(image, fileName);
-      } else {
+      if (image != null && (fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+
+        ImageUtil.writePPM(image, fileName);
+      }
+      else if (!(fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+        Formats.writeImageFile(image, fileName);
+      }
+      else {
         view.renderMessage("The image " + fromImage + " is null.\n\n");
       }
     } catch (IOException e) {
@@ -29,12 +40,12 @@ public class SavePNGCommand extends AbstractCommand {
 
   @Override
   public String helpMessage() {
-    return "save-png [image to save] [file name to save as]";
+    return "save [image to save] [file name to save as]";
   }
 
   @Override
   public String commandText() {
-    return "save-png";
+    return "save";
   }
 }
 

@@ -3,7 +3,7 @@ package imemodel;
 /**
  * This interface represents a set of methods to which effects can be applied to images.
  */
-public interface Application {
+public class Application1 {
 
 //  /**
 //   * This method multiplies the pixels by the given effect.
@@ -38,7 +38,7 @@ public interface Application {
    * @param effect the effect as a 2d integer array.
    * @return the image changed by the given effect.
    */
-  static Image applyMultipliedEffect(Image image, double[][] effect) {
+  public static Image applyMultipliedEffect(Image image, double[][] effect) {
     int height = image.getHeight();
     int width = image.getWidth();
     int[][][] toImage = new int[height][width][3];
@@ -54,21 +54,19 @@ public interface Application {
 
 
   private static int[][][] getKernels(int row, int col, int[][][] image, int matrix) {
+
     int[][][] kernel = new int[matrix][matrix][3];
-    int bound = (int) Math.floor(matrix / 2.0);
+    int kernelCoord = (int) Math.floor(matrix / 2.0);
+
+
     for (int i = 0; i < matrix; i++) {
       for (int j = 0; j < matrix; j++) {
         try {
-
-
-          kernel[i][j][0] = image[i + (row - bound)][j + (col - bound)][0];
-          kernel[i][j][1] = image[i + (row - bound)][j + (col - bound)][1];
-          kernel[i][j][2] = image[i + (row - bound)][j + (col - bound)][2];
-
+          kernel[i][j][0] = image[i + (row - kernelCoord)][j + (col - kernelCoord)][0];
+          kernel[i][j][1] = image[i + (row - kernelCoord)][j + (col - kernelCoord)][1];
+          kernel[i][j][2] = image[i + (row - kernelCoord)][j + (col - kernelCoord)][2];
 
         } catch (IndexOutOfBoundsException e) {
-
-
           kernel[i][j][0] = 0;
           kernel[i][j][1] = 0;
           kernel[i][j][2] = 0;
@@ -87,7 +85,7 @@ public interface Application {
    * @param effect the effect as a 2d integer array.
    * @return the image changed by the given effect.
    */
-  static Image applyAddedEffect(Image image, double effect) {
+  public static Image applyAddedEffect(Image image, double effect) {
     if (image == null) {
       throw new IllegalArgumentException("The given image cannot be null!");
     }
@@ -113,7 +111,7 @@ public interface Application {
    * @param component the component by which to change/set the image by.
    * @return the image changed by the given effect.
    */
-  static Image applySetEffect(Image image, String component) {
+  public static Image applySetEffect(Image image, String component) {
     if (image == null) {
       throw new IllegalArgumentException("The given image cannot be null!");
     }
@@ -131,20 +129,20 @@ public interface Application {
     return new ImageImpl(newImage);
   }
 
-  /**
-   * Helper method that helps to mathematically multiplies effects to an image.
-   *
-   * @param pixel  the given pixel and its rgb values to be affected.
-   * @param effect the effect as an array of what to add to the pixels.
-   * @return
-   */
-  private static double multiplyEffect(int[] pixel, double[] effect) {
-    double newPixel = 0;
-    for (int i = 0; i < effect.length; i++) {
-      newPixel += pixel[i] * effect[i];
-    }
-    return newPixel;
-  }
+//  /**
+//   * Helper method that helps to mathematically multiplies effects to an image.
+//   *
+//   * @param pixel  the given pixel and its rgb values to be affected.
+//   * @param effect the effect as an array of what to add to the pixels.
+//   * @return
+//   */
+//  private static double multiplyEffect(int[] pixel, double[] effect) {
+//    double newPixel = 0;
+//    for (int i = 0; i < effect.length; i++) {
+//      newPixel += pixel[i] * effect[i];
+//    }
+//    return newPixel;
+//  }
 
   /**
    * Helper method that helps to mathematically multiplies effects to an image.
@@ -157,9 +155,9 @@ public interface Application {
     int[] newRGB = new int[3];
     for (int i = 0; i < kernel.length; i++) {
       for (int j = 0; j < kernel.length; j++) {
-        newRGB[0] += (int) Math.round(kernel[i][j][0] * effect[i][j]);
-        newRGB[1] += (int) Math.round(kernel[i][j][1] * effect[i][j]);
-        newRGB[2] += (int) Math.round(kernel[i][j][2] * effect[i][j]);
+        newRGB[0] = newRGB[0] + (int) Math.round(kernel[i][j][0] * effect[i][j]);
+        newRGB[1] = newRGB[1] + (int) Math.round(kernel[i][j][1] * effect[i][j]);
+        newRGB[2] = newRGB[2] + (int) Math.round(kernel[i][j][2] * effect[i][j]);
       }
     }
     return newRGB;

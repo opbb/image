@@ -82,9 +82,9 @@ public class ImageImpl implements Image {
       throw new IllegalArgumentException("The given filename must not be null!");
     }
     try {
-      this.pixels = Formats.readPNG(filename);
-      this.height = Formats.getPNGHeight(filename);
-      this.width = Formats.getPNGWidth(filename);
+      this.pixels = Formats.readImageFIle(filename);
+      this.height = Formats.getImageFileHeight(filename);
+      this.width = Formats.getImageFIleWidth(filename);
     } catch (IOException e) {
       throw new IllegalArgumentException("Was not able to read this file.");
     }

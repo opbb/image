@@ -59,13 +59,14 @@ public class Main {
             new SaveBMPCommand(),
             new LoadPNGCommand(),
             new SavePNGCommand(),
-            new CloseCommand(),
-            new SaveCommand()));
+            new CloseCommand()));
+          //  new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
     IMEController controller = new IMEControllerImpl(commands, model, view);
 
-
+    String filename = "hep.png";
+    System.out.println(filename.substring(filename.lastIndexOf(".") + 1));
       controller.run();
 
   }
