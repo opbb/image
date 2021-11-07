@@ -1,6 +1,7 @@
 package imecontroller.icommand;
 
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 import imemodel.ExtraFilters;
@@ -12,7 +13,8 @@ public class BlurCommand extends AbstractCommand {
 
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
+          throws IllegalStateException {
     try {
       String fromImage = getStringInput(sc);
       String toImage = getStringInput(sc);

@@ -1,5 +1,6 @@
 package imecontroller.icommand;
 
+import java.util.Map;
 import java.util.Scanner;
 
 import imemodel.ImageModel;
@@ -12,7 +13,7 @@ import imeview.IMEView;
 public class IntensityValueCommand extends AbstractCommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String toImage = getStringInput(sc);
 

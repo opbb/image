@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -36,7 +37,8 @@ public class IMEFileController implements IMEController {
     this.model = model;
     this.view = view;
     try {
-      this.lines = processInputToLines(new InputStreamReader(new FileInputStream(filePath)));
+      this.lines = processInputToLines(new Scanner(new InputStreamReader(
+              new FileInputStream(filePath))));
     } catch (IOException e) {
       throw new IllegalArgumentException("Couldn't find a file at" + filePath + ".");
     }
@@ -54,16 +56,16 @@ public class IMEFileController implements IMEController {
     this.commands = commands;
     this.model = model;
     this.view = view;
-    this.lines = processInputToLines(readable);
+    this.lines = processInputToLines(new Scanner(readable));
   }
 
   @Override
   public void run() {
-    for (int ln = 1; ln < (lines.length + 1); ln++) {
+    for (int ln = 0; ln < lines.length; ln++) {
       if (lines[ln].equals("")) {
         continue;
       } // If line is empty, skip it.
-      Scanner sc = new Scanner(new StringReader(lines.toString())); // A scanner for just this line.
+      Scanner sc = new Scanner(new StringReader(lines[ln])); // A scanner for just this line.
 
       // Input is converted to lowercase for easier parsing.
       String input = InputUtils.getStringInput(sc).toLowerCase();
@@ -71,8 +73,9 @@ public class IMEFileController implements IMEController {
       boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
       for (Map.Entry<String, ICommand> entry : commands.entrySet()) {
         if (entry.getKey().equals(input)) {
-          entry.getValue().execute(model, view, sc);
+          entry.getValue().execute(model, view, sc, commands);
           executedCommand = true; // Record that we have executed.
+          view.renderMessage("Ran " + entry.getKey() + " command.\n");
           break; // Breaks loop so that we don't waste energy checking the remaining commands.
         }
       }
@@ -80,25 +83,33 @@ public class IMEFileController implements IMEController {
       // Block below check for if the given command was invalid (i.e. no command was executed).
       if (!executedCommand) {
         view.renderMessage("Couldn't recognize the command, \"" + input + "\", " +
-                "in line " + ln + ".\n");
+                "in line " + (ln + 1) + ".\n");
       }
     }
   }
 
   /**
-   * Processes a given readable into an array of lines, with comments set to empty strings.
+   * Processes a given scanner into an array of lines, with comments set to empty strings.
    *
-   * @param inputFile the readable to be processed
+   * @param sc the scanner containing the file to be processed
    * @return an array of all lines not starting with "#".
    */
-  private String[] processInputToLines(Readable inputFile) {
-    String inputString = inputFile.toString();
-    String[] inputLines = inputString.split("\n");
-    for (int i = 0; i < inputLines.length; i++) {
-      if (!inputLines[i].equals("") && inputLines[i].charAt(0) == '#') {
-        inputLines[i] = "";
+  private String[] processInputToLines(Scanner sc) {
+    ArrayList<String> lines = new ArrayList<>();
+    while (sc.hasNextLine()) {
+      String[] rawLine = sc.nextLine().split(" ");
+      String line = "";
+      for (int i = 0; i < rawLine.length; i++) { // Removes excess spaces.
+        if (!rawLine[i].equals(" ") && !rawLine[i].equals("")) {
+          line += rawLine[i];
+          if (i < rawLine.length) {line += " ";}
+        }
       }
+      if (!line.equals("") && line.charAt(0) == '#') {
+        line = "";
+      }
+      lines.add(line);
     }
-    return inputLines;
+    return lines.toArray(new String[0]);
   }
 }

@@ -1,5 +1,6 @@
 package imecontroller.icommand;
 
+import java.util.Map;
 import java.util.Scanner;
 
 import imemodel.ImageModel;
@@ -22,7 +23,7 @@ public class MockCommand implements ICommand {
   }
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc) {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) {
     log.append("model: " + model.toString() +
             " view: " + view.toString() +
             " scanner: " + sc.next() + "\n");

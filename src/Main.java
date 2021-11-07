@@ -13,6 +13,7 @@ import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
+import imecontroller.icommand.InputFromFileCommand;
 import imecontroller.icommand.LoadPNGCommand;
 import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.GreenValueCommand;
@@ -64,7 +65,8 @@ public class Main {
             new SavePNGCommand(),
 >>>>>>> 8ce38cc35a386e9427c63c38da53ac9663c3f047
             new CloseCommand(),
-            new SaveCommand()));
+            new SaveCommand(),
+            new InputFromFileCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
 
