@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import imecontroller.IMEFileController;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
@@ -59,14 +60,18 @@ public class Main {
             new SaveBMPCommand(),
             new LoadPNGCommand(),
             new SavePNGCommand(),
-            new CloseCommand()));
-          //  new SaveCommand()));
+            new CloseCommand(),
+            new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
-    IMEController controller = new IMEControllerImpl(commands, model, view);
 
-    String filename = "hep.png";
-    System.out.println(filename.substring(filename.lastIndexOf(".") + 1));
+    IMEController controller;
+    if (args.length == 0) {
+      controller = new IMEControllerImpl(commands, model, view);
+    } else {
+      controller = new IMEFileController(commands, model, view, args[0]);
+    }
+
       controller.run();
 
   }

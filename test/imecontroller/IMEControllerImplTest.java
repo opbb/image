@@ -4,15 +4,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.print.PrinterGraphics;
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
-
-import imecontroller.IMEController;
-import imecontroller.IMEControllerImpl;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
@@ -53,8 +49,6 @@ public class IMEControllerImplTest {
   ImageModel model;
   IMEView view;
   Map<String, ICommand> commands;
-
-  Scanner sc;
 
   @Before
   public void setUp() {

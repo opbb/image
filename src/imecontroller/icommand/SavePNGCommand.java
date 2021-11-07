@@ -23,11 +23,13 @@ public class SavePNGCommand extends AbstractCommand {
     Image image = model.getImage(fromImage);
 
     try {
-      if (image != null && (fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+      boolean isPPM = fileName.split(".")[fileName.split(".").length - 1].toLowerCase()
+              == "ppm";
+      if (image != null && isPPM) {
 
         ImageUtil.writePPM(image, fileName);
       }
-      else if (!(fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+      else if (!isPPM) {
         Formats.writeImageFile(image, fileName);
       }
       else {
@@ -40,12 +42,12 @@ public class SavePNGCommand extends AbstractCommand {
 
   @Override
   public String helpMessage() {
-    return "save [image to save] [file name to save as]";
+    return "save-png [image to save] [file name to save as]";
   }
 
   @Override
   public String commandText() {
-    return "save";
+    return "save-png";
   }
 }
 

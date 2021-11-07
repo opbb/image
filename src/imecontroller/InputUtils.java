@@ -9,7 +9,7 @@ import imeview.IMEView;
 /**
  * Contains some utility methods for getting input.
  */
-public interface InputUtils {
+public class InputUtils {
 
   /**
    * Returns the inputted double, or renders an error message and/or passes on any exceptions.
@@ -20,7 +20,7 @@ public interface InputUtils {
    * @throws InputMismatchException if something other than a double is inputted
    * @throws IllegalStateException  if there are no more inputs or the scanner is closed
    */
-  static double getDoubleInput(IMEView view, Scanner sc)
+  public static double getDoubleInput(IMEView view, Scanner sc)
           throws InputMismatchException, IllegalStateException {
     try {
       return sc.nextDouble();
@@ -39,7 +39,7 @@ public interface InputUtils {
    * @return the inputted string
    * @throws IllegalStateException if there are no more inputs or the scanner is closed
    */
-  static String getStringInput(Scanner sc) throws IllegalStateException {
+  public static String getStringInput(Scanner sc) throws IllegalStateException {
     try {
       return sc.next();
     } catch (NoSuchElementException e) {
