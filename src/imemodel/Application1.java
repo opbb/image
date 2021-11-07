@@ -3,7 +3,7 @@ package imemodel;
 /**
  * This interface represents a set of methods to which effects can be applied to images.
  */
-public class Application {
+public class Application1 {
 
 //  /**
 //   * This method multiplies the pixels by the given effect.
