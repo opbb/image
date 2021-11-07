@@ -80,7 +80,7 @@ public class ImageImpl implements Image {
   public ImageImpl(String filename, String type) throws IllegalArgumentException {
     if (filename == null || filename.equals("")) {
       throw new IllegalArgumentException("The given filename must not be null!");
-    }
+    } ///change string constructor to use substring idea
     try {
       this.pixels = Formats.readImageFIle(filename);
       this.height = Formats.getImageFileHeight(filename);

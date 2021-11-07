@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import imecontroller.InputUtils;
+import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
@@ -55,8 +56,9 @@ public abstract class AbstractCommand implements ICommand {
    */
   protected boolean setUpImage(ImageModel model, IMEView view, String fromImage, String toImage) {
     if (model.hasImage(fromImage)) {
-      if (!fromImage.equals(toImage)) {
+      if (!(fromImage.equals(toImage))) {
         model.duplicateImage(fromImage, toImage);
+
       }
       return true;
     } else {

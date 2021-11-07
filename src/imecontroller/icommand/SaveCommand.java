@@ -1,28 +1,36 @@
 package imecontroller.icommand;
 
 import java.io.IOException;
+import java.net.URLConnection;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.util.Scanner;
 
+import imemodel.Formats;
 import imemodel.Image;
 import imemodel.ImageModel;
 import imemodel.ImageUtil;
 import imeview.IMEView;
 
-/**
- * This command will load an image to the application by calling the writePPM method with the
- * associated file and saves/writes it to the desired destination.
- */
 public class SaveCommand extends AbstractCommand {
+
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String fileName = getStringInput(sc);
+
+
     Image image = model.getImage(fromImage);
 
     try {
-      if (image != null) {
+      if (image != null && (fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+
         ImageUtil.writePPM(image, fileName);
-      } else {
+      }
+      else if (!(fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+        Formats.writeImageFile(image, fileName);
+      }
+      else {
         view.renderMessage("The image " + fromImage + " is null.\n\n");
       }
     } catch (IOException e) {
@@ -40,3 +48,5 @@ public class SaveCommand extends AbstractCommand {
     return "save";
   }
 }
+
+

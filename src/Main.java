@@ -56,11 +56,8 @@ public class Main {
             new ValueCommand(),
             new BlurCommand(),
             new IntensityValueCommand(),
-            new SaveBMPCommand(),
-            new LoadPNGCommand(),
-            new SavePNGCommand(),
-            new CloseCommand()));
-          //  new SaveCommand()));
+            new CloseCommand(),
+            new SaveCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
     IMEController controller = new IMEControllerImpl(commands, model, view);

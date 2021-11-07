@@ -2,6 +2,8 @@ package imecontroller.icommand;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import imemodel.Formats;
 import imemodel.Image;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
@@ -19,9 +21,20 @@ public class LoadCommand extends AbstractCommand {
     String fileName = getStringInput(sc);
     String toImage = getStringInput(sc);
 
+    Image image = model.getImage(fileName);
     try {
-      Image img = new ImageImpl(ImageUtil.readPPM(fileName));
-      model.loadImage(toImage, img);
+
+      if (image != null && (fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+
+        Image img1 = new ImageImpl(ImageUtil.readPPM(fileName));
+        model.loadImage(toImage, img1);
+
+      } else if (!(fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+        Image img2 = new ImageImpl(Formats.readImageFIle(fileName));
+        model.loadImage(toImage, img2);
+
+
+      }
     } catch (IOException e) {
       view.renderMessage("The given file name " + fileName + " does not exist.\n\n");
     }

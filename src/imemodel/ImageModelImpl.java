@@ -82,7 +82,7 @@ public class ImageModelImpl implements ImageModel {
 
   @Override
   public void duplicateImage(String name, String newName) {
-    loadImage(newName, map.get(name));
+    loadImage(newName, new ImageImpl(getImageValues(name)));
   }
 
   @Override
@@ -136,6 +136,9 @@ public class ImageModelImpl implements ImageModel {
     }
 
     map.get(name).setPixels(pixels);
+
+    map.replace(name, map.get(name));
+
   }
 
   @Override

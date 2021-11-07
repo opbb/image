@@ -15,7 +15,7 @@ public class VertFlipCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
+    String toImage = sc.next();
 
     if (setUpImage(model, view, fromImage, toImage)) {
       model.flipVertical(toImage);
