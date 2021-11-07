@@ -1,17 +1,17 @@
 package imecontroller.icommand;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 import imemodel.Formats;
 import imemodel.Image;
 import imemodel.ImageModel;
-import imemodel.ImageUtil;
 import imeview.IMEView;
 
 public class SaveBMPCommand extends AbstractCommand {
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String fileName = getStringInput(sc);
     Image image = model.getImage(fromImage);

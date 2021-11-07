@@ -1,6 +1,7 @@
 package imecontroller.icommand;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 import imemodel.Formats;
@@ -17,7 +18,7 @@ import imeview.IMEView;
 public class LoadCommand extends AbstractCommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) throws IllegalStateException {
     String fileName = getStringInput(sc);
     String toImage = getStringInput(sc);
 

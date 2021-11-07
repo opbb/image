@@ -1,18 +1,13 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 
 import imecontroller.IMEFileController;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
+import imecontroller.icommand.InputFromFileCommand;
 import imecontroller.icommand.LoadPNGCommand;
 import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.GreenValueCommand;
@@ -57,10 +52,10 @@ public class Main {
             new ValueCommand(),
             new BlurCommand(),
             new IntensityValueCommand(),
-            new SaveBMPCommand(),
-            new LoadPNGCommand(),
             new CloseCommand(),
-            new SaveCommand()));
+            new SaveCommand(),
+            new LoadCommand(),
+            new InputFromFileCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
 
