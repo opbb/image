@@ -22,10 +22,10 @@ public class LoadCommand extends AbstractCommand {
     String fileName = getStringInput(sc);
     String toImage = getStringInput(sc);
 
-    Image image = model.getImage(fileName);
+
     try {
 
-      if (image != null && (fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+      if ((fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
 
         Image img1 = new ImageImpl(ImageUtil.readPPM(fileName));
         model.loadImage(toImage, img1);

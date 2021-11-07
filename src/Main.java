@@ -19,6 +19,8 @@ import imecontroller.icommand.RedValueCommand;
 import imecontroller.icommand.SaveBMPCommand;
 import imecontroller.icommand.SaveCommand;
 
+import imecontroller.icommand.SepiaCommand;
+import imecontroller.icommand.SharpenCommand;
 import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
@@ -53,6 +55,8 @@ public class Main {
             new BlurCommand(),
             new IntensityValueCommand(),
             new CloseCommand(),
+            new SharpenCommand(),
+            new SepiaCommand(),
             new SaveCommand(),
             new LoadCommand(),
             new InputFromFileCommand()));
