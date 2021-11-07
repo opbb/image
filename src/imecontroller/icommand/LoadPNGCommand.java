@@ -16,12 +16,8 @@ public class LoadPNGCommand extends AbstractCommand {
     String fileName = getStringInput(sc);
     String toImage = getStringInput(sc);
 
-//    try {
       Image img = new ImageImpl(fileName, "png");
       model.loadImage(toImage, img);
-//    } catch (IOException e) {
-//      view.renderMessage("The given file name " + fileName + " does not exist.\n\n");
-//    }
   }
 
   @Override

@@ -3,7 +3,6 @@ package imecontroller.icommand;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import imecontroller.InputUtils;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
