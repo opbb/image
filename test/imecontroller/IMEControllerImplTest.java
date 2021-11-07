@@ -487,7 +487,7 @@ public class IMEControllerImplTest {
   }
 
 
-  
+
 
   @Test
   public void testRunCommandInputs() {
