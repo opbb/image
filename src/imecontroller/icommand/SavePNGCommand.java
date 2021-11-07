@@ -23,8 +23,7 @@ public class SavePNGCommand extends AbstractCommand {
     Image image = model.getImage(fromImage);
 
     try {
-      boolean isPPM = fileName.split(".")[fileName.split(".").length - 1].toLowerCase()
-              == "ppm";
+      boolean isPPM = fileName.substring(fileName.lastIndexOf(".") + 1) == "ppm";
       if (image != null && isPPM) {
 
         ImageUtil.writePPM(image, fileName);
