@@ -1,9 +1,13 @@
 package imecontroller.icommand;
 
 import java.io.IOException;
+<<<<<<< Updated upstream
 import java.net.URLConnection;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+=======
+import java.util.Map;
+>>>>>>> Stashed changes
 import java.util.Scanner;
 
 import imemodel.Formats;
@@ -15,7 +19,7 @@ import imeview.IMEView;
 public class SaveCommand extends AbstractCommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String fileName = getStringInput(sc);
 

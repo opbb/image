@@ -1,12 +1,6 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 
 import imecontroller.IMEFileController;
 import imecontroller.icommand.BlueValueCommand;
@@ -24,7 +18,6 @@ import imecontroller.icommand.LoadCommand;
 import imecontroller.icommand.RedValueCommand;
 import imecontroller.icommand.SaveBMPCommand;
 import imecontroller.icommand.SaveCommand;
-import imecontroller.icommand.SavePNGCommand;
 import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
@@ -58,12 +51,8 @@ public class Main {
             new ValueCommand(),
             new BlurCommand(),
             new IntensityValueCommand(),
-<<<<<<< HEAD
-=======
             new SaveBMPCommand(),
             new LoadPNGCommand(),
-            new SavePNGCommand(),
->>>>>>> 8ce38cc35a386e9427c63c38da53ac9663c3f047
             new CloseCommand(),
             new SaveCommand(),
             new InputFromFileCommand()));
