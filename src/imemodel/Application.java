@@ -6,7 +6,7 @@ package imemodel;
 public class Application {
 
 
-  //Stuck with this implementation for Luma since it had already satisfied the assignment
+  //Stuck with this implementation for Luma (and sepia) since it had already satisfied the assignment
   //requirement.
 
   /**
@@ -16,7 +16,7 @@ public class Application {
    * @param effect the effect as a 2d double array.
    * @return the image changed by the given effect.
    */
-  static Image applyMultipliedEffectLuma(Image image, double[][] effect) {
+  static Image applyMultipliedTransformation(Image image, double[][] effect) {
     if (image == null) {
       throw new IllegalArgumentException("The given image cannot be null!");
     }

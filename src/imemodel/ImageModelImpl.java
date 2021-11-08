@@ -105,7 +105,7 @@ public class ImageModelImpl implements ImageModel {
   public void greyscaleByLuma(String name) {
     double[][] greyscale = {{0.2126, 0.7152, 0.0722}, {0.2126, 0.7152, 0.0722}, {0.2126,
             0.7152, 0.0722}};
-    map.replace(name, Application.applyMultipliedEffectLuma(map.get(name), greyscale));
+    map.replace(name, Application.applyMultipliedTransformation(map.get(name), greyscale));
   }
 
   @Override

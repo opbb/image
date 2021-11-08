@@ -56,7 +56,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
 
     double[][] sepia = {{0.393, 0.769, 0.189}, {0.349, 0.686, 0.168}, {0.272,
             0.534, 0.131}};
-    delegate.loadImage(name, Application.applyMultipliedEffect(getImage(name), sepia));
+    delegate.loadImage(name, Application.applyMultipliedTransformation(getImage(name), sepia));
   }
 
 
