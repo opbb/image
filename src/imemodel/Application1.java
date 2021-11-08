@@ -5,37 +5,40 @@ package imemodel;
  */
 public class Application1 {
 
-//  /**
-//   * This method multiplies the pixels by the given effect.
-//   *
-//   * @param image  the given image to which its pixels will be affected.
-//   * @param effect the effect as a 2d integer array.
-//   * @return the image changed by the given effect.
-//   */
-//  static Image applyMultipliedEffect(Image image, double[][] effect) {
-//    if (image == null) {
-//      throw new IllegalArgumentException("The given image cannot be null!");
-//    }
-//    int width = image.getWidth();
-//    int height = image.getHeight();
-//    int[][][] newImage = new int[height][width][3];
-//    for (int i = 0; i < height; i++) {
-//      for (int j = 0; j < width; j++) {
-//        for (int k = 0; k < 3; k++) {
-//          newImage[i][j][k] = clamp((int) Math.round(multiplyEffect(image.getPixels()[i][j],
-//                  effect[k])));
-//        }
-//      }
-//    }
-//    return new ImageImpl(newImage);
-//  }
+
+  //Stuck with this implementation for Luma since it had already satisfied the assignment
+  // requirement.
+  /**
+   * This method multiplies the pixels by the given effect, used now for mostly luma.
+   *
+   * @param image  the given image to which its pixels will be affected.
+   * @param effect the effect as a 2d double array.
+   * @return the image changed by the given effect.
+   */
+  static Image applyMultipliedEffectLuma(Image image, double[][] effect) {
+    if (image == null) {
+      throw new IllegalArgumentException("The given image cannot be null!");
+    }
+    int width = image.getWidth();
+    int height = image.getHeight();
+    int[][][] newImage = new int[height][width][3];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        for (int k = 0; k < 3; k++) {
+          newImage[i][j][k] = clamp((int) Math.round(multiplyEffect(image.getPixels()[i][j],
+                  effect[k])));
+        }
+      }
+    }
+    return new ImageImpl(newImage);
+  }
 
 
   /**
    * This method multiplies the pixels by the given effect.
    *
    * @param image  the given image to which its pixels will be affected.
-   * @param effect the effect as a 2d integer array.
+   * @param effect the effect as a 2d double array.
    * @return the image changed by the given effect.
    */
   public static Image applyMultipliedEffect(Image image, double[][] effect) {
@@ -53,6 +56,15 @@ public class Application1 {
   }
 
 
+  /**
+   * Private helper method that retrieves the kernels of an image, used for matrix manipulation
+   * to support the use of multiple filters.
+   * @param row the row of a pixel within the kernel.
+   * @param col the column of a pixel within the kernel.
+   * @param image the 3d array that contains the pixels of the image.
+   * @param matrix the matrix size, designated as the size of the filter length.
+   * @return the image kernel displayed by a 3d array.
+   */
   private static int[][][] getKernels(int row, int col, int[][][] image, int matrix) {
 
     int[][][] kernel = new int[matrix][matrix][3];
@@ -129,27 +141,27 @@ public class Application1 {
     return new ImageImpl(newImage);
   }
 
-//  /**
-//   * Helper method that helps to mathematically multiplies effects to an image.
-//   *
-//   * @param pixel  the given pixel and its rgb values to be affected.
-//   * @param effect the effect as an array of what to add to the pixels.
-//   * @return
-//   */
-//  private static double multiplyEffect(int[] pixel, double[] effect) {
-//    double newPixel = 0;
-//    for (int i = 0; i < effect.length; i++) {
-//      newPixel += pixel[i] * effect[i];
-//    }
-//    return newPixel;
-//  }
+  /**
+   * Helper method that helps to mathematically multiplies effects to an image.
+   *
+   * @param pixel  the given pixel and its rgb values to be affected.
+   * @param effect the effect as an array of what to add to the pixels.
+   * @return a double representing the value of the rgb values within a pixel.
+   */
+  private static double multiplyEffect(int[] pixel, double[] effect) {
+    double newPixel = 0;
+    for (int i = 0; i < effect.length; i++) {
+      newPixel += pixel[i] * effect[i];
+    }
+    return newPixel;
+  }
 
   /**
    * Helper method that helps to mathematically multiplies effects to an image.
    *
    * @param kernel the given pixel and its rgb values to be affected.
    * @param effect the effect as an array of what to add to the pixels.
-   * @return
+   * @return an int array representing the new rgb values of a pixel.
    */
   private static int[] multiplyEffect(int[][][] kernel, double[][] effect) {
     int[] newRGB = new int[3];
@@ -170,7 +182,7 @@ public class Application1 {
    *
    * @param pixel  the given pixel and its rgb values to be affected.
    * @param effect the effect as an array of what to add to the pixels.
-   * @return
+   * @return a double value by which the rgb of a pixel should be set to.
    */
   private static double addEffect(int pixel, double effect) {
     double newPixel = 0;
@@ -230,6 +242,11 @@ public class Application1 {
   }
 
 
+  /**
+   * Constrains the pixels of an image to a set size, ranging from 0 to 255.
+   * @param image the 3d array of integers representing the image's pixels.
+   * @return a 3d array acting as the image, but its values constrained to a min and max value.
+   */
   private static int[][][] clampPixel(int[][][] image) {
     int min = 0;
     int max = 255;

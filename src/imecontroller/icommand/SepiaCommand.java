@@ -31,7 +31,7 @@ public class SepiaCommand extends AbstractCommand {
 
   @Override
   public String helpMessage() {
-    return "sepia [image to blur] [new image name]";
+    return "sepia [image to add sepia filter] [new image name]";
   }
 
   @Override

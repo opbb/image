@@ -3,14 +3,29 @@ package imemodel;
 
 import java.util.Set;
 
+/**
+ * This class resembles the use of code reuse, specifically composition, in supplying the original
+ * ImageModelImpl class with new image filters.
+ */
 public class ExtraFiltersImpl implements ExtraFilters {
 
+  //The delegate object of an ImageModel by which to perform operations on.
   private final ImageModel delegate;
 
+  /**
+   * Main constructor which requires an ImageModel object, assigning it as this class' delegate
+   * object.
+   * @param model the ImageModel object by which to perform the required operations.
+   */
   public ExtraFiltersImpl(ImageModel model) {
     this.delegate = model;
   }
 
+  /**
+   * Secondary constructor used for possible future needs.
+   * @param name the name of the image as represented by the ImageModel's map.
+   * @param filepath the filepath of an image. 
+   */
   public ExtraFiltersImpl(String name, String filepath) {
     this.delegate = new ImageModelImpl();
     delegate.loadImage(name, new ImageImpl(filepath));
