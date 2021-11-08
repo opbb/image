@@ -24,9 +24,14 @@ public class MockCommand implements ICommand {
 
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) {
+    String commandString = "";
+    for (Map.Entry<String, ICommand> entry: commands.entrySet()) {
+      commandString += " " + entry.getKey() + "-" + entry.getValue().commandText();
+    }
     log.append("model: " + model.toString() +
             " view: " + view.toString() +
-            " scanner: " + sc.next() + "\n");
+            " scanner: " + sc.next() +
+            " commands:" + commandString + "\n");
   }
 
   @Override

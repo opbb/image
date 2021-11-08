@@ -485,16 +485,17 @@ public class IMEControllerImplTest {
 
   @Test
   public void testRunCommandInputs() {
-    StringReader input = new StringReader("mock this-is-the-next-scanner-input q");
+    StringReader input = new StringReader("mock this-is-the-next-input q");
     new IMEControllerImpl(mockCommands, mockModelTrue, mockView, input).run();
     Assert.assertEquals("commandText)\n" +
             "toString) This is a mock view.\n" +
             "renderMessage) message: null\n" +
             "\n" +
             "Input new command: \n" +
+            "commandText)\n" +
             "toString) This is a mock view.\n" +
             "model: toString) This is a mock model.\n" +
-            " view: null scanner: this-is-the-next-scanner-input\n" +
+            " view: null scanner: this-is-the-next-input commands: mock-mock\n" +
             "toString) This is a mock view.\n" +
             "renderMessage) message: null\n" +
             "\n" +

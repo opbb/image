@@ -544,7 +544,7 @@ public class ICommandsTest {
   }
 
   @Test
-  public void testLoadCommand() {
+  public void testLoadCommandPPM() {
     ICommand command = new LoadCommand();
     sc = new Scanner(new StringReader("res/test-input.ppm test"));
     command.execute(mockModelTrue, mockView, sc, commands);
@@ -618,3 +618,4 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 }
+
