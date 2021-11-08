@@ -8,8 +8,6 @@ import java.util.Set;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 
@@ -17,30 +15,24 @@ public class ExtraFiltersImplTest {
 
   private ExtraFilters fil1;
   private ExtraFilters fil2;
-  private ImageModel mod1;
-
-  private ImageModel model1;
-  private Image image1;
-  private int[][][] list1;
 
   private ImageModel model2;
   private Image image2;
-  private int[][][] list2;
 
   @Before
   public void setUp() {
 
-    list1 = new int[][][]{{{25, 25, 25}, {50, 75, 100}}};
-    image1 = new ImageImpl(list1);
+    int[][][] list1 = new int[][][]{{{25, 25, 25}, {50, 75, 100}}};
+    Image image1 = new ImageImpl(list1);
     String str1 = "Image1";
-    model1 = new ImageModelImpl();
+    ImageModel model1 = new ImageModelImpl();
     model1.loadImage(str1, image1);
 
-    list2 = new int[][][]{{{25, 25, 25}, {50, 75, 100}, {205, 210, 160}, {169, 68, 6}}};
+    int[][][] list2 = new int[][][]{{{25, 25, 25}, {50, 75, 100}, {205, 210, 160}, {169, 68, 6}}};
     image2 = new ImageImpl(list2);
     model2 = new ImageModelImpl();
 
-    mod1 = new ImageModelImpl();
+    ImageModel mod1 = new ImageModelImpl();
     mod1.loadImage("Cool", new ImageImpl());
     fil1 = new ExtraFiltersImpl(mod1);
 
@@ -177,6 +169,31 @@ public class ExtraFiltersImplTest {
     assertArrayEquals(new int[][][]{{{33, 33, 33}}, {{29, 29, 29}}},
             fil1.getImageValues("safe"));
 
+    fil2.loadImage("Blur", new ImageImpl());
+    fil2.greyscaleByLuma("Blur");
+    assertEquals("[[[183, 183, 183]], [[162, 162, 162]]]",
+            Arrays.deepToString(fil2.getImageValues("Blur")));
+
+    ImageModel mod1 = new ImageModelImpl();
+    ExtraFilters ex1 = new ExtraFiltersImpl(mod1);
+
+    ex1.loadImage("Stay", new ImageImpl(new int[][][]{{{3, 3, 3}}}));
+    assertArrayEquals(new int[][][]{{{3, 3, 3}}}, ex1.getImageValues("Stay"));
+    ex1.greyscaleByLuma("Stay");
+    assertEquals("[[[3, 3, 3]]]", Arrays.deepToString(ex1
+            .getImageValues("Stay")));
+
+    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}}));
+    ex1.greyscaleByLuma("Koala");
+    assertEquals("[[[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]]]", Arrays.
+            deepToString(ex1.getImageValues("Koala")));
+
+    ex1.loadImage("Text", new ImageImpl(new int[][][]{{{}}}));
+
+    ex1.loadImage("safe", new ImageImpl(new int[][][]{{{2, 45, 12}}, {{23, 24, 90}}}));
+    ex1.greyscaleByLuma("safe");
+    assertEquals("[[[33, 33, 33]], [[29, 29, 29]]]",
+            Arrays.deepToString(ex1.getImageValues("safe")));
   }
 
 

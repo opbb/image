@@ -1,0 +1,55 @@
+This file acts as a list of supported commands:
+
+Below are the commands, anything within brackets [] are just to explain what should be given to perform the command's operation
+
+load [image-to-load] [name-to-call-image-by]
+^This command is required first before being able to change anything about an image
+
+help
+^This command will at anytime display a help message showing all commands with their signature
+
+q
+quit
+^These commands will quit the application at any given time.
+
+red-value [image-to-get-red-component-of] [name-to-call-image-by]
+^This command will grey scale an image by its pixels' red component.
+
+green-value [image-to-get-green-component-of] [name-to-call-image-by]
+^This command will grey scale an image by its pixels' green component.
+
+blue-value [image-to-get-blue-component-of] [name-to-call-image-by]
+^This command will grey scale an image by its pixels' blue component.
+
+blur [image-to-get-blurred] [name-to-call-image-by]
+^This command will blur an image and can be repeated for a more blurred effect.
+
+sharpen [image-to-get-sharpened] [name-to-call-image-by]
+^This command will sharpen an image and can be repeated for a sharper image.
+
+sepia [image-to-give-sepia-effect] [name-to-call-image-by]
+^This command will apply the sepia tone to the given image.
+
+brighten [value-to-brighten-by] [image-to-brighten] [name-to-call-image-by]
+^This command will brighten an image (or darken if given negative value).
+
+horizontal-flip [image-to-flip-horizontally-flip] [name-to-call-image-by]
+^This command will horizontally flip the given image.
+
+vertical-flip [image-to-vertically-flip] [name-to-call-image-by]
+^This command will vertically flip the given image.
+
+input-from-file [file-path]
+^This command requires a .txt file to be given, which the application will perform the given commands within this file.
+
+intensity-value [image-to-get-intensity-of] [name-to-call-image-by]
+^This command grey scales an image by its pixels' intensity.
+
+luma-value [image-to-get-luma-of] [name-to-call-image-by]
+^This command grey scales an image by its pixels' luma value.
+
+value [image-to-get-value-of] [name-to-call-image-by]
+^This command grey scales an image by its pixels' value.
+
+save [image-to-save] [file-directory/path]
+^This command will save the given file to a given filepath, and supported file extensions are .ppm, .png, .jpeg, and .bmp.
