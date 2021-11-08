@@ -38,7 +38,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
   public void blur(String name) {
     double[][] blur = {{0.0625, 0.125, 0.0625}, {0.125, 0.25, 0.125}, {0.0625,
             0.125, 0.0625}};
-    delegate.loadImage(name, Application1.applyMultipliedEffect(getImage(name), blur));
+    delegate.loadImage(name, Application.applyMultipliedEffect(getImage(name), blur));
 
   }
 
@@ -48,7 +48,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
     double[][] sharpen = {{-0.125, -0.125, -0.125, -0.125, -0.125},
             {-0.125, 0.25, 0.25, 0.25, -0.125}, {-0.125, 0.25, 1, 0.25, -0.125},
             {-0.125, 0.25, 0.25, 0.25, -0.125}, {-0.125, -0.125, -0.125, -0.125, -0.125}};
-    delegate.loadImage(name, Application1.applyMultipliedEffect(getImage(name), sharpen));
+    delegate.loadImage(name, Application.applyMultipliedEffect(getImage(name), sharpen));
   }
 
   @Override
@@ -56,7 +56,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
 
     double[][] sepia = {{0.393, 0.769, 0.189}, {0.349, 0.686, 0.168}, {0.272,
             0.534, 0.131}};
-    delegate.loadImage(name, Application1.applyMultipliedEffect(getImage(name), sepia));
+    delegate.loadImage(name, Application.applyMultipliedEffect(getImage(name), sepia));
   }
 
 

@@ -12,7 +12,7 @@ import imemodel.ImageUtil;
 import imeview.IMEView;
 
 /**
- * This command will load an image to the application by calling the readPPM method with the
+ * This command will load an image to the application by loading the image with the
  * associated file and loads it into the model.
  */
 public class LoadCommand extends AbstractCommand {

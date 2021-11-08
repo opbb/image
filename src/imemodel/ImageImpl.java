@@ -36,6 +36,12 @@ public class ImageImpl implements Image {
     this.width = image[0].length;
   }
 
+  public ImageImpl() {
+    this.pixels = new int[][][]{{{2, 255, 0}}, {{90, 180, 200}}};
+    this.height = new int[][][]{{{2, 255, 0}}, {{90, 180, 200}}}.length;
+    this.width = new int[][][]{{{2, 255, 0}}, {{90, 180, 200}}}[0].length;
+  }
+
   /**
    * This constructor allows for a different sized image, in which the array of integers is
    * completely customizable and therefore subject to change.

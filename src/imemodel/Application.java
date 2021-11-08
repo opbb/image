@@ -3,7 +3,7 @@ package imemodel;
 /**
  * This interface represents a set of methods to which effects can be applied to images.
  */
-public class Application1 {
+public class Application {
 
 
   //Stuck with this implementation for Luma since it had already satisfied the assignment
@@ -43,6 +43,9 @@ public class Application1 {
    * @return the image changed by the given effect.
    */
   public static Image applyMultipliedEffect(Image image, double[][] effect) {
+    if (image == null) {
+      throw new IllegalArgumentException("The given image cannot be null!");
+    }
     int height = image.getHeight();
     int width = image.getWidth();
     int[][][] toImage = new int[height][width][3];

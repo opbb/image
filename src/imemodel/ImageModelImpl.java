@@ -59,6 +59,7 @@ public class ImageModelImpl implements ImageModel {
     this.map = new HashMap<String, Image>();
   }
 
+
   @Override
   public int[][][] getImageValues(String name) {
     Image image = map.get(name);
@@ -104,18 +105,18 @@ public class ImageModelImpl implements ImageModel {
   public void greyscaleByLuma(String name) {
     double[][] greyscale = {{0.2126, 0.7152, 0.0722}, {0.2126, 0.7152, 0.0722}, {0.2126,
             0.7152, 0.0722}};
-    map.replace(name, Application1.applyMultipliedEffectLuma(map.get(name), greyscale));
+    map.replace(name, Application.applyMultipliedEffectLuma(map.get(name), greyscale));
   }
 
   @Override
   public void getByComponent(String name, String comp) {
-    map.replace(name, Application1.applySetEffect(map.get(name), comp));
+    map.replace(name, Application.applySetEffect(map.get(name), comp));
   }
 
 
   @Override
   public void brighten(String name, double increase) {
-    map.replace(name, Application1.applyAddedEffect(map.get(name), increase));
+    map.replace(name, Application.applyAddedEffect(map.get(name), increase));
   }
 
 

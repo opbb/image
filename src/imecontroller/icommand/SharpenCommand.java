@@ -9,6 +9,9 @@ import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * This command represents the class by which the sharpened filter is applied to an image.
+ */
 public class SharpenCommand extends AbstractCommand {
 
   @Override

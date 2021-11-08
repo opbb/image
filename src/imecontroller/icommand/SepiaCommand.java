@@ -9,6 +9,9 @@ import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * This class represents the command to give an image the Sepia tone.
+ */
 public class SepiaCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)

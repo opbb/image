@@ -11,6 +11,11 @@ import imemodel.ImageModel;
 import imemodel.ImageUtil;
 import imeview.IMEView;
 
+/**
+ * This class represents the save feature of our program, in which it saves the image to its
+ * given destination, in using the respective methods to do so, depending the on the MIME type of
+ * the filename.
+ */
 public class SaveCommand extends AbstractCommand {
 
   @Override

@@ -3,12 +3,14 @@ package imecontroller.icommand;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
-
 import imemodel.ExtraFilters;
 import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * This class represents the command to blur a given image.
+ */
 public class BlurCommand extends AbstractCommand {
 
 

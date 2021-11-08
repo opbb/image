@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * This class is the tester class for the Application inteface, in which its static methods are
  * being tested.
  */
-public class ApplicationTest {
+public class Application1Test {
 
   private Image img1;
 

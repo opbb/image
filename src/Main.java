@@ -62,6 +62,8 @@ public class Main {
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
 
+    //added the feature of reading a .txt file filled with commands and disregards comments.
+
     IMEController controller;
     if (args.length == 0) {
       controller = new IMEControllerImpl(commands, model, view);
