@@ -17,20 +17,14 @@ public class SharpenCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {
-    try {
+    
       String fromImage = getStringInput(sc);
       String toImage = getStringInput(sc);
       ExtraFilters filter = new ExtraFiltersImpl(model);
 
-
       if (setUpImage(model, view, fromImage, toImage)) {
         filter.sharpen(toImage);
       }
-    } catch (InputMismatchException e) {
-      getStringInput(sc);
-      getStringInput(sc);
-      getStringInput(sc);
-    }
   }
 
   @Override

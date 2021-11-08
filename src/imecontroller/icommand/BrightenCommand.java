@@ -28,7 +28,6 @@ public class BrightenCommand extends AbstractCommand {
       }
     } catch (InputMismatchException e) {
 
-
       // Throw out the next 3 inputs from the Scanner so they don't get interpreted as commands.
       getStringInput(sc);
       getStringInput(sc);
