@@ -46,12 +46,8 @@ public class Formats extends ImageUtil {
         }
       }
       return pixels;
-    } catch (FileNotFoundException e) {
-
-      return new int[][][]{{{0}}};
     } catch (IOException e) {
-
-      return new int[][][]{{{1}}};
+      throw e;
     }
 
   }
