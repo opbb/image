@@ -22,14 +22,13 @@ public class SaveCommand extends AbstractCommand {
     Image image = model.getImage(fromImage);
 
     try {
-      if (image != null && (fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
-
-        ImageUtil.writePPM(image, fileName);
-      }
-      else if (!(fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
-        Formats.writeImageFile(image, fileName);
-      }
-      else {
+      if (image != null) {
+        if (fileName.substring(fileName.lastIndexOf(".") + 1).equals("ppm")) {
+          ImageUtil.writePPM(image, fileName);
+        } else {
+          Formats.writeImageFile(image, fileName);
+        }
+      } else {
         view.renderMessage("The image " + fromImage + " is null.\n\n");
       }
     } catch (IOException e) {
