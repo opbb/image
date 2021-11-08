@@ -7,7 +7,8 @@ public class Application1 {
 
 
   //Stuck with this implementation for Luma since it had already satisfied the assignment
-  // requirement.
+  //requirement.
+
   /**
    * This method multiplies the pixels by the given effect, used now for mostly luma.
    *
@@ -59,9 +60,10 @@ public class Application1 {
   /**
    * Private helper method that retrieves the kernels of an image, used for matrix manipulation
    * to support the use of multiple filters.
-   * @param row the row of a pixel within the kernel.
-   * @param col the column of a pixel within the kernel.
-   * @param image the 3d array that contains the pixels of the image.
+   *
+   * @param row    the row of a pixel within the kernel.
+   * @param col    the column of a pixel within the kernel.
+   * @param image  the 3d array that contains the pixels of the image.
    * @param matrix the matrix size, designated as the size of the filter length.
    * @return the image kernel displayed by a 3d array.
    */
@@ -244,6 +246,7 @@ public class Application1 {
 
   /**
    * Constrains the pixels of an image to a set size, ranging from 0 to 255.
+   *
    * @param image the 3d array of integers representing the image's pixels.
    * @return a 3d array acting as the image, but its values constrained to a min and max value.
    */

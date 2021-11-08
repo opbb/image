@@ -15,6 +15,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
   /**
    * Main constructor which requires an ImageModel object, assigning it as this class' delegate
    * object.
+   *
    * @param model the ImageModel object by which to perform the required operations.
    */
   public ExtraFiltersImpl(ImageModel model) {
@@ -23,8 +24,9 @@ public class ExtraFiltersImpl implements ExtraFilters {
 
   /**
    * Secondary constructor used for possible future needs.
-   * @param name the name of the image as represented by the ImageModel's map.
-   * @param filepath the filepath of an image. 
+   *
+   * @param name     the name of the image as represented by the ImageModel's map.
+   * @param filepath the filepath of an image.
    */
   public ExtraFiltersImpl(String name, String filepath) {
     this.delegate = new ImageModelImpl();
@@ -66,7 +68,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
   @Override
   public void loadImage(String name, Image image) {
 
-    delegate.loadImage(name,image);
+    delegate.loadImage(name, image);
   }
 
   @Override
@@ -77,7 +79,7 @@ public class ExtraFiltersImpl implements ExtraFilters {
 
   @Override
   public Image getImage(String name) {
-   return  delegate.getImage(name);
+    return delegate.getImage(name);
   }
 
   @Override
@@ -115,6 +117,8 @@ public class ExtraFiltersImpl implements ExtraFilters {
     delegate.flipHorizontal(name);
   }
 
+  //Did not have to change luma greyscale as its matrix multiplication was already supported in
+  //last assignment.
   @Override
   public void greyscaleByLuma(String name) {
 

@@ -9,18 +9,21 @@ public interface ExtraFilters extends ImageModel {
 
   /**
    * This image uses matrix manipulation to blur the given image.
+   *
    * @param name the name of the image as represented as the key within the Model's hashmap.
    */
   void blur(String name);
 
   /**
    * This image uses matrix manipulation to sharpen the given image.
+   *
    * @param name the name of the image as represented as the key within the Model's hashmap.
    */
   void sharpen(String name);
 
   /**
    * This image uses matrix manipulation to display the sepia tone of the given image.
+   *
    * @param name the name of the image as represented as the key within the Model's hashmap.
    */
   void toSepia(String name);

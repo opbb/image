@@ -8,7 +8,6 @@ import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
 import imecontroller.icommand.InputFromFileCommand;
-import imecontroller.icommand.LoadPNGCommand;
 import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.GreenValueCommand;
 import imecontroller.icommand.HoriFlipCommand;
@@ -16,7 +15,6 @@ import imecontroller.icommand.ICommand;
 import imecontroller.icommand.IntensityValueCommand;
 import imecontroller.icommand.LoadCommand;
 import imecontroller.icommand.RedValueCommand;
-import imecontroller.icommand.SaveBMPCommand;
 import imecontroller.icommand.SaveCommand;
 
 import imecontroller.icommand.SepiaCommand;
@@ -39,6 +37,7 @@ public class Main {
   /**
    * Main class as described in the class javadoc, initializes a map of commands, the model,
    * view, and controller.
+   *
    * @param args That of which commands are read in.
    */
   public static void main(String[] args) {
@@ -70,7 +69,7 @@ public class Main {
       controller = new IMEFileController(commands, model, view, args[0]);
     }
 
-      controller.run();
+    controller.run();
 
   }
 }

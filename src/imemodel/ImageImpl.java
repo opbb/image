@@ -77,6 +77,13 @@ public class ImageImpl implements Image {
 
   }
 
+  /**
+   * New constructor that supports the use of other image formats, with the use of the new reading
+   * and writing methods.
+   * @param filename the name of the file as a string.
+   * @param type the type of the file, used to distinguish the different image constructors.
+   * @throws IllegalArgumentException if the filename is null or is an empty string.
+   */
   public ImageImpl(String filename, String type) throws IllegalArgumentException {
     if (filename == null || filename.equals("")) {
       throw new IllegalArgumentException("The given filename must not be null!");
