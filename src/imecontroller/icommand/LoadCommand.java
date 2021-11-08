@@ -33,7 +33,7 @@ public class LoadCommand extends AbstractCommand {
 
         Image img2 = new ImageImpl(Formats.readImageFIle(fileName));
         model.loadImage(toImage, img2);
-        
+
       }
     } catch (IOException e) {
       view.renderMessage("The given file name " + fileName + " does not exist.\n\n");
