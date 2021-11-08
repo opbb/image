@@ -24,17 +24,16 @@ public class LoadCommand extends AbstractCommand {
 
 
     try {
-
       if ((fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
 
         Image img1 = new ImageImpl(ImageUtil.readPPM(fileName));
         model.loadImage(toImage, img1);
 
-      } else if (!(fileName.substring(fileName.lastIndexOf(".") + 1)).equals("ppm")) {
+      } else {
+
         Image img2 = new ImageImpl(Formats.readImageFIle(fileName));
         model.loadImage(toImage, img2);
-
-
+        
       }
     } catch (IOException e) {
       view.renderMessage("The given file name " + fileName + " does not exist.\n\n");

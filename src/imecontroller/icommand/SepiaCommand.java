@@ -13,7 +13,7 @@ public class SepiaCommand extends AbstractCommand {
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {
-    
+
     String fromImage = getStringInput(sc);
     String toImage = getStringInput(sc);
     ExtraFilters filter = new ExtraFiltersImpl(model);
