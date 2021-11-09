@@ -1,7 +1,7 @@
 Tom and Oliver's IME:
 
-Note about sample image: I was given written permission to use this image by both its creator and subject.
-Note about new sample image: I (Oliver) have permission to the use of the image of the dog (ella) as she is my own.
+Note about sample image "when-you-walking": I was given written permission to use this image by both its creator and subject.
+Note about new sample image "ella": I took this photograph, and I am giving myself permission to use it. Also, I asked the subject to wag twice for yes, and she did.
 
 For our design we used the Controller, Model, View pattern. We kept those 3 packages separated and interacting only through very controlled channels.
 
