@@ -8,7 +8,7 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+
 
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BrightenCommand;

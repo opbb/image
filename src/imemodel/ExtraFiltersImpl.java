@@ -46,8 +46,8 @@ public class ExtraFiltersImpl implements ExtraFilters {
   @Override
   public void sharpen(String name) {
     double[][] sharpen = {{-0.125, -0.125, -0.125, -0.125, -0.125},
-            {-0.125, 0.25, 0.25, 0.25, -0.125}, {-0.125, 0.25, 1, 0.25, -0.125},
-            {-0.125, 0.25, 0.25, 0.25, -0.125}, {-0.125, -0.125, -0.125, -0.125, -0.125}};
+        {-0.125, 0.25, 0.25, 0.25, -0.125}, {-0.125, 0.25, 1, 0.25, -0.125},
+        {-0.125, 0.25, 0.25, 0.25, -0.125}, {-0.125, -0.125, -0.125, -0.125, -0.125}};
     delegate.loadImage(name, Application.applyMultipliedEffect(getImage(name), sharpen));
   }
 

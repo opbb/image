@@ -17,7 +17,8 @@ public interface ICommand {
    * Executes the command.
    * @param model the ImageModel on which to execute the command
    * @param sc the scanner with which to get input
-   * @param commands
+   * @param commands a map of commands, with the keys as the name of the commands as a string
+   *                 and the commands as values.
    */
   void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException;

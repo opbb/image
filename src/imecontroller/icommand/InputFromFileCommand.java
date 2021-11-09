@@ -10,6 +10,9 @@ import imecontroller.IMEFileController;
 import imemodel.ImageModel;
 import imeview.IMEView;
 
+/**
+ * This command supports the feature of loading and executing commands from a .txt file.
+ */
 public class InputFromFileCommand extends AbstractCommand {
 
   @Override

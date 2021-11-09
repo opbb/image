@@ -6,8 +6,9 @@ package imemodel;
 public class Application {
 
 
-  //Stuck with this implementation for Luma (and sepia) since it had already satisfied the assignment
-  //requirement.
+  //Stuck with this implementation for Luma (and sepia) since it had already satisfied the
+  //assignment requirement.
+
 
   /**
    * This method multiplies the pixels by the given effect, used now for mostly luma.
