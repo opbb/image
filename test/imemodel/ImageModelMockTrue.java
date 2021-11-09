@@ -23,7 +23,11 @@ public class ImageModelMockTrue implements ImageModel {
   @Override
   public int[][][] getImageValues(String name) {
     log.append("getImageValues) name: " + name + "\n");
-    return new int[0][][];
+    int[][][] values = new int[1][1][3];
+    values[0][0][0] = 1;
+    values[0][0][1] = 2;
+    values[0][0][2] = 3;
+    return values;
   }
 
   @Override
@@ -40,7 +44,11 @@ public class ImageModelMockTrue implements ImageModel {
   @Override
   public Image getImage(String name) {
     log.append("getImage) name: " + name + "\n");
-    return null;
+    int[][][] values = new int[1][1][3];
+    values[0][0][0] = 1;
+    values[0][0][1] = 2;
+    values[0][0][2] = 3;
+    return new ImageImpl(values);
   }
 
   @Override

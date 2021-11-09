@@ -33,6 +33,9 @@ public class IMEFileController implements IMEController {
    */
   public IMEFileController(Map<String, ICommand> commands, ImageModel model, IMEView view,
                            String filePath) {
+    if (commands == null || model == null || view == null || filePath == null) {
+      throw new IllegalArgumentException("Inputs must not be null.");
+    }
     this.commands = commands;
     this.model = model;
     this.view = view;
@@ -40,7 +43,7 @@ public class IMEFileController implements IMEController {
       this.lines = processInputToLines(new Scanner(new InputStreamReader(
               new FileInputStream(filePath))));
     } catch (IOException e) {
-      throw new IllegalArgumentException("Couldn't find a file at" + filePath + ".");
+      throw new IllegalArgumentException("Couldn't find a file at " + filePath + ".");
     }
   }
 
@@ -53,6 +56,9 @@ public class IMEFileController implements IMEController {
    */
   public IMEFileController(Map<String, ICommand> commands, ImageModel model,
                            IMEView view, Readable readable) {
+    if (commands == null || model == null || view == null || readable == null) {
+      throw new IllegalArgumentException("Inputs must not be null.");
+    }
     this.commands = commands;
     this.model = model;
     this.view = view;

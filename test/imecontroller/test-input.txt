@@ -1,0 +1,1 @@
+load res/test-input.ppm input1

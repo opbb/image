@@ -4,13 +4,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import imemodel.FilterMock;
+import imemodel.Formats;
 import imemodel.ImageModel;
 import imemodel.ImageModelMockFalse;
+import imemodel.ImageUtil;
 import imeview.IMEView;
 import imeview.IMEViewMock;
 import imemodel.ImageModelMockTrue;
@@ -27,6 +31,7 @@ public class ICommandsTest {
   IMEView mockView;
   Scanner sc;
   Map<String, ICommand> commands;
+  ImageModel filterMock;
 
   @Before
   public void setUp() {
@@ -34,8 +39,12 @@ public class ICommandsTest {
     mockModelTrue = new ImageModelMockTrue(log);
     mockModelFalse = new ImageModelMockFalse(log);
     mockView = new IMEViewMock(log);
-    commands = new HashMap<String, ICommand>();
+    commands = new HashMap<>();
+    commands.put("load", new LoadCommand());
+    filterMock = new FilterMock(log);
   }
+
+  //===============================================================================================
 
   @Test
   public void testBlueValueCommandDiffArgs() {
@@ -88,6 +97,8 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
   @Test
   public void testRedValueCommandDiffArgs() {
     ICommand command = new RedValueCommand();
@@ -138,6 +149,8 @@ public class ICommandsTest {
     sc = new Scanner(new StringReader("input0"));
     command.execute(mockModelTrue, mockView, sc, commands);
   }
+
+  //===============================================================================================
 
   @Test
   public void testGreenValueCommandDiffArgs() {
@@ -190,6 +203,8 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
   @Test
   public void testIntensityValueCommandDiffArgs() {
     ICommand command = new IntensityValueCommand();
@@ -240,6 +255,8 @@ public class ICommandsTest {
     sc = new Scanner(new StringReader("input0"));
     command.execute(mockModelTrue, mockView, sc, commands);
   }
+
+  //===============================================================================================
 
   @Test
   public void testLumaValueCommandDiffArgs() {
@@ -292,6 +309,8 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
   @Test
   public void testValueCommandDiffArgs() {
     ICommand command = new ValueCommand();
@@ -343,6 +362,8 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
   @Test
   public void testCloseCommand() {
     ICommand command = new CloseCommand();
@@ -377,6 +398,8 @@ public class ICommandsTest {
     sc = new Scanner(new StringReader(""));
     command.execute(mockModelTrue, mockView, sc, commands);
   }
+
+  //===============================================================================================
 
   @Test
   public void testBrightenCommandDiffArgs() {
@@ -441,6 +464,8 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
   @Test
   public void testHoriFlipCommandDiffArgs() {
     ICommand command = new HoriFlipCommand();
@@ -491,6 +516,8 @@ public class ICommandsTest {
     sc = new Scanner(new StringReader("input0"));
     command.execute(mockModelTrue, mockView, sc, commands);
   }
+
+  //===============================================================================================
 
   @Test
   public void testVertFlipCommandDiffArgs() {
@@ -543,6 +570,149 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
+  @Test
+  public void testBlurCommandDiffArgs() {
+    ICommand command = new BlurCommand();
+    sc = new Scanner(new StringReader("input0 input1"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("hasImage) name: input0\n" +
+            "duplicateImage) name: input0 newName: input1\n" +
+            "getImage) name: input1\n" +
+            "loadImage) name: input1 image: [[[0, 1, 1]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testBlurCommandSameArgs() {
+    ICommand command = new BlurCommand();
+    sc = new Scanner(new StringReader("input0 input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("hasImage) name: input0\n" +
+            "getImage) name: input0\n" +
+            "loadImage) name: input0 image: [[[0, 1, 1]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testBlurCommandHelpers() {
+    ICommand command = new BlurCommand();
+    Assert.assertEquals("blur [image to blur] [new image name]",
+            command.helpMessage());
+    Assert.assertEquals("blur", command.commandText());
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testBlurCommandException0() {
+    ICommand command = new BlurCommand();
+    sc = new Scanner(new StringReader(""));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testBlurCommandException1() {
+    ICommand command = new BlurCommand();
+    sc = new Scanner(new StringReader("input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  //===============================================================================================
+
+  @Test
+  public void testSepiaCommandDiffArgs() {
+    ICommand command = new SepiaCommand();
+    sc = new Scanner(new StringReader("input0 input1"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("hasImage) name: input0\n" +
+                    "duplicateImage) name: input0 newName: input1\n" +
+                    "getImage) name: input1\n" +
+                    "loadImage) name: input1 image: [[[2, 2, 2]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testSepiaCommandSameArgs() {
+    ICommand command = new SepiaCommand();
+    sc = new Scanner(new StringReader("input0 input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("hasImage) name: input0\n" +
+                    "getImage) name: input0\n" +
+                    "loadImage) name: input0 image: [[[2, 2, 2]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testSepiaCommandHelpers() {
+    ICommand command = new SepiaCommand();
+    Assert.assertEquals("sepia [image to add sepia filter] [new image name]",
+            command.helpMessage());
+    Assert.assertEquals("sepia", command.commandText());
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testSepiaCommandException0() {
+    ICommand command = new SepiaCommand();
+    sc = new Scanner(new StringReader(""));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testSepiaCommandException1() {
+    ICommand command = new SepiaCommand();
+    sc = new Scanner(new StringReader("input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  //===============================================================================================
+
+  @Test
+  public void testSharpenCommandDiffArgs() {
+    ICommand command = new SharpenCommand();
+    sc = new Scanner(new StringReader("input0 input1"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("hasImage) name: input0\n" +
+                    "duplicateImage) name: input0 newName: input1\n" +
+                    "getImage) name: input1\n" +
+                    "loadImage) name: input1 image: [[[1, 2, 3]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testSharpenCommandSameArgs() {
+    ICommand command = new SharpenCommand();
+    sc = new Scanner(new StringReader("input0 input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("hasImage) name: input0\n" +
+                    "getImage) name: input0\n" +
+                    "loadImage) name: input0 image: [[[1, 2, 3]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testSharpenCommandHelpers() {
+    ICommand command = new SharpenCommand();
+    Assert.assertEquals("sharpen [image to sharpen] [new image name]",
+            command.helpMessage());
+    Assert.assertEquals("sharpen", command.commandText());
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testSharpenCommandException0() {
+    ICommand command = new SharpenCommand();
+    sc = new Scanner(new StringReader(""));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testSharpenCommandException1() {
+    ICommand command = new SharpenCommand();
+    sc = new Scanner(new StringReader("input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  //===============================================================================================
+
   @Test
   public void testLoadCommandPPM() {
     ICommand command = new LoadCommand();
@@ -551,6 +721,39 @@ public class ICommandsTest {
     Assert.assertEquals("loadImage) name: test image: [[[204, 204, 204], " +
                     "[188, 188, 188], [68, 68, 68]], [[201, 201, 201], [23, 23, 23], " +
             "[207, 207, 207]], [[235, 235, 235], [165, 165, 165], [255, 255, 255]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testLoadCommandPNG() {
+    ICommand command = new LoadCommand();
+    sc = new Scanner(new StringReader("res/test-input.png test"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("loadImage) name: test image: [[[204, 204, 204], " +
+                    "[188, 188, 188], [68, 68, 68]], [[201, 201, 201], [23, 23, 23], " +
+                    "[207, 207, 207]], [[235, 235, 235], [165, 165, 165], [255, 255, 255]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testLoadCommandBMP() {
+    ICommand command = new LoadCommand();
+    sc = new Scanner(new StringReader("res/test-input.bmp test"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("loadImage) name: test image: [[[204, 204, 204], " +
+                    "[188, 188, 188], [68, 68, 68]], [[201, 201, 201], [23, 23, 23], " +
+                    "[207, 207, 207]], [[235, 235, 235], [165, 165, 165], [255, 255, 255]]]\n",
+            log.toString());
+  }
+
+  @Test
+  public void testLoadCommandJPEG() {
+    ICommand command = new LoadCommand();
+    sc = new Scanner(new StringReader("res/test-input.jpeg test"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("loadImage) name: test image: [[[201, 201, 201], [192, 192, 192]" +
+                    ", [67, 67, 67]], [[201, 201, 201], [24, 24, 24], [204, 204, 204]], " +
+                    "[[235, 235, 235], [162, 162, 162], [255, 255, 255]]]\n",
             log.toString());
   }
 
@@ -586,6 +789,70 @@ public class ICommandsTest {
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 
+  //===============================================================================================
+
+  @Test
+  public void testSaveCommandPPM() {
+    ICommand command = new SaveCommand();
+    sc = new Scanner(new StringReader("test res/test-output.ppm"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("getImage) name: test\n", log.toString());
+    try {
+      Assert.assertArrayEquals(mockModelTrue.getImageValues("test"),
+              ImageUtil.readPPM("res/test-output.ppm"));
+    } catch (IOException e) {
+      throw new IllegalStateException("res/test-output.ppm could not be found.");
+    }
+  }
+
+  @Test
+  public void testSaveCommandPNG() {
+    ICommand command = new SaveCommand();
+    String fileName = "res/test-output.png";
+    sc = new Scanner(new StringReader("test " + fileName));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("getImage) name: test\n", log.toString());
+    try {
+      Assert.assertArrayEquals(mockModelTrue.getImageValues("test"),
+              Formats.readImageFIle(fileName));
+    } catch (IOException e) {
+      throw new IllegalStateException(fileName + " could not be found.");
+    }
+  }
+
+  @Test
+  public void testSaveCommandBMP() {
+    ICommand command = new SaveCommand();
+    String fileName = "res/test-output.bmp";
+    sc = new Scanner(new StringReader("test " + fileName));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("getImage) name: test\n", log.toString());
+    try {
+      Assert.assertArrayEquals(mockModelTrue.getImageValues("test"),
+              Formats.readImageFIle(fileName));
+    } catch (IOException e) {
+      throw new IllegalStateException(fileName + " could not be found.");
+    }
+  }
+
+  @Test
+  public void testSaveCommandJPEG() {
+    ICommand command = new SaveCommand();
+    String fileName = "res/test-output.jpeg";
+    sc = new Scanner(new StringReader("test " + fileName));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("getImage) name: test\n", log.toString());
+    try {
+      int[][][] values = new int[1][1][3];
+      values[0][0][0] = 1;
+      values[0][0][1] = 2;
+      values[0][0][2] = 4;
+      Assert.assertArrayEquals(values, Formats.readImageFIle(fileName));
+    } catch (IOException e) {
+      throw new IllegalStateException(fileName + " could not be found.");
+    }
+  }
+
   @Test
   public void testSaveCommandFail() {
     ICommand command = new SaveCommand();
@@ -615,6 +882,44 @@ public class ICommandsTest {
   public void testSaveCommandException1() {
     ICommand command = new SaveCommand();
     sc = new Scanner(new StringReader("input0"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+  //===============================================================================================
+
+  @Test
+  public void testInputFromFileCommand() {
+    ICommand command = new InputFromFileCommand();
+    sc = new Scanner(new StringReader("test/imecontroller/test-input.txt"));
+    command.execute(mockModelTrue, mockView, sc, commands);
+    Assert.assertEquals("loadImage) name: input1 image: [[[204, 204, 204], " +
+                    "[188, 188, 188], [68, 68, 68]], [[201, 201, 201], [23, 23, 23], " +
+                    "[207, 207, 207]], [[235, 235, 235], [165, 165, 165], [255, 255, 255]]]\n" +
+                    "renderMessage) message: Ran load command.\n\n"
+            , log.toString());
+  }
+
+  @Test
+  public void testInputFromFileCommandFail() {
+    ICommand command = new InputFromFileCommand();
+    sc = new Scanner(new StringReader("input0"));
+    command.execute(mockModelFalse, mockView, sc, commands);
+    Assert.assertEquals("renderMessage) message: Couldn't find a file at input0.\n\n\n",
+            log.toString());
+  }
+
+  @Test
+  public void testInputFromFileCommandHelpers() {
+    ICommand command = new InputFromFileCommand();
+    Assert.assertEquals("input-from-file [input file path]",
+            command.helpMessage());
+    Assert.assertEquals("input-from-file", command.commandText());
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testInputFromFileCommandException0() {
+    ICommand command = new InputFromFileCommand();
+    sc = new Scanner(new StringReader(""));
     command.execute(mockModelTrue, mockView, sc, commands);
   }
 }

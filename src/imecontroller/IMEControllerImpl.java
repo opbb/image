@@ -28,6 +28,9 @@ public class IMEControllerImpl implements IMEController {
    * @param view     the view that this controller will use to display things
    */
   public IMEControllerImpl(Map<String, ICommand> commands, ImageModel model, IMEView view) {
+    if (commands == null || model == null || view == null) {
+      throw new IllegalArgumentException("Inputs must not be null.");
+    }
     this.commands = commands;
     this.model = model;
     this.view = view;
@@ -43,6 +46,9 @@ public class IMEControllerImpl implements IMEController {
    */
   public IMEControllerImpl(Map<String, ICommand> commands, ImageModel model,
                            IMEView view, Readable readable) {
+    if (commands == null || model == null || view == null || readable == null) {
+      throw new IllegalArgumentException("Inputs must not be null.");
+    }
     this.commands = commands;
     this.model = model;
     this.view = view;

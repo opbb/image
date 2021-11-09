@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.StringReader;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -73,6 +74,29 @@ public class IMEControllerImplTest {
             new IntensityValueCommand(),
             new CloseCommand(),
             new SaveCommand()));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorException0() {
+    new IMEControllerImpl(null, model, view, new StringReader(""));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorException1() {
+    new IMEControllerImpl(new HashMap<String, ICommand>(), null,
+            view, new StringReader(""));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorException2() {
+    new IMEControllerImpl(new HashMap<String, ICommand>(), model,
+            null, new StringReader(""));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testConstructorException3() {
+    new IMEControllerImpl(new HashMap<String, ICommand>(), model,
+            null, null);
   }
 
   // Tests a very simple, successful usage of the program where the user loads a file,
