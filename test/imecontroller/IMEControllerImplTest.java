@@ -182,18 +182,18 @@ public class IMEControllerImplTest {
             new PrintInteraction("\n" +
                     "List of commands:\n" +
                     "\n" +
-                    "red-value [image to get red-value of] [new image name]\n" +
-                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
-                    "intensity-value [image to get intensity-value of] [new image name]\n" +
-                    "luma-value [image to get luma-value of] [new image name]\n" +
-                    "load [file name] [new image name]\n" +
-                    "vertical-flip [image to flip] [new image name]\n" +
-                    "green-value [image to get green-value of] [new image name]\n" +
-                    "save [image to save] [file name to save as]\n" +
-                    "horizontal-flip [image to flip] [new image name]\n" +
-                    "value [image to get value of] [new image name]\n" +
-                    "close [image to close]\n" +
                     "blue-value [image to get blue-value of] [new image name]\n" +
+                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
+                    "close [image to close]\n" +
+                    "green-value [image to get green-value of] [new image name]\n" +
+                    "horizontal-flip [image to flip] [new image name]\n" +
+                    "intensity-value [image to get intensity-value of] [new image name]\n" +
+                    "load [file name] [new image name]\n" +
+                    "luma-value [image to get luma-value of] [new image name]\n" +
+                    "red-value [image to get red-value of] [new image name]\n" +
+                    "save [image to save] [file name to save as]\n" +
+                    "value [image to get value of] [new image name]\n" +
+                    "vertical-flip [image to flip] [new image name]\n" +
                     "\n" +
                     "q or quit to quit the program\n" +
                     "\n" +
@@ -324,18 +324,18 @@ public class IMEControllerImplTest {
             new PrintInteraction("\n" +
                     "List of commands:\n" +
                     "\n" +
-                    "red-value [image to get red-value of] [new image name]\n" +
-                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
-                    "intensity-value [image to get intensity-value of] [new image name]\n" +
-                    "luma-value [image to get luma-value of] [new image name]\n" +
-                    "load [file name] [new image name]\n" +
-                    "vertical-flip [image to flip] [new image name]\n" +
-                    "green-value [image to get green-value of] [new image name]\n" +
-                    "save [image to save] [file name to save as]\n" +
-                    "horizontal-flip [image to flip] [new image name]\n" +
-                    "value [image to get value of] [new image name]\n" +
-                    "close [image to close]\n" +
                     "blue-value [image to get blue-value of] [new image name]\n" +
+                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
+                    "close [image to close]\n" +
+                    "green-value [image to get green-value of] [new image name]\n" +
+                    "horizontal-flip [image to flip] [new image name]\n" +
+                    "intensity-value [image to get intensity-value of] [new image name]\n" +
+                    "load [file name] [new image name]\n" +
+                    "luma-value [image to get luma-value of] [new image name]\n" +
+                    "red-value [image to get red-value of] [new image name]\n" +
+                    "save [image to save] [file name to save as]\n" +
+                    "value [image to get value of] [new image name]\n" +
+                    "vertical-flip [image to flip] [new image name]\n" +
                     "\n" +
                     "q or quit to quit the program\n" +
                     "\n" +
@@ -363,18 +363,18 @@ public class IMEControllerImplTest {
             new PrintInteraction("\n" +
                     "List of commands:\n" +
                     "\n" +
-                    "red-value [image to get red-value of] [new image name]\n" +
-                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
-                    "intensity-value [image to get intensity-value of] [new image name]\n" +
-                    "luma-value [image to get luma-value of] [new image name]\n" +
-                    "load [file name] [new image name]\n" +
-                    "vertical-flip [image to flip] [new image name]\n" +
-                    "green-value [image to get green-value of] [new image name]\n" +
-                    "save [image to save] [file name to save as]\n" +
-                    "horizontal-flip [image to flip] [new image name]\n" +
-                    "value [image to get value of] [new image name]\n" +
-                    "close [image to close]\n" +
                     "blue-value [image to get blue-value of] [new image name]\n" +
+                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
+                    "close [image to close]\n" +
+                    "green-value [image to get green-value of] [new image name]\n" +
+                    "horizontal-flip [image to flip] [new image name]\n" +
+                    "intensity-value [image to get intensity-value of] [new image name]\n" +
+                    "load [file name] [new image name]\n" +
+                    "luma-value [image to get luma-value of] [new image name]\n" +
+                    "red-value [image to get red-value of] [new image name]\n" +
+                    "save [image to save] [file name to save as]\n" +
+                    "value [image to get value of] [new image name]\n" +
+                    "vertical-flip [image to flip] [new image name]\n" +
                     "\n" +
                     "q or quit to quit the program\n" +
                     "\n" +
@@ -402,18 +402,18 @@ public class IMEControllerImplTest {
             new PrintInteraction("\n" +
                     "List of commands:\n" +
                     "\n" +
-                    "red-value [image to get red-value of] [new image name]\n" +
-                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
-                    "intensity-value [image to get intensity-value of] [new image name]\n" +
-                    "luma-value [image to get luma-value of] [new image name]\n" +
-                    "load [file name] [new image name]\n" +
-                    "vertical-flip [image to flip] [new image name]\n" +
-                    "green-value [image to get green-value of] [new image name]\n" +
-                    "save [image to save] [file name to save as]\n" +
-                    "horizontal-flip [image to flip] [new image name]\n" +
-                    "value [image to get value of] [new image name]\n" +
-                    "close [image to close]\n" +
                     "blue-value [image to get blue-value of] [new image name]\n" +
+                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
+                    "close [image to close]\n" +
+                    "green-value [image to get green-value of] [new image name]\n" +
+                    "horizontal-flip [image to flip] [new image name]\n" +
+                    "intensity-value [image to get intensity-value of] [new image name]\n" +
+                    "load [file name] [new image name]\n" +
+                    "luma-value [image to get luma-value of] [new image name]\n" +
+                    "red-value [image to get red-value of] [new image name]\n" +
+                    "save [image to save] [file name to save as]\n" +
+                    "value [image to get value of] [new image name]\n" +
+                    "vertical-flip [image to flip] [new image name]\n" +
                     "\n" +
                     "q or quit to quit the program\n" +
                     "\n" +
@@ -441,18 +441,18 @@ public class IMEControllerImplTest {
             new PrintInteraction("\n" +
                     "List of commands:\n" +
                     "\n" +
-                    "red-value [image to get red-value of] [new image name]\n" +
-                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
-                    "intensity-value [image to get intensity-value of] [new image name]\n" +
-                    "luma-value [image to get luma-value of] [new image name]\n" +
-                    "load [file name] [new image name]\n" +
-                    "vertical-flip [image to flip] [new image name]\n" +
-                    "green-value [image to get green-value of] [new image name]\n" +
-                    "save [image to save] [file name to save as]\n" +
-                    "horizontal-flip [image to flip] [new image name]\n" +
-                    "value [image to get value of] [new image name]\n" +
-                    "close [image to close]\n" +
                     "blue-value [image to get blue-value of] [new image name]\n" +
+                    "brighten [amount to brighten] [image to brighten] [new image name]\n" +
+                    "close [image to close]\n" +
+                    "green-value [image to get green-value of] [new image name]\n" +
+                    "horizontal-flip [image to flip] [new image name]\n" +
+                    "intensity-value [image to get intensity-value of] [new image name]\n" +
+                    "load [file name] [new image name]\n" +
+                    "luma-value [image to get luma-value of] [new image name]\n" +
+                    "red-value [image to get red-value of] [new image name]\n" +
+                    "save [image to save] [file name to save as]\n" +
+                    "value [image to get value of] [new image name]\n" +
+                    "vertical-flip [image to flip] [new image name]\n" +
                     "\n" +
                     "q or quit to quit the program\n" +
                     "\n" +
