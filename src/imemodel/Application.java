@@ -146,6 +146,10 @@ public class Application {
     return new ImageImpl(newImage);
   }
 
+
+  //Kept this original method as it still is a helper method to the applyTransformation method
+  //changed purpose statement slightly
+
   /**
    * Helper method that helps to mathematically multiplies effects to an image.
    *

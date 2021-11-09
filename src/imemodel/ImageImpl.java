@@ -36,6 +36,9 @@ public class ImageImpl implements Image {
     this.width = image[0].length;
   }
 
+  /**
+   * Default Constructor used for test cases.
+   */
   public ImageImpl() {
     this.pixels = new int[][][]{{{2, 255, 0}}, {{90, 180, 200}}};
     this.height = new int[][][]{{{2, 255, 0}}, {{90, 180, 200}}}.length;
@@ -93,7 +96,7 @@ public class ImageImpl implements Image {
   public ImageImpl(String filename, String type) throws IllegalArgumentException {
     if (filename == null || filename.equals("")) {
       throw new IllegalArgumentException("The given filename must not be null!");
-    } ///change string constructor to use substring idea
+    }
     try {
       this.pixels = Formats.readImageFIle(filename);
       this.height = Formats.getImageFileHeight(filename);

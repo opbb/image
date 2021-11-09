@@ -11,6 +11,7 @@ import imemodel.ImageModel;
 import imeview.IMEView;
 
 public class InputFromFileCommand extends AbstractCommand {
+
   @Override
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {

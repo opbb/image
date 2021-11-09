@@ -24,9 +24,14 @@ VertFlipCommand: Command which will vertically flip the image.
 LoadCommand: Command which will load a PPM file from the disk into the model.
 CloseCommand: Command which will remove an image from the model.
 SaveCommand: Command which will save an image in the model as a PPM onto the disk.
+BlurCommand: Command which will blur a given image.
+SharpenCommand: Command which will sharpen a given image.
+SepiaCommand: Command that will apply the sepia tone to a given image.
+InputFromFileCommand: Command that will create a readable object of the file with commands to the controller.
 
 IMEController: An interface defining the public methods of the controller.
 IMEControllerImpl: The main controller class with all of the implementation.
+IMEFileController: The secondary controller class, which offers support in reading commands from a .txt file.
 
 InputUtils: An interface with some static utility methods used reusing code for handling exceptions related to inputs.
 
@@ -41,11 +46,22 @@ The model is responsible for managing any images given to it, and manipulating t
 
 Image: The image contains the 3d array of pixels of the given ppm file, along with knowing the height and width of the image.
 ImageImpl: This class acts merely as an object of the ppm file, allowing us to manipulate its pixels' values with ease through the Model.
+(new): Two new constructors were added, one simply being a default constructor used for testing purposes, and the other in allowing for the reading and writing of other image formats (png, jpeg, bmp).
+
 ImageModelImpl: This is the implemented class of the ImageModel interface and has multiple methods that deal with manipulating the given image within its map of images.
 ImageUtil: With the given starter code, we have manipulated it to our advantage in allowing for info of the PPM file given, such as height, width, and the ability to write a PPM.
-Application: This interface contains helper static methods designed to actually do the dirty work of manipulating pixels' values of an image. We had decided on making this interface have static methods
+Application: This class contains helper static methods designed to actually do the dirty work of manipulating pixels' values of an image. We had decided on making this interface have static methods
 just so it has the ability to be reached across other implementations of the model, while still having security through its private helper methods that perform the main manipulation.
+(new)We have changed the type of this object to a class as informed by Prof. Shesh that there is no difference between having it be a class or an interface, so to keep with formality, we decided to make it a class much like ImageUtil.
+Added methods are a new version of the previous applyMultipliedEffects, in which matrix manipulation is supported in multiplying the desired effects of either blur or sharpen to an image through its kernels.
+Along with a reimplemented multiplyEffect, while still retaining the original as its purpose was still needed within our revamped applyTransformation method. Also, we now have clampPixel,
+which allows for the clamping of an entire kernel rather than one pixel at a time.
 
+(new)
+ExtraFilters: This is a new interface, through the use of composition, that extends the ImageModel Interface, in adhering to SOLID principles. It contains 3 new methods, which are 2 image filters and 1 image transformation (blur, sharpen, sepia respectively).
+ExtraFiltersImpl: Once again through the use of code reuse, in this case composition, we have adhered to SOLID principles through the use of a delegate object of type ImageModel, allowing us to keep old implementation that has been tried and tested, while adding new implementation.
+This class also holds the implementation for the three new methods from the ExtraFilters interface, in which matrix manipulation along with the reuse of an original method in the Application class are utilized.
+Formats: This class contains static utility methods that help to read, write, get height, and get width of other image formats (png, jpeg, bmp). This utility class also extends the original ImageUtil class, in case for future need of that class' methods.
 ====================================================================================
 
 View:
@@ -56,14 +72,19 @@ IMEViewImpl: The implementaion of the view. Contain a model it can represent.
 
 ====================================================================================
 
-Main: This class simply holds the main method to our application, this is the class by which the user should run to start the application, within the main method, we initailize a map of commands as the values and their
+Main: This class simply holds the main method to our application, this is the class by which the user should run to start the application,
+within the main method, we initialize a map of commands as the values and their
 name as the key in a String, declare an image, model, and controller and call the controller's run method.
+(new) Added the new commands for this assignment (revamped load and save, blur, sharpen, sepia, inputting commands from file).
+Along with the ability to designate between two controllers if given files or command scripts.
 
 ApplicationTest: Is the tester class for the Application interface's static methods.
 ImageImplTest: The tester class for the ImageImpl class, testing all of its public facing methods.
 ImageModelImplTest: The tester class for the ImageModelImplTest which tests all of its public facing methods.
 ImageUtilTest: The tester class for the ImageUtil class, this has no tests within it as the tests would not pass if not given
 the same images we would test on our machines.
+ExtraFiltersImplTest: A tester class for the ExtraFiltersImpl class, which also uses a mock to show that inputs are given and processed correctly.
+
 
 Script of commands:
 
@@ -111,6 +132,10 @@ horizontal-flip [image to flip] [new image name]
 value [image to get value of] [new image name]
 close [image to close]
 blue-value [image to get blue-value of] [new image name]
+sepia [image-to-give-sepia-effect] [name-to-call-image-by]
+sharpen [image-to-get-sharpened] [name-to-call-image-by]
+blur [image-to-get-blurred] [name-to-call-image-by]
+input-from-file [file-path]
 q or quit to quit the program
 
 
