@@ -1,0 +1,4 @@
+# Wow look, this file is getting called from another file! (line 30 of example-input.txt)
+
+# Also it can work on the images that were created in the other file.
+brighten -50 ella-g-dark ella-g-verydark

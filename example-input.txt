@@ -1,0 +1,54 @@
+
+# Loads all four required file types. These commands overwrite each other.
+load res/ella.bpm ella
+load res/ella.ppm ella
+load res/ella.jpeg ella
+load res/ella.png ella
+
+# All of the different grayscale commands.
+red-value ella ella-r
+green-value ella ella-g
+blue-value ella ella-b
+intensity-value ella ella-i
+luma-value ella ella-l
+value ella ella-v
+
+# Brightening and darkening.
+brighten 50 ella-r ella-r-bright
+brighten -50 ella-g ella-g-dark
+
+# Horizontal and vertical flips.
+horizontal-flip ella-b ella-b-hori
+vertical-flip ella-i ella-i-vert
+
+# Sharpen, blur and sepia.
+sharpen ella-l ella-l-sharp
+blur ella-v ella-v-blurred
+sepia ella-r-bright ella-r-bright-sepia
+
+# Running script commands from a text file.
+input-from-file example-input-auxiliary.txt
+
+# Now this file can work on the images that were modified or created from the other file.
+brighten -50 ella-g-verydark ella-g-veryverydark
+
+# We can also close "open" images. Let's clear up the clutter.
+# (This is more relevant when directly inputting commands, as the UI can get very full)
+close ella-r
+close ella-g
+close ella-b
+close ella-i
+close ella-l
+close ella-v
+close ella-r-bright
+close ella-g-dark
+close ella-b-hori
+close ella-l-sharp
+close ella-v-blurred
+close ella-g-verydark
+
+# Finally, we can save in all four required file formats.
+save ella-r-bright-sepia res/example-output-0.ppm
+save ella-i-vert res/example-output-1.png
+save ella-g-veryverydark res/example-output-2.jpeg
+save ella res/example-output-3.bmp
