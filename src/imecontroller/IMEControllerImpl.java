@@ -1,6 +1,8 @@
 package imecontroller;
 
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -72,9 +74,12 @@ public class IMEControllerImpl implements IMEController {
 
       // Block below checks for the help command
       else if (input.equals("help") || input.equals("\"help\"")) { // "help" or ""help"" for help.
+        ArrayList<String> toSort = new ArrayList<String>(commands.keySet());
+        java.util.Collections.sort(toSort);
         view.renderMessage("\nList of commands:\n\n"); // Simple spaced header.
-        for (ICommand command : commands.values()) {
-          view.renderMessage(command.helpMessage() + "\n"); //Prints help msg for all commands.
+        for (String key : toSort) {
+          //Prints help msg for all commands.
+          view.renderMessage(commands.get(key).helpMessage() + "\n");
         }
         view.renderMessage("\nq or quit to quit the program\n\n");
       }
@@ -82,9 +87,9 @@ public class IMEControllerImpl implements IMEController {
       // Block below check for all other commands.
       else {
         boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
-        for (Map.Entry<String, ICommand> entry : commands.entrySet()) {
-          if (entry.getKey().equals(input)) {
-            entry.getValue().execute(model, view, sc, commands);
+        for (String key : commands.keySet()) {
+          if (key.equals(input)) {
+            commands.get(key).execute(model, view, sc, commands);
             executedCommand = true; // Record that we have executed.
             break; // Breaks loop so that we don't waste energy checking the remaining commands.
           }
