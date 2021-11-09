@@ -1,17 +1,17 @@
 
 # Loads all four required file types. These commands overwrite each other.
-load res/ella.bpm ella
-load res/ella.ppm ella
-load res/ella.jpeg ella
-load res/ella.png ella
+load res/ella.bmp ella-bmp
+load res/ella.ppm ella-ppm
+load res/ella.jpeg ella-jpeg
+load res/ella.png ella-png
 
 # All of the different grayscale commands.
-red-value ella ella-r
-green-value ella ella-g
-blue-value ella ella-b
-intensity-value ella ella-i
-luma-value ella ella-l
-value ella ella-v
+red-value ella-bmp ella-r
+green-value ella-jpeg ella-g
+blue-value ella-png ella-b
+intensity-value ella-ppm ella-i
+luma-value ella-png ella-l
+value ella-png ella-v
 
 # Brightening and darkening.
 brighten 50 ella-r ella-r-bright
@@ -34,6 +34,9 @@ brighten -50 ella-g-verydark ella-g-veryverydark
 
 # We can also close "open" images. Let's clear up the clutter.
 # (This is more relevant when directly inputting commands, as the UI can get very full)
+close ella-jpeg
+close ella-bmp
+close ella-ppm
 close ella-r
 close ella-g
 close ella-b
@@ -51,4 +54,4 @@ close ella-g-verydark
 save ella-r-bright-sepia res/example-output-0.ppm
 save ella-i-vert res/example-output-1.png
 save ella-g-veryverydark res/example-output-2.jpeg
-save ella res/example-output-3.bmp
+save ella-png res/example-output-3.bmp
