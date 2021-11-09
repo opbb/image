@@ -505,8 +505,6 @@ public class IMEControllerImplTest {
   }
 
 
-
-
   @Test
   public void testRunCommandInputs() {
     StringReader input = new StringReader("mock this-is-the-next-input q");

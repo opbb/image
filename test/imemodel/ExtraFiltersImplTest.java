@@ -69,7 +69,7 @@ public class ExtraFiltersImplTest {
             .getImageValues("Stay")));
 
     ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
-            {{1, 2, 3}}}));
+        {{1, 2, 3}}}));
     ex1.blur("Koala");
     assertEquals("[[[0, 1, 1]], [[0, 1, 1]], [[0, 1, 1]], [[0, 1, 1]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
@@ -108,7 +108,7 @@ public class ExtraFiltersImplTest {
             .getImageValues("Stay")));
 
     ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
-            {{1, 2, 3}}}));
+        {{1, 2, 3}}}));
     ex1.sharpen("Koala");
     assertEquals("[[[1, 3, 4]], [[1, 4, 5]], [[1, 4, 5]], [[1, 3, 4]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
@@ -148,7 +148,7 @@ public class ExtraFiltersImplTest {
             .getImageValues("Stay")));
 
     ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
-            {{1, 2, 3}}}));
+        {{1, 2, 3}}}));
     ex1.toSepia("Koala");
     assertEquals("[[[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
@@ -190,7 +190,7 @@ public class ExtraFiltersImplTest {
             .getImageValues("Stay")));
 
     ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
-            {{1, 2, 3}}}));
+        {{1, 2, 3}}}));
     ex1.greyscaleByLuma("Koala");
     assertEquals("[[[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
