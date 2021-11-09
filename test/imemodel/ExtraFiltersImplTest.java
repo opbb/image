@@ -10,7 +10,10 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-
+/**
+ * This class is the main tester class for the ExtraFiltersImpl class, in which all public facing
+ * methods are tested along with a mock.
+ */
 public class ExtraFiltersImplTest {
 
   private ExtraFilters fil1;
@@ -65,7 +68,8 @@ public class ExtraFiltersImplTest {
     assertEquals(Arrays.deepToString(new int[][][]{{{1, 1, 1}}}), Arrays.deepToString(ex1
             .getImageValues("Stay")));
 
-    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}}));
+    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
+            {{1, 2, 3}}}));
     ex1.blur("Koala");
     assertEquals("[[[0, 1, 1]], [[0, 1, 1]], [[0, 1, 1]], [[0, 1, 1]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
@@ -103,7 +107,8 @@ public class ExtraFiltersImplTest {
     assertEquals("[[[3, 3, 3]]]", Arrays.deepToString(ex1
             .getImageValues("Stay")));
 
-    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}}));
+    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
+            {{1, 2, 3}}}));
     ex1.sharpen("Koala");
     assertEquals("[[[1, 3, 4]], [[1, 4, 5]], [[1, 4, 5]], [[1, 3, 4]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
@@ -142,7 +147,8 @@ public class ExtraFiltersImplTest {
     assertEquals("[[[4, 4, 3]]]", Arrays.deepToString(ex1
             .getImageValues("Stay")));
 
-    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}}));
+    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
+            {{1, 2, 3}}}));
     ex1.toSepia("Koala");
     assertEquals("[[[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));
@@ -183,7 +189,8 @@ public class ExtraFiltersImplTest {
     assertEquals("[[[3, 3, 3]]]", Arrays.deepToString(ex1
             .getImageValues("Stay")));
 
-    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}}}));
+    ex1.loadImage("Koala", new ImageImpl(new int[][][]{{{1, 2, 3}}, {{1, 2, 3}}, {{1, 2, 3}},
+            {{1, 2, 3}}}));
     ex1.greyscaleByLuma("Koala");
     assertEquals("[[[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]], [[2, 2, 2]]]", Arrays.
             deepToString(ex1.getImageValues("Koala")));

@@ -13,7 +13,8 @@ import imeview.IMEView;
 public class ValueCommand extends AbstractCommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands) throws IllegalStateException {
+  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
+          throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String toImage = getStringInput(sc);
 

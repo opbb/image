@@ -108,7 +108,9 @@ public class IMEFileController implements IMEController {
       for (int i = 0; i < rawLine.length; i++) { // Removes excess spaces.
         if (!rawLine[i].equals(" ") && !rawLine[i].equals("")) {
           line += rawLine[i];
-          if (i < rawLine.length) {line += " ";}
+          if (i < rawLine.length) {
+            line += " ";
+          }
         }
       }
       if (!line.equals("") && line.charAt(0) == '#') {

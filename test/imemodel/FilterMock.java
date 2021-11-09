@@ -1,5 +1,8 @@
 package imemodel;
 
+/**
+ * This class is a mock of the object ExtraFilters.
+ */
 public class FilterMock extends ImageModelMockTrue implements ExtraFilters {
 
   /**

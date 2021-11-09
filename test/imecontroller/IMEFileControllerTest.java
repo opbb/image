@@ -33,6 +33,10 @@ import imeview.IMEView;
 import imeview.IMEViewImpl;
 import imeview.IMEViewMock;
 
+/**
+ * This class is the tester class for the IMEFileController class, in which all public facing
+ * methods of this class are tested.
+ */
 public class IMEFileControllerTest {
 
   StringBuilder log;
