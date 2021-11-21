@@ -2,7 +2,11 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+import javax.swing.*;
+
 import imecontroller.IMEFileController;
+import imecontroller.IMEGUIController;
+import imecontroller.IMEGUIControllerImpl;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
@@ -25,6 +29,8 @@ import imecontroller.IMEController;
 import imecontroller.IMEControllerImpl;
 import imemodel.ImageModel;
 import imemodel.ImageModelImpl;
+import imeview.IMEGUIView;
+import imeview.IMEGUIViewImpl;
 import imeview.IMEView;
 import imeview.IMEViewImpl;
 
@@ -56,22 +62,38 @@ public class Main {
             new CloseCommand(),
             new SharpenCommand(),
             new SepiaCommand(),
-            new SaveCommand(),
-            new LoadCommand(),
             new InputFromFileCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
 
     //added the feature of reading a .txt file filled with commands and disregards comments.
 
-    IMEController controller;
+    /*
+    IMEController controller = null;
     if (args.length == 0) {
-      controller = new IMEControllerImpl(commands, model, view);
+      //controller = new IMEGUIController(commands, model, view);
     } else {
-      controller = new IMEFileController(commands, model, view, args[0]);
+      commands.add(new SaveCommand())
+      commands.add(new LoadCommand())
+      if (args[0].equals("-text")) {
+        controller = new IMEControllerImpl(commands, model, view);
+      } else if (args[0].equals("-file") && args.length >= 2) {
+        controller = new IMEFileController(commands, model, view, args[1]);
+      }
+    }
+
+    if (controller == null) {
+      throw new IllegalArgumentException("Must give no args, or give \"-text\" as an arg, " +
+              "or give \"file\" and a file path as command line args.");
     }
 
     controller.run();
+    */
 
+    IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
+    IMEGUIViewImpl frame = new IMEGUIViewImpl(model, commands);
+
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
   }
 }
