@@ -1,5 +1,7 @@
 package imeview;
 
+import javax.swing.*;
+
 import imecontroller.IMEGUIController;
 
 public interface IMEGUIView extends IMEView {
@@ -15,4 +17,17 @@ public interface IMEGUIView extends IMEView {
   void buildImagePanel(String filename);
 
   void buildHistPanel(String filename);
+
+  /**
+   * Gets the main JComponent in this view.
+   * @return the main JComponent
+   */
+  JComponent getMainComponent();
+
+  /**
+   * Gets a double as input from the user.
+   * @return an inputted double
+   */
+  double getDoubleInput(String message);
+
 }

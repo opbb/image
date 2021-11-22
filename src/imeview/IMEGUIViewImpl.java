@@ -195,6 +195,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
 
   //private class FileListener implements ActionListener {
 
+
   @Override
   public void actionPerformed(ActionEvent e) {
     fchooser = new JFileChooser("");
@@ -209,9 +210,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
 
       // buildHistPanel(imageName);
 
-      imagePanel.remove(imageLabel);
-      imagePanel.revalidate();
-      imagePanel.repaint();
       buildImagePanel(newName);
 
       JPanel newHist = new DrawHist(newName);
@@ -226,7 +224,9 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
 
 
     }
+
   }
+
 
 
   @Override
@@ -238,36 +238,32 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
   }
 
   @Override
+  public JComponent getMainComponent() {
+    return null;
+  }
+
+  @Override
   public void buildImagePanel(String filename) {
 
     // BufferedImage bf = ImageIO.read(new File(filename));
-
-
-
-    JLabel imageLabel = new JLabel();
+    imageLabel = new JLabel();
+    imagePanel.revalidate();
+    imagePanel.repaint();
     ImageIcon icon = new ImageIcon(filename);
     Image img = icon.getImage();
     Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
-
     imageLabel.setIcon(new ImageIcon(resi));
-
-
-    this.imagePanel.add(imageLabel);
-
-
 //    } catch (IOException e) {
 //      e.printStackTrace();
 //    }
-
   }
 
 
 
   @Override
   public void renderMessage(String message) {
-
-
+    JOptionPane.showMessageDialog(this, message);
   }
 
   /**
@@ -339,6 +335,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
       ArrayList<Point> bluePoints = new ArrayList<Point>();
       ArrayList<Point> greenPoints = new ArrayList<Point>();
 
+      /*
       for (int i = 0; i < h.getRedData(name).length; i++) {
         int x1 = (int) (i * xScale);
         int r1 = (int) ((h.getRedData(name)[i][0]) * yScale);
@@ -352,6 +349,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
 
       }
 
+
+       */
 
 //      for (int i = 0; i < h.getRedData(name).length; i++) {
 //        int x1 = (int) (i * xScale);
@@ -413,6 +412,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
     }
 
 
+  }
+
+  @Override
+  public double getDoubleInput(String message) throws NumberFormatException {
+    String rawInput = JOptionPane.showInputDialog(this, message);
+    return Integer.valueOf(rawInput);
   }
 }
 
