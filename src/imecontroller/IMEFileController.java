@@ -53,6 +53,7 @@ public class IMEFileController implements IMEController {
    * @param commands the commands that this controller can use
    * @param model    the model that this controller will control
    * @param view     the view that this controller will use to display things
+   * @param readable the readable that this controller will take input from
    */
   public IMEFileController(Map<String, ICommand> commands, ImageModel model,
                            IMEView view, Readable readable) {
