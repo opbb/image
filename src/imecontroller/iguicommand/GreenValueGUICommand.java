@@ -1,11 +1,9 @@
 package imecontroller.iguicommand;
 
 import java.util.Map;
-import java.util.Scanner;
 
 import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
-import imeview.IMEView;
 
 /**
  * Command which gets the green component of a specific Image in the given model.
@@ -15,7 +13,7 @@ import imeview.IMEView;
 public class GreenValueGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
+  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fromImage = getStringInput(sc);
     String toImage = getStringInput(sc);

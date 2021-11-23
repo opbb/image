@@ -146,8 +146,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
       if (imageName.equals("")) {
 
+
         buildImagePanel(newName);
         histPanel = new DrawHist(newName);
+
+        buildImagePanel(newName);
+
 
         setUpVertPanel(imagePanel, rightPanel);
 
@@ -170,6 +174,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       }
 
     }
+
   }
 
 
@@ -177,6 +182,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     rightPanel.remove(histPanel);
 
   }
+
 
   @Override
   public void buildHistPanel(String filename) {
@@ -187,7 +193,13 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   }
 
   @Override
+  public JComponent getMainComponent() {
+    return null;
+  }
+
+  @Override
   public void buildImagePanel(String filename) {
+
 
     if (filename.substring(filename.lastIndexOf(".") + 1).equals("ppm")) {
 
@@ -236,8 +248,22 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
           }
 
         }
-        ImageIcon icon = new ImageIcon(img);
-        Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+//        ImageIcon icon = new ImageIcon(img);
+//        Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+
+
+        // BufferedImage bf = ImageIO.read(new File(filename));
+        imageLabel = new JLabel();
+        imagePanel.revalidate();
+        imagePanel.repaint();
+        ImageIcon icon = new ImageIcon(filename);
+        Image img1 = icon.getImage();
+        Image resi = img1.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+
+        imageLabel.setIcon(new ImageIcon(resi));
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
 
 
         //imageLabel.setIcon(new ImageIcon(resi));
@@ -249,10 +275,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
-    }
-
-
-    else if (filename.substring(filename.lastIndexOf(".") + 1).equals("bmp")) {
+    } else if (filename.substring(filename.lastIndexOf(".") + 1).equals("bmp")) {
       imemodel.Image img1 = new ImageImpl(filename);
       int height = img1.getHeight();
       int width = img1.getWidth();
@@ -275,9 +298,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
 
       this.imagePanel.add(imageLabel);
-    }
-
-    else {
+    } else {
       ImageIcon icon = new ImageIcon(filename);
       Image img = icon.getImage();
       Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
@@ -297,8 +318,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   @Override
   public void renderMessage(String message) {
-
-
+    JOptionPane.showMessageDialog(this, message);
   }
 
   /**
@@ -374,10 +394,13 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         }
       }
 
+
       double xScale = 3;
       double yScale = ((double) height / (double) maxValue);
 
-      for (int i = 0; i < 256; i++) {
+
+      for (int i = 0; i < h.getHistogramData(name).length; i++) {
+
         int x1 = (int) (i * xScale);
         int r1 = (int) (((maxValue - arr[i][0]) * yScale));
         int g1 = (int) (((maxValue - arr[i][1]) * yScale));
@@ -389,6 +412,9 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         intPoints.add(new Point(x1, int1));
 
       }
+
+
+
 
       g2.drawLine(0, getHeight(), 0, 0);
       g2.drawLine(0, getHeight(), getWidth(), getHeight());
@@ -436,6 +462,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
 
 
+  }
+
+  @Override
+  public double getDoubleInput(String message) throws NumberFormatException {
+    String rawInput = JOptionPane.showInputDialog(this, message);
+    return Integer.valueOf(rawInput);
   }
 }
 

@@ -4,12 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.Map;
-import java.util.Scanner;
 
 import imecontroller.IMEFileController;
 import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
-import imeview.IMEView;
 
 /**
  * This command supports the feature of loading and executing commands from a .txt file.
@@ -17,7 +15,7 @@ import imeview.IMEView;
 public class InputFromFileGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
+  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fromFile = getStringInput(sc);
 

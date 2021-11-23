@@ -1,10 +1,13 @@
 package imecontroller.iguicommand;
 
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 import imecontroller.InputUtils;
+import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
+import imeview.IMEGUIView;
 import imeview.IMEView;
 
 /**
@@ -21,26 +24,19 @@ public abstract class AbstractGUICommand implements IGUICommand {
    * @throws InputMismatchException if something other than a double is inputted
    * @throws IllegalStateException  if there are no more inputs or the scanner is closed
    */
-  protected double getDoubleInput(IMEView view, Scanner sc)
+  protected double getDoubleInput(IMEGUIView view)
           throws InputMismatchException, IllegalStateException {
-    try {
-      return InputUtils.getDoubleInput(view, sc);
-    } catch (InputMismatchException e) {
-      view.renderMessage("The command should be structured as shown below:\n"
-              + this.helpMessage() + "\n\n");
-      throw e; // Propagates the exception up so that the invalid input can be addressed.
-    }
+    view.getInput();
   }
 
   /**
    * Returns the inputted String, or throws an exception if there are issues with the scanner.
    *
-   * @param sc the scanner from which inputs are read
    * @return the inputted string
    * @throws IllegalStateException if there are no more inputs or the scanner is closed
    */
-  protected String getStringInput(Scanner sc) throws IllegalStateException {
-    return InputUtils.getStringInput(sc);
+  protected String getStringInput(IMEGUIView view) throws IllegalStateException {
+    return InputUtils.getStringInput();
   }
 
   /**
@@ -53,7 +49,7 @@ public abstract class AbstractGUICommand implements IGUICommand {
    * @param toImage   the given image name for the resulting image
    * @return true if the given image to edit exists, false otherwise
    */
-  protected boolean setUpImage(ImageModel model, IMEView view, String fromImage, String toImage) {
+  protected boolean setUpImage(ImageModel model, IMEGUIView view, String fromImage, String toImage) {
     if (model.hasImage(fromImage)) {
       if (!(fromImage.equals(toImage))) {
         model.duplicateImage(fromImage, toImage);

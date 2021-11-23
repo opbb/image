@@ -2,7 +2,6 @@ package imecontroller.iguicommand;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Scanner;
 
 import imecontroller.icommand.ICommand;
 import imemodel.Formats;
@@ -10,7 +9,6 @@ import imemodel.Image;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imemodel.ImageUtil;
-import imeview.IMEView;
 
 /**
  * This command will load an image to the application by loading the image with the
@@ -19,7 +17,7 @@ import imeview.IMEView;
 public class LoadGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
+  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fileName = getStringInput(sc);
     String toImage = getStringInput(sc);

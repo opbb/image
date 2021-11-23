@@ -2,11 +2,9 @@ package imecontroller.iguicommand;
 
 import java.util.InputMismatchException;
 import java.util.Map;
-import java.util.Scanner;
 
 import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
-import imeview.IMEView;
 
 /**
  * Command which brightens a specific Image in the given model by an amount.
@@ -16,7 +14,7 @@ import imeview.IMEView;
 public class BrightenGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
+  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
           throws IllegalStateException {
     try {
       double amount = getDoubleInput(view, sc);
