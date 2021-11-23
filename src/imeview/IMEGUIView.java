@@ -19,7 +19,7 @@ public interface IMEGUIView extends IMEView {
   void buildHistPanel(String filename);
 
 
-  void setUpImageAndHistogram();
+  void setUpImageAndHistogram(String newName);
 
   /**
    * Gets the main JComponent in this view.
@@ -35,4 +35,6 @@ public interface IMEGUIView extends IMEView {
    * @return an inputted double
    */
   double getDoubleInput(String message, double def);
+
+  String getFilePath();
 }

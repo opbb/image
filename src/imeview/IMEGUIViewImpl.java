@@ -132,9 +132,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   }
 
-
   @Override
-  public void setUpImageAndHistogram() {
+  public String getFilePath() {
     fchooser = new JFileChooser("");
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
@@ -143,7 +142,26 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     if (retvalue == JFileChooser.APPROVE_OPTION) {
       File f = fchooser.getSelectedFile();
       String newName = f.getAbsolutePath();
-      model.loadImage(newName, new ImageImpl(newName));
+      return newName;
+    }
+    else {
+      return "";
+    }
+  }
+
+
+  @Override
+  public void setUpImageAndHistogram(String newName) {
+//    fchooser = new JFileChooser("");
+//    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+//            "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
+//    fchooser.setFileFilter(filter);
+//    int retvalue = fchooser.showOpenDialog(this);
+//    if (retvalue == JFileChooser.APPROVE_OPTION) {
+//      File f = fchooser.getSelectedFile();
+//      String newName = f.getAbsolutePath();
+//
+
 
       if (imageName.equals("")) {
 
@@ -176,7 +194,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
     }
 
-  }
+
 
 
   private void removeHist() {
