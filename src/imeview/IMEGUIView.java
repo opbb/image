@@ -15,4 +15,6 @@ public interface IMEGUIView extends IMEView {
   void buildImagePanel(String filename);
 
   void buildHistPanel(String filename);
+
+  void setUpImageAndHistogram();
 }

@@ -73,39 +73,34 @@ public class ImageImpl implements Image {
    * @throws IllegalArgumentException if the given filename is null or empty.
    */
   public ImageImpl(String file) throws IllegalArgumentException {
+
     if (file == null || file.equals("")) {
       throw new IllegalArgumentException("The given filename must not be null!");
     }
-    try {
-      this.pixels = ImageUtil.readPPM(file);
-      this.height = ImageUtil.getHeight(file);
-      this.width = ImageUtil.getWidth(file);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Was not able to read this file.");
-    }
 
+    if ((file.substring(file.lastIndexOf(".") + 1)).equals("ppm")) {
+
+      try {
+        this.pixels = ImageUtil.readPPM(file);
+        this.height = ImageUtil.getHeight(file);
+        this.width = ImageUtil.getWidth(file);
+      } catch (IOException e) {
+        throw new IllegalArgumentException("Was not able to read this file.");
+      }
+
+    } else {
+
+      try {
+        this.pixels = Formats.readImageFIle(file);
+        this.height = Formats.getImageFileHeight(file);
+        this.width = Formats.getImageFIleWidth(file);
+      } catch (IOException e) {
+        throw new IllegalArgumentException("Was not able to read this file.");
+      }
+
+    }
   }
 
-  /**
-   * New constructor that supports the use of other image formats, with the use of the new reading
-   * and writing methods.
-   * @param filename the name of the file as a string.
-   * @param type the type of the file, used to distinguish the different image constructors.
-   * @throws IllegalArgumentException if the filename is null or is an empty string.
-   */
-  public ImageImpl(String filename, String type) throws IllegalArgumentException {
-    if (filename == null || filename.equals("")) {
-      throw new IllegalArgumentException("The given filename must not be null!");
-    }
-    try {
-      this.pixels = Formats.readImageFIle(filename);
-      this.height = Formats.getImageFileHeight(filename);
-      this.width = Formats.getImageFIleWidth(filename);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Was not able to read this file.");
-    }
-
-  }
 
 
   @Override
