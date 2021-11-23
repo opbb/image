@@ -20,10 +20,12 @@ public class HistogramImpl implements Histogram {
   }
 
   @Override
-  public int[][] getHistogramData(String name) {
+  public int[][] getHistogramData(int[][][] pixels) {
 
 
-    int[][][] image = delegate.getImageValues(name);
+
+    int[][][] image = pixels;
+
     int[][] result = new int[256][4];
     int red = 0;
     int blue = 0;

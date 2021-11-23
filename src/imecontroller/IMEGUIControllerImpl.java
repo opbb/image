@@ -4,12 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import imecontroller.iguicommand.IGUICommand;
+import imemodel.Formats;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
@@ -65,17 +68,18 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
         String file = view.getFilePath();
         String name = file;
-        int count = 0;
-        while (model.hasImage(name)) {
-          name += String.valueOf(count);
-          count++;
-        }
+//        int count = 0;
+//        while (model.hasImage(name)) {
+//          name += String.valueOf(count);
+//          count++;
+//        }
 
-        if (!file.equals("")) {
+        if (!name.equals("")) {
           currentImage = name;
-          model.loadImage(name, new ImageImpl(file));
-          view.setUpImageAndHistogram(name);
-          view.updateOpenedFiles();
+          model.loadImage(name, new ImageImpl(currentImage));
+          view.setUpImageAndHistogram(currentImage);
+          //view.setToMap(name, Formats.makeBF(name, model.getImageValues(name)));
+          view.filesTrack(currentImage);
         }
 
 
@@ -132,15 +136,30 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-    String[] loadedImages =  model.getKeys().toArray(new String[0]);
-    if (e.getFirstIndex() == e.getLastIndex()) {
-      // Do nothing, there was no new selection.
-    } else if (currentImage == loadedImages[e.getFirstIndex()]) {
-      currentImage = loadedImages[e.getLastIndex()];
-      view.setUpImageAndHistogram(currentImage);
-    } else {
-      currentImage = loadedImages[e.getFirstIndex()];
-      view.setUpImageAndHistogram(currentImage);
-    }
   }
-}
+
+//    String[] loadedImages =  model.getKeys().toArray(new String[0]);
+//
+////    if (e.getFirstIndex() == e.getLastIndex()) {
+////      currentImage = loadedImages[e.getFirstIndex()];
+////      view.setUpLoadedImageAndHistogram(currentImage);
+////      // Do nothing, there was no new selection.
+////    } else if (currentImage == loadedImages[e.getLastIndex()]) {
+////      currentImage = loadedImages[e.getLastIndex()];
+////      view.setUpLoadedImageAndHistogram(currentImage);
+//
+//      for (String s : ) {
+//
+//        }
+//      }
+//      System.out.println(currentImage);
+//
+//    view.setUpLoadedImageAndHistogram(currentImage);
+//     // view.setUpLoadedImageAndHistogram(currentImage);
+////    } else {
+////      currentImage = loadedImages[e.getFirstIndex()];
+////      view.setUpLoadedImageAndHistogram(currentImage);
+//    //}
+  }
+
+
