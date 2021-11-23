@@ -27,6 +27,8 @@ import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
 import imecontroller.IMEControllerImpl;
+import imemodel.HistogramImpl;
+import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imemodel.ImageModelImpl;
 import imeview.IMEGUIView;
@@ -65,6 +67,7 @@ public class Main {
             new InputFromFileCommand()));
     ImageModel model = new ImageModelImpl();
     IMEView view = new IMEViewImpl(model);
+    //new IMEControllerImpl(commands, model, view).run();
 
     //added the feature of reading a .txt file filled with commands and disregards comments.
 
@@ -93,6 +96,9 @@ public class Main {
     IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
     IMEGUIViewImpl frame = new IMEGUIViewImpl(model, commands);
 
+
+
+    model.loadImage("ella", new ImageImpl("res/ella.png"));
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
   }
