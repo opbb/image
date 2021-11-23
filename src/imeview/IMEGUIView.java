@@ -1,5 +1,7 @@
 package imeview;
 
+import java.awt.image.BufferedImage;
+
 import javax.swing.*;
 
 import imecontroller.IMEGUIController;
@@ -43,5 +45,11 @@ public interface IMEGUIView extends IMEView {
   /**
    * Updates the list of opened files.
    */
-  void updateOpenedFiles();
+
+
+  void setLoadedImage(String name);
+
+  void setToMap(String name, BufferedImage img);
+
+  void filesTrack(String name);
 }
