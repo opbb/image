@@ -477,11 +477,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       return getDoubleInput(message, def);
     }
   }
-
-  @Override
-  public void renderMessage(String message) {
-    JOptionPane.showMessageDialog(this, message);
-  }
 }
 
 
