@@ -48,6 +48,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   @Override
   public void actionPerformed(ActionEvent e) {
     switch(e.getActionCommand()) {
+      case("LoadImage"):
 
     }
   }
