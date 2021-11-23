@@ -28,6 +28,10 @@ import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
 import imecontroller.IMEControllerImpl;
+
+import imemodel.HistogramImpl;
+import imemodel.ImageImpl;
+
 import imecontroller.iguicommand.BlueValueGUICommand;
 import imecontroller.iguicommand.BlurGUICommand;
 import imecontroller.iguicommand.BrightenGUICommand;
@@ -41,6 +45,7 @@ import imecontroller.iguicommand.SepiaGUICommand;
 import imecontroller.iguicommand.SharpenGUICommand;
 import imecontroller.iguicommand.ValueGUICommand;
 import imecontroller.iguicommand.VertFlipGUICommand;
+
 import imemodel.ImageModel;
 import imemodel.ImageModelImpl;
 import imeview.IMEGUIView;
@@ -87,31 +92,47 @@ public class Main {
       IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
       controller = new IMEGUIControllerImpl(commands, model, view);
     } else {
-      Map<String, ICommand>commands = ICommand.generateMapFromList(Arrays.asList(
-            new BrightenCommand(),
-            new LumaValueCommand(),
-            new HoriFlipCommand(),
-            new LoadCommand(),
-            new VertFlipCommand(),
-            new RedValueCommand(),
-            new GreenValueCommand(),
-            new BlueValueCommand(),
-            new ValueCommand(),
-            new BlurCommand(),
-            new IntensityValueCommand(),
-            new CloseCommand(),
-            new SharpenCommand(),
-            new SepiaCommand(),
-            new InputFromFileCommand(),
-            new SaveCommand(),
-            new LoadCommand()));
+      Map<String, ICommand> commands = ICommand.generateMapFromList(Arrays.asList(
+              new BrightenCommand(),
+              new LumaValueCommand(),
+              new HoriFlipCommand(),
+              new LoadCommand(),
+              new VertFlipCommand(),
+              new RedValueCommand(),
+              new GreenValueCommand(),
+              new BlueValueCommand(),
+              new ValueCommand(),
+              new BlurCommand(),
+              new IntensityValueCommand(),
+              new CloseCommand(),
+              new SharpenCommand(),
+              new SepiaCommand(),
+
+              new InputFromFileCommand()));
+      model = new ImageModelImpl();
       IMEView view = new IMEViewImpl(model);
-      if (args[0].equals("-text")) {
-        controller = new IMEControllerImpl(commands, model, view);
-      } else if (args[0].equals("-file") && args.length >= 2) {
-        controller = new IMEFileController(commands, model, view, args[1]);
+      //new IMEControllerImpl(commands, model, view).run();
+
+      //added the feature of reading a .txt file filled with commands and disregards comments.
+
+
+        //controller = new IMEGUIController(commands, model, view);
+//    } else {
+//      commands.add(new SaveCommand()),
+//      commands.add(new LoadCommand()),
+//
+//            new InputFromFileCommand(),
+//            new SaveCommand(),
+//            new LoadCommand()));
+//       view = new IMEViewImpl(model);
+
+        if (args[0].equals("-text")) {
+          controller = new IMEControllerImpl(commands, model, view);
+        } else if (args[0].equals("-file") && args.length >= 2) {
+          controller = new IMEFileController(commands, model, view, args[1]);
+        }
       }
-    }
+
 
     if (controller == null) {
       throw new IllegalArgumentException("Must give no args, or give \"-text\" as an arg, " +
@@ -119,5 +140,9 @@ public class Main {
     }
 
     controller.run();
+
+
+
   }
-}
+  }
+

@@ -65,8 +65,21 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
         String file = view.getFilePath();
         currentImage = file;
-        model.loadImage(file, new ImageImpl(file));
-        view.setUpImageAndHistogram(file);
+        model.loadImage(currentImage, new ImageImpl(currentImage));
+        view.setUpImageAndHistogram(currentImage);
+
+//        JFileChooser fchooser = new JFileChooser("");
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+//                "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
+//        fchooser.setFileFilter(filter);
+//        int retvalue = fchooser.showOpenDialog(view.getMainComponent());
+//        if (retvalue == JFileChooser.APPROVE_OPTION) {
+//          File f = fchooser.getSelectedFile();
+//          String newName = f.getAbsolutePath();
+//          model.loadImage(newName, new ImageImpl(newName));
+//        }
+
+
           break;
 
 

@@ -260,32 +260,18 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         int i = 0;
         for (int k = 0; k < height; k++) {
           for (int p = 0; p < width; p++) {
-            System.out.println(arrayImage[i] + " " + arrayImage[i + 1] + " " + arrayImage[i + 2] + " " + i);
+
             int col = new Color(arrayImage[i], arrayImage[i + 1], arrayImage[i + 2]).getRGB();
             img.setRGB(p, k, col);
             i += 3;
           }
-
         }
-//        ImageIcon icon = new ImageIcon(img);
-//        Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
-
-
-        // BufferedImage bf = ImageIO.read(new File(filename));
-        imageLabel = new JLabel();
-        imagePanel.revalidate();
-        imagePanel.repaint();
-        ImageIcon icon = new ImageIcon(filename);
+        ImageIcon icon = new ImageIcon(img);
         Image img1 = icon.getImage();
         Image resi = img1.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
         imageLabel.setIcon(new ImageIcon(resi));
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
 
-
-        //imageLabel.setIcon(new ImageIcon(resi));
         icon.setImage(resi);
         imageLabel.setIcon(icon);
 
