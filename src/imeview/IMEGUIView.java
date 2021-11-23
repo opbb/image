@@ -37,4 +37,6 @@ public interface IMEGUIView extends IMEView {
   double getDoubleInput(String message, double def);
 
   String getFilePath();
+
+  void setUpLoadedImageAndHistogram(String newName);
 }

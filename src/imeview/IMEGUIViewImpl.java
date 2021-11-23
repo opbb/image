@@ -123,6 +123,9 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     imageLabel = new JLabel();
     imagePanel = new JPanel();
     imagePanel.add(imageLabel);
+    JScrollPane imageScroll = new JScrollPane(imagePanel);
+   // add(imageScroll);
+    rightPanel.add(imageScroll);
 
     histPanel = new JPanel();
 
@@ -148,6 +151,36 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       return "";
     }
   }
+
+  @Override
+  public void setUpLoadedImageAndHistogram(String newName) {
+
+    BufferedImage bf = Formats.makeBF(newName, model.getImageValues(newName));
+    removeHist();
+    imagePanel.remove(imageLabel);
+    imagePanel.revalidate();
+    imagePanel.repaint();
+    ImageIcon icon = new ImageIcon(bf);
+    Image img = icon.getImage();
+    Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+
+
+    //imageLabel.setIcon(new ImageIcon(resi));
+    icon.setImage(resi);
+    imageLabel.setIcon(icon);
+
+
+    this.imagePanel.add(imageLabel);
+
+
+    histPanel = new DrawHist(newName);
+
+    setUpVertPanel(imagePanel, rightPanel);
+
+    imageName = newName;
+    setUpVertPanel(histPanel, rightPanel);
+  }
+
 
 
   @Override
@@ -270,9 +303,9 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         Image img1 = icon.getImage();
         Image resi = img1.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
-        imageLabel.setIcon(new ImageIcon(resi));
+        imageLabel.setIcon(new ImageIcon(img1));
 
-        icon.setImage(resi);
+        icon.setImage(img1);
         imageLabel.setIcon(icon);
 
 

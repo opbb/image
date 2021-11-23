@@ -56,6 +56,10 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
     switch(e.getActionCommand()) {
 
       case ("Save file"):
+//        String file = view.getFilePath();
+//        currentImage = file;
+//
+//        view.setUpImageAndHistogram(currentImage);
 
         break;
 
@@ -64,9 +68,13 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       case ("Load file"):
 
         String file = view.getFilePath();
-        currentImage = file;
-        model.loadImage(currentImage, new ImageImpl(currentImage));
-        view.setUpImageAndHistogram(currentImage);
+
+        if (!file.equals("")) {
+          currentImage = file;
+          model.loadImage(currentImage, new ImageImpl(currentImage));
+          view.setUpImageAndHistogram(currentImage);
+        }
+
 
 //        JFileChooser fchooser = new JFileChooser("");
 //        FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -81,6 +89,8 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
 
           break;
+
+
 
 
 
@@ -100,7 +110,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
           // Block below check for if the given command was invalid (i.e. no command was executed).
           if (executedCommand) {
-            view.setUpImageAndHistogram(currentImage);
+            view.setUpLoadedImageAndHistogram(currentImage);
           } else {
             throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
                     e.getActionCommand() + "\"");

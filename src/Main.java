@@ -90,6 +90,17 @@ public class Main {
       view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       view.setVisible(true);
       IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
+      try {
+        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      } catch (InstantiationException e) {
+        e.printStackTrace();
+      } catch (IllegalAccessException e) {
+        e.printStackTrace();
+      } catch (UnsupportedLookAndFeelException e) {
+        e.printStackTrace();
+      }
       controller = new IMEGUIControllerImpl(commands, model, view);
     } else {
       Map<String, ICommand> commands = ICommand.generateMapFromList(Arrays.asList(

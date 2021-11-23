@@ -72,6 +72,51 @@ public class Formats extends ImageUtil {
 
   }
 
+  public static BufferedImage makeBF(String name, int[][][] pixels) {
+
+    BufferedImage img;
+    int width = pixels[0].length;
+    int height = pixels.length;
+
+    img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    if (name.substring(name.lastIndexOf(".") + 1).equals("ppm")) {
+
+
+
+      for (int k = 0; k < height; k++) {
+        for (int p = 0; p < width; p++) {
+
+          int col = new Color(pixels[k][p][0], pixels[k][p][1], pixels[k][p][2]).getRGB();
+          img.setRGB(p, k, col);
+
+        }
+      }
+      return img;
+    }
+    else if (name.substring(name.lastIndexOf(".") + 1).equals("bmp")) {
+      for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+          img.setRGB(j, i, (pixels[i][j][0] << 16) |
+                  (pixels[i][j][1] << 8) | pixels[i][j][2]);
+        }
+      }
+      return img;
+
+
+    }
+    else {
+      for (int k = 0; k < height; k++) {
+        for (int p = 0; p < width; p++) {
+
+          int col = new Color(pixels[k][p][0], pixels[k][p][1], pixels[k][p][2]).getRGB();
+          img.setRGB(p, k, col);
+
+        }
+      }
+      return img;
+    }
+  }
+
   /**
    * Retrieves the height of the given image through the use of the ImageIO class.
    *
@@ -143,4 +188,7 @@ public class Formats extends ImageUtil {
   private static int getFormatHeight(Image image) {
     return image.getHeight();
   }
+
+
+
 }
