@@ -26,6 +26,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   private final ImageModel model;
   private final IMEGUIView view;
   private String currentImage;
+  private int currentIndex;
 
 
   /**
@@ -68,11 +69,18 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       case ("Load file"):
 
         String file = view.getFilePath();
+        String name = file;
+        int count = 0;
+        while (model.hasImage(name)) {
+          name += String.valueOf(count);
+          count++;
+        }
 
         if (!file.equals("")) {
-          currentImage = file;
-          model.loadImage(currentImage, new ImageImpl(currentImage));
-          view.setUpImageAndHistogram(currentImage);
+          currentImage = name;
+          model.loadImage(name, new ImageImpl(file));
+          view.setUpImageAndHistogram(name);
+          view.updateOpenedFiles();
         }
 
 
@@ -129,8 +137,19 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-    switch(e.getFirstIndex()) {
-
+    String[] loadedImages =  model.getKeys().toArray(new String[0]);
+    if (e.getFirstIndex() == e.getLastIndex()) {
+      // Do nothing, there was no new selection.
+    } else if (currentImage == loadedImages[e.getFirstIndex()]) {
+      currentImage = loadedImages[e.getLastIndex()];
+      view.setUpImageAndHistogram(currentImage);
+    } else {
+      currentImage = loadedImages[e.getFirstIndex()];
+      view.setUpImageAndHistogram(currentImage);
     }
+
+    //switch(e.getFirstIndex()) {
+
+    //}
   }
 }

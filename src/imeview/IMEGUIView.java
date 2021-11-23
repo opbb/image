@@ -39,4 +39,9 @@ public interface IMEGUIView extends IMEView {
   String getFilePath();
 
   void setUpLoadedImageAndHistogram(String newName);
+
+  /**
+   * Updates the list of opened files.
+   */
+  void updateOpenedFiles();
 }
