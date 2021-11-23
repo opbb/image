@@ -1,6 +1,7 @@
 package imeview;
 
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -63,6 +64,16 @@ public class IMEGUIViewMock implements IMEGUIView {
 
   @Override
   public void updateOpenedFiles() {
+
+  }
+
+  @Override
+  public void setLoadedImage(String name) {
+    
+  }
+
+  @Override
+  public void setToMap(String name, BufferedImage img) {
 
   }
 

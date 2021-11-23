@@ -72,18 +72,20 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
         String file = view.getFilePath();
         String name = file;
-//        int count = 0;
-//        while (model.hasImage(name)) {
-//          name += String.valueOf(count);
-//          count++;
-//        }
+        int count = 0;
+        while (model.hasImage(name)) {
+          if (model.hasImage(name + count)) {
+            count++;
+          } else {
+            name += String.valueOf(count);
+          }
+        }
 
-        if (!name.equals("")) {
+        if (!file.equals("")) {
           currentImage = name;
-          model.loadImage(name, new ImageImpl(currentImage));
-          view.setUpImageAndHistogram(currentImage);
-          //view.setToMap(name, Formats.makeBF(name, model.getImageValues(name)));
-          view.filesTrack(currentImage);
+          model.loadImage(name, new ImageImpl(file));
+          view.setUpImageAndHistogram(name);
+          view.updateOpenedFiles();
         }
 
 
