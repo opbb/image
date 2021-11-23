@@ -6,16 +6,20 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 import java.util.Map;
 
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
+import imeview.IMEGUIViewImpl;
 
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         ItemListener, ListSelectionListener {
@@ -151,14 +155,10 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       view.setUpLoadedImageAndHistogram(currentImage);
     }
     }
-//      for (String s : ) {
-//
-//        }
-//      }
-//      System.out.println(currentImage);
-//
-//    view.setUpLoadedImageAndHistogram(currentImage);
-//      view.setUpLoadedImageAndHistogram(currentImage);
+
+    //switch(e.getFirstIndex()) {
+
+    //}
   }
 
 
