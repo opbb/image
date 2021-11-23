@@ -90,6 +90,7 @@ public class Main {
       view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       view.setVisible(true);
       IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
+      view.setResizable(true);
       try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
       } catch (ClassNotFoundException e) {
