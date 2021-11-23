@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.IMEGUIController;
 import imecontroller.icommand.ICommand;
+import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.Histogram;
 import imemodel.HistogramImpl;
@@ -36,7 +37,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   private JPanel mainPanel;
   private ArrayList<JButton> buttons; // A list of buttons so we can give them all action listeners.
-  private final Map<String, ICommand> commands; // Commands to have buttons for.
+  private final Map<String, IGUICommand> commands; // Commands to have buttons for.
   private final ImageModel model;
   private JPanel imagePanel;
   private JPanel histPanel;
@@ -53,7 +54,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
 
-  public IMEGUIViewImpl(ImageModel model, Map<String, ICommand> commands) {
+  public IMEGUIViewImpl(ImageModel model, Map<String, IGUICommand> commands) {
     super();
     setTitle("Image Processor");
     setSize(800, 800);

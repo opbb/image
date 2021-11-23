@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -27,6 +28,19 @@ import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
 import imecontroller.IMEControllerImpl;
+import imecontroller.iguicommand.BlueValueGUICommand;
+import imecontroller.iguicommand.BlurGUICommand;
+import imecontroller.iguicommand.BrightenGUICommand;
+import imecontroller.iguicommand.GreenValueGUICommand;
+import imecontroller.iguicommand.HoriFlipGUICommand;
+import imecontroller.iguicommand.IGUICommand;
+import imecontroller.iguicommand.IntensityValueGUICommand;
+import imecontroller.iguicommand.LumaValueGUICommand;
+import imecontroller.iguicommand.RedValueGUICommand;
+import imecontroller.iguicommand.SepiaGUICommand;
+import imecontroller.iguicommand.SharpenGUICommand;
+import imecontroller.iguicommand.ValueGUICommand;
+import imecontroller.iguicommand.VertFlipGUICommand;
 import imemodel.ImageModel;
 import imemodel.ImageModelImpl;
 import imeview.IMEGUIView;
@@ -47,7 +61,33 @@ public class Main {
    * @param args That of which commands are read in.
    */
   public static void main(String[] args) {
-    Map<String, ICommand> commands = ICommand.generateMapFromList(Arrays.asList(
+    ImageModel model = new ImageModelImpl();
+
+    //added the feature of reading a .txt file filled with commands and disregards comments.
+
+
+    IMEController controller = null;
+    if (args.length == 0) {
+      Map<String, IGUICommand> commands = IGUICommand.generateMapFromList(Arrays.asList(
+              new BrightenGUICommand(),
+              new LumaValueGUICommand(),
+              new HoriFlipGUICommand(),
+              new VertFlipGUICommand(),
+              new RedValueGUICommand(),
+              new GreenValueGUICommand(),
+              new BlueValueGUICommand(),
+              new ValueGUICommand(),
+              new BlurGUICommand(),
+              new IntensityValueGUICommand(),
+              new SharpenGUICommand(),
+              new SepiaGUICommand()));
+      IMEGUIViewImpl view = new IMEGUIViewImpl(model, commands);
+      view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      view.setVisible(true);
+      IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
+      controller = new IMEGUIControllerImpl(commands, model, view);
+    } else {
+      Map<String, ICommand>commands = ICommand.generateMapFromList(Arrays.asList(
             new BrightenCommand(),
             new LumaValueCommand(),
             new HoriFlipCommand(),
@@ -62,19 +102,10 @@ public class Main {
             new CloseCommand(),
             new SharpenCommand(),
             new SepiaCommand(),
-            new InputFromFileCommand()));
-    ImageModel model = new ImageModelImpl();
-    IMEView view = new IMEViewImpl(model);
-
-    //added the feature of reading a .txt file filled with commands and disregards comments.
-
-    /*
-    IMEController controller = null;
-    if (args.length == 0) {
-      //controller = new IMEGUIController(commands, model, view);
-    } else {
-      commands.add(new SaveCommand())
-      commands.add(new LoadCommand())
+            new InputFromFileCommand(),
+            new SaveCommand(),
+            new LoadCommand()));
+      IMEView view = new IMEViewImpl(model);
       if (args[0].equals("-text")) {
         controller = new IMEControllerImpl(commands, model, view);
       } else if (args[0].equals("-file") && args.length >= 2) {
@@ -88,12 +119,5 @@ public class Main {
     }
 
     controller.run();
-    */
-
-    IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
-    IMEGUIViewImpl frame = new IMEGUIViewImpl(model, commands);
-
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setVisible(true);
   }
 }

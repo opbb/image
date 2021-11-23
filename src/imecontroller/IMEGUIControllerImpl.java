@@ -17,6 +17,7 @@ import imemodel.Image;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
+import imeview.IMEGUIViewImpl;
 
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         ItemListener, ListSelectionListener {
@@ -47,14 +48,18 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void run() {
-
+    // Run doesn't do anything because this controller is reactive rather than proactive.
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
     switch(e.getActionCommand()) {
 
-      case("LoadImage"):
+      case ("Save file"):
+
+        break;
+
+      case (""):
 
       case ("Load file"):
         JFileChooser fchooser = new JFileChooser("");
