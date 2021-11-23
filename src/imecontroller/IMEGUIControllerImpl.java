@@ -53,6 +53,9 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   @Override
   public void actionPerformed(ActionEvent e) {
     switch(e.getActionCommand()) {
+
+      case("LoadImage"):
+
       case ("Load file"):
         JFileChooser fchooser = new JFileChooser("");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -62,7 +65,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         if (retvalue == JFileChooser.APPROVE_OPTION) {
           File f = fchooser.getSelectedFile();
           String newName = f.getAbsolutePath();
-          model.loadImage(newName, new ImageImpl(newName, ""));
+          model.loadImage(newName, new ImageImpl(newName));
           currentImage = newName;
         }
           break;
@@ -78,6 +81,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
             break; // Breaks loop so that we don't waste energy checking the remaining commands.
           }
         }
+
 
         // Block below check for if the given command was invalid (i.e. no command was executed).
         if (!executedCommand) {

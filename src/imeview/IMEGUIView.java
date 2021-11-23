@@ -18,6 +18,9 @@ public interface IMEGUIView extends IMEView {
 
   void buildHistPanel(String filename);
 
+
+  void setUpImageAndHistogram();
+
   /**
    * Gets the main JComponent in this view.
    * @return the main JComponent
