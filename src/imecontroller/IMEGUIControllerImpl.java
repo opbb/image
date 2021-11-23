@@ -54,11 +54,12 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   public void actionPerformed(ActionEvent e) {
     switch(e.getActionCommand()) {
 
-      case("LoadImage"):
 
       case ("Load file"):
 
-        view.setUpImageAndHistogram();
+        String file = view.getFilePath();
+        model.loadImage(file, new ImageImpl(file));
+        view.setUpImageAndHistogram(file);
 //        JFileChooser fchooser = new JFileChooser("");
 //        FileNameExtensionFilter filter = new FileNameExtensionFilter(
 //                "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
@@ -70,17 +71,6 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 //          model.loadImage(newName, new ImageImpl(newName));
 //        }
 
-        JFileChooser fchooser = new JFileChooser("");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
-        fchooser.setFileFilter(filter);
-        int retvalue = fchooser.showOpenDialog(view.getMainComponent());
-        if (retvalue == JFileChooser.APPROVE_OPTION) {
-          File f = fchooser.getSelectedFile();
-          String newName = f.getAbsolutePath();
-          model.loadImage(newName, new ImageImpl(newName));
-          currentImage = newName;
-        }
 
           break;
 
