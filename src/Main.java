@@ -1,12 +1,10 @@
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 
 import javax.swing.*;
 
 import imecontroller.IMEFileController;
-import imecontroller.IMEGUIController;
 import imecontroller.IMEGUIControllerImpl;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BlurCommand;
@@ -20,17 +18,14 @@ import imecontroller.icommand.ICommand;
 import imecontroller.icommand.IntensityValueCommand;
 import imecontroller.icommand.LoadCommand;
 import imecontroller.icommand.RedValueCommand;
-import imecontroller.icommand.SaveCommand;
 
+import imecontroller.icommand.SaveCommand;
 import imecontroller.icommand.SepiaCommand;
 import imecontroller.icommand.SharpenCommand;
 import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
 import imecontroller.IMEController;
 import imecontroller.IMEControllerImpl;
-
-import imemodel.HistogramImpl;
-import imemodel.ImageImpl;
 
 import imecontroller.iguicommand.BlueValueGUICommand;
 import imecontroller.iguicommand.BlurGUICommand;
@@ -48,7 +43,6 @@ import imecontroller.iguicommand.VertFlipGUICommand;
 
 import imemodel.ImageModel;
 import imemodel.ImageModelImpl;
-import imeview.IMEGUIView;
 import imeview.IMEGUIViewImpl;
 import imeview.IMEView;
 import imeview.IMEViewImpl;
@@ -118,9 +112,8 @@ public class Main {
               new CloseCommand(),
               new SharpenCommand(),
               new SepiaCommand(),
-
+              new SaveCommand(),
               new InputFromFileCommand()));
-      model = new ImageModelImpl();
       IMEView view = new IMEViewImpl(model);
       //new IMEControllerImpl(commands, model, view).run();
 

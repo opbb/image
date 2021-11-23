@@ -12,20 +12,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.IMEGUIController;
-import imecontroller.icommand.ICommand;
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.Histogram;
