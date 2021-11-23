@@ -137,10 +137,10 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       // Do nothing, there was no new selection.
     } else if (currentImage == loadedImages[e.getFirstIndex()]) {
       currentImage = loadedImages[e.getLastIndex()];
-      view.setUpImageAndHistogram(currentImage);
+      view.setUpLoadedImageAndHistogram(currentImage);
     } else {
       currentImage = loadedImages[e.getFirstIndex()];
-      view.setUpImageAndHistogram(currentImage);
+      view.setUpLoadedImageAndHistogram(currentImage);
     }
   }
 }
