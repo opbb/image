@@ -45,9 +45,11 @@ public interface IMEGUIView extends IMEView {
   /**
    * Updates the list of opened files.
    */
-  void updateOpenedFiles();
+
 
   void setLoadedImage(String name);
 
   void setToMap(String name, BufferedImage img);
+
+  void filesTrack(String name);
 }
