@@ -4,6 +4,7 @@ import java.util.Map;
 
 import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
+import imeview.IMEGUIView;
 
 
 /**
@@ -12,19 +13,9 @@ import imemodel.ImageModel;
  */
 public class LumaValueGUICommand extends AbstractGUICommand {
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
-          throws IllegalStateException {
-    String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
-
-    if (setUpImage(model, view, fromImage, toImage)) {
-      model.greyscaleByLuma(toImage);
-    }
-  }
-
-  @Override
-  public String helpMessage() {
-    return "luma-value [image to get luma-value of] [new image name]";
+  public void execute(ImageModel model, IMEGUIView view, Map<String,
+          IGUICommand> commands, String imageName) {
+      model.greyscaleByLuma(imageName);
   }
 
   @Override

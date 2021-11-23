@@ -4,6 +4,7 @@ import java.util.Map;
 
 import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
+import imeview.IMEGUIView;
 
 /**
  * Command which gets the green component of a specific Image in the given model.
@@ -13,19 +14,9 @@ import imemodel.ImageModel;
 public class GreenValueGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
-          throws IllegalStateException {
-    String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
-
-    if (setUpImage(model, view, fromImage, toImage)) {
-      model.getByComponent(toImage, "green");
-    }
-  }
-
-  @Override
-  public String helpMessage() {
-    return "green-value [image to get green-value of] [new image name]";
+  public void execute(ImageModel model, IMEGUIView view, Map<String,
+          IGUICommand> commands, String imageName) {
+      model.getByComponent(imageName, "green");
   }
 
   @Override

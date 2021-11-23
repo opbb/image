@@ -1,10 +1,11 @@
 package imecontroller.iguicommand;
 
-import java.util.InputMismatchException;
 import java.util.Map;
 
-import imecontroller.icommand.ICommand;
+import javax.swing.*;
+
 import imemodel.ImageModel;
+import imeview.IMEGUIView;
 
 /**
  * Command which brightens a specific Image in the given model by an amount.
@@ -14,32 +15,14 @@ import imemodel.ImageModel;
 public class BrightenGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
+  public void execute(ImageModel model, IMEGUIView view, Map<String,
+          IGUICommand> commands, String imageName)
           throws IllegalStateException {
-    try {
-      double amount = getDoubleInput(view, sc);
-      String fromImage = getStringInput(sc);
-      String toImage = getStringInput(sc);
+    double amount = getDoubleInput(view,
+            "Input amount to brighten (A number from -255 to 255):",
+            0);
 
-
-      if (setUpImage(model,view,fromImage,toImage)) {
-        model.brighten(toImage, amount);
-      }
-    } catch (InputMismatchException e) {
-
-      // Throw out the next 3 inputs from the Scanner so they don't get interpreted as commands.
-      getStringInput(sc);
-      getStringInput(sc);
-      getStringInput(sc);
-
-      // An error message has already been rendered, so we simply ignore the exception.
-
-    }
-  }
-
-  @Override
-  public String helpMessage() {
-    return "brighten [amount to brighten] [image to brighten] [new image name]";
+    model.brighten(imageName, amount);
   }
 
   @Override
