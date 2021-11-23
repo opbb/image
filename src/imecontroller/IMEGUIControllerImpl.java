@@ -64,39 +64,34 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       case ("Load file"):
 
         String file = view.getFilePath();
+        currentImage = file;
         model.loadImage(file, new ImageImpl(file));
         view.setUpImageAndHistogram(file);
-//        JFileChooser fchooser = new JFileChooser("");
-//        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-//                "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
-//        fchooser.setFileFilter(filter);
-//        int retvalue = fchooser.showOpenDialog(view.getMainComponent());
-//        if (retvalue == JFileChooser.APPROVE_OPTION) {
-//          File f = fchooser.getSelectedFile();
-//          String newName = f.getAbsolutePath();
-//          model.loadImage(newName, new ImageImpl(newName));
-//        }
-
-
           break;
 
 
 
       default:
-        boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
-        for (String key : commands.keySet()) {
-          if (key.equals(e.getActionCommand())) {
-            commands.get(key).execute(model, view, commands, currentImage);
-            executedCommand = true; // Record that we have executed.
-            break; // Breaks loop so that we don't waste energy checking the remaining commands.
+        if (currentImage == null) {
+          view.renderMessage("There is no image loaded.");
+        } else {
+          boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
+          for (String key : commands.keySet()) {
+            if (key.equals(e.getActionCommand())) {
+              commands.get(key).execute(model, view, commands, currentImage);
+              executedCommand = true; // Record that we have executed.
+              break; // Breaks loop so that we don't waste energy checking the remaining commands.
+            }
           }
-        }
 
 
-        // Block below check for if the given command was invalid (i.e. no command was executed).
-        if (!executedCommand) {
-          throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
-                  e.getActionCommand() + "\"");
+          // Block below check for if the given command was invalid (i.e. no command was executed).
+          if (executedCommand) {
+            view.setUpImageAndHistogram(currentImage);
+          } else {
+            throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
+                    e.getActionCommand() + "\"");
+          }
         }
         break;
     }
