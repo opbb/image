@@ -272,12 +272,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
 
   @Override
-  public void filesTrack(String name) {
-    JButton but = new JButton(name);
-    but.addActionListener(new FileListener());
-    but.setActionCommand(name);
-    but.setPreferredSize(new Dimension(20, 20));
-    filesPanel.add(but);
+  public void updateOpenedFiles() {
+    listOfFiles.setListData(model.getKeys().toArray(new String[0]));
   }
 
   private class FileListener implements ActionListener {
@@ -308,7 +304,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         setUp(imagePanel, rightPanel);
 
         imageName = newName;
-        filesTrack(newName);
+        updateOpenedFiles();
         setUp(histPanel, rightPanel);
       } else {
         //removeHist();
@@ -328,7 +324,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         //setUp(imagePanel, rightPanel);
 
         imageName = newName;
-        filesTrack(newName);
+        updateOpenedFiles();
         //setUp(histPanel, rightPanel);
       }
 
