@@ -4,20 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.File;
 import java.util.Map;
 
-import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.iguicommand.IGUICommand;
-import imemodel.Image;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
-import imeview.IMEGUIViewImpl;
 
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         ItemListener, ListSelectionListener {
@@ -26,6 +21,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   private final ImageModel model;
   private final IMEGUIView view;
   private String currentImage;
+  private int currentIndex;
 
 
   /**
@@ -68,11 +64,18 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       case ("Load file"):
 
         String file = view.getFilePath();
+        String name = file;
+        int count = 0;
+        while (model.hasImage(name)) {
+          name += String.valueOf(count);
+          count++;
+        }
 
         if (!file.equals("")) {
-          currentImage = file;
-          model.loadImage(currentImage, new ImageImpl(currentImage));
-          view.setUpImageAndHistogram(currentImage);
+          currentImage = name;
+          model.loadImage(name, new ImageImpl(file));
+          view.setUpImageAndHistogram(name);
+          view.updateOpenedFiles();
         }
 
 
@@ -129,8 +132,15 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-    switch(e.getFirstIndex()) {
-
+    String[] loadedImages =  model.getKeys().toArray(new String[0]);
+    if (e.getFirstIndex() == e.getLastIndex()) {
+      // Do nothing, there was no new selection.
+    } else if (currentImage == loadedImages[e.getFirstIndex()]) {
+      currentImage = loadedImages[e.getLastIndex()];
+      view.setUpImageAndHistogram(currentImage);
+    } else {
+      currentImage = loadedImages[e.getFirstIndex()];
+      view.setUpImageAndHistogram(currentImage);
     }
   }
 }
