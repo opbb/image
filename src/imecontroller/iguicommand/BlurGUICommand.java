@@ -7,6 +7,7 @@ import imecontroller.icommand.ICommand;
 import imemodel.ExtraFilters;
 import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
+import imeview.IMEGUIView;
 
 /**
  * This class represents the command to blur a given image.
