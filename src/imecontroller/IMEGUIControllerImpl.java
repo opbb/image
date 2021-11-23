@@ -12,13 +12,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import imecontroller.icommand.ICommand;
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Image;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
-import imeview.IMEGUIViewImpl;
 
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         ItemListener, ListSelectionListener {
@@ -26,7 +24,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   private final Map<String, IGUICommand> commands;
   private final ImageModel model;
   private final IMEGUIView view;
-  private Image currentImg;
+  private String currentImage;
 
 
   /**
@@ -59,6 +57,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       case("LoadImage"):
 
       case ("Load file"):
+
         view.setUpImageAndHistogram();
 //        JFileChooser fchooser = new JFileChooser("");
 //        FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -70,12 +69,28 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 //          String newName = f.getAbsolutePath();
 //          model.loadImage(newName, new ImageImpl(newName));
 //        }
+
+        JFileChooser fchooser = new JFileChooser("");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
+        fchooser.setFileFilter(filter);
+        int retvalue = fchooser.showOpenDialog(view.getMainComponent());
+        if (retvalue == JFileChooser.APPROVE_OPTION) {
+          File f = fchooser.getSelectedFile();
+          String newName = f.getAbsolutePath();
+          model.loadImage(newName, new ImageImpl(newName));
+          currentImage = newName;
+        }
+
           break;
+
+
+
       default:
         boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
         for (String key : commands.keySet()) {
           if (key.equals(e.getActionCommand())) {
-            commands.get(key).execute(model, view, commands);
+            commands.get(key).execute(model, view, commands, currentImage);
             executedCommand = true; // Record that we have executed.
             break; // Breaks loop so that we don't waste energy checking the remaining commands.
           }
@@ -87,6 +102,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
           throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
                   e.getActionCommand() + "\"");
         }
+        break;
     }
   }
 

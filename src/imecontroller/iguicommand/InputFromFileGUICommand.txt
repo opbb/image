@@ -1,3 +1,4 @@
+/*
 package imecontroller.iguicommand;
 
 import java.io.FileInputStream;
@@ -12,6 +13,7 @@ import imemodel.ImageModel;
 /**
  * This command supports the feature of loading and executing commands from a .txt file.
  */
+/*
 public class InputFromFileGUICommand extends AbstractGUICommand {
 
   @Override
@@ -37,3 +39,4 @@ public class InputFromFileGUICommand extends AbstractGUICommand {
     return "input-from-file";
   }
 }
+*/

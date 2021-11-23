@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
 
 public interface IGUICommand {
 
-  void execute(ImageModel model, IMEGUIView view, Map<String, IGUICommand> commands)
+  void execute(ImageModel model, IMEGUIView view, Map<String, IGUICommand> commands, String imageName)
           throws IllegalStateException;
 
   /**

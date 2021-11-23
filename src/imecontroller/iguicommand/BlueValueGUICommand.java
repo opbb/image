@@ -4,6 +4,7 @@ import java.util.Map;
 
 import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
+import imeview.IMEGUIView;
 
 
 /**
@@ -14,25 +15,13 @@ import imemodel.ImageModel;
 public class BlueValueGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String, ICommand> commands)
-          throws IllegalStateException {
-    String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
-
-    if (setUpImage(model, view, fromImage, toImage)) {
-      model.getByComponent(toImage, "blue");
+  public void execute(ImageModel model, IMEGUIView view, Map<String,
+          IGUICommand> commands, String imageName) {
+      model.getByComponent(imageName, "blue");
     }
-  }
-
-  @Override
-  public String helpMessage() {
-    return "blue-value [image to get blue-value of] [new image name]";
-  }
 
   @Override
   public String commandText() {
     return "blue-value";
   }
-
-
 }
