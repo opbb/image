@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.File;
 import java.util.Map;
 
 import javax.swing.*;
@@ -15,7 +12,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.iguicommand.IGUICommand;
-import imemodel.Formats;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
@@ -72,18 +68,17 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
         String file = view.getFilePath();
         String name = file;
-//        int count = 0;
-//        while (model.hasImage(name)) {
-//          name += String.valueOf(count);
-//          count++;
-//        }
+        int count = 0;
+        while (model.hasImage(name)) {
+          name += String.valueOf(count);
+          count++;
+        }
 
-        if (!name.equals("")) {
+        if (!file.equals("")) {
           currentImage = name;
-          model.loadImage(name, new ImageImpl(currentImage));
-          view.setUpImageAndHistogram(currentImage);
-          //view.setToMap(name, Formats.makeBF(name, model.getImageValues(name)));
-          view.filesTrack(currentImage);
+          model.loadImage(name, new ImageImpl(file));
+          view.setUpImageAndHistogram(name);
+          view.updateOpenedFiles();
         }
 
 
