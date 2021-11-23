@@ -26,8 +26,10 @@ public interface IMEGUIView extends IMEView {
 
   /**
    * Gets a double as input from the user.
+   *
+   * @param message the message asking for input
+   * @param def the default value if the user clicks cancel
    * @return an inputted double
    */
-  double getDoubleInput(String message);
-
+  double getDoubleInput(String message, double def);
 }

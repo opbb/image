@@ -260,12 +260,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
   }
 
 
-
-  @Override
-  public void renderMessage(String message) {
-    JOptionPane.showMessageDialog(this, message);
-  }
-
   /**
    * Sets up a JPanel with a Page axis box layout.
    *
@@ -415,9 +409,22 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView, ActionListener
   }
 
   @Override
-  public double getDoubleInput(String message) throws NumberFormatException {
+  public double getDoubleInput(String message, double def) {
     String rawInput = JOptionPane.showInputDialog(this, message);
-    return Integer.valueOf(rawInput);
+    if (rawInput == null) {
+      return def;
+    }
+    try {
+      return Integer.valueOf(rawInput);
+    } catch (NumberFormatException e) {
+      renderMessage("The given input was invalid, please input a number.");
+      return getDoubleInput(message, def);
+    }
+  }
+
+  @Override
+  public void renderMessage(String message) {
+    JOptionPane.showMessageDialog(this, message);
   }
 }
 
