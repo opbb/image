@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.IMEGUIController;
 import imecontroller.icommand.ICommand;
+import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.Histogram;
 import imemodel.HistogramImpl;
@@ -36,7 +37,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   private JPanel mainPanel;
   private ArrayList<JButton> buttons; // A list of buttons so we can give them all action listeners.
-  private final Map<String, ICommand> commands; // Commands to have buttons for.
+  private final Map<String, IGUICommand> commands; // Commands to have buttons for.
   private final ImageModel model;
   private JPanel imagePanel;
   private JPanel histPanel;
@@ -53,7 +54,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
 
-  public IMEGUIViewImpl(ImageModel model, Map<String, ICommand> commands) {
+  public IMEGUIViewImpl(ImageModel model, Map<String, IGUICommand> commands) {
     super();
     setTitle("Image Processor");
     setSize(800, 800);
@@ -259,32 +260,18 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         int i = 0;
         for (int k = 0; k < height; k++) {
           for (int p = 0; p < width; p++) {
-            System.out.println(arrayImage[i] + " " + arrayImage[i + 1] + " " + arrayImage[i + 2] + " " + i);
+
             int col = new Color(arrayImage[i], arrayImage[i + 1], arrayImage[i + 2]).getRGB();
             img.setRGB(p, k, col);
             i += 3;
           }
-
         }
-//        ImageIcon icon = new ImageIcon(img);
-//        Image resi = img.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
-
-
-        // BufferedImage bf = ImageIO.read(new File(filename));
-        imageLabel = new JLabel();
-        imagePanel.revalidate();
-        imagePanel.repaint();
-        ImageIcon icon = new ImageIcon(filename);
+        ImageIcon icon = new ImageIcon(img);
         Image img1 = icon.getImage();
         Image resi = img1.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
         imageLabel.setIcon(new ImageIcon(resi));
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
 
-
-        //imageLabel.setIcon(new ImageIcon(resi));
         icon.setImage(resi);
         imageLabel.setIcon(icon);
 
