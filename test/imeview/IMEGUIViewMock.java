@@ -54,6 +54,8 @@ public class IMEGUIViewMock implements IMEGUIView {
     return null;
   }
 
+  // Bazinga
+
   @Override
   public void setUpLoadedImageAndHistogram(String newName) {
     log.append("setUpLoadedImageAndHistogram) newName: " + newName + "\n");
