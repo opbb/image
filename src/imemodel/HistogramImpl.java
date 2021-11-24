@@ -1,35 +1,37 @@
 package imemodel;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.Set;
 
-import javax.imageio.ImageIO;
 
+/**
+ * This class represents a use of composition in extending the functionality of the ImageModelImpl
+ * class. Within this class only method has been changed, in which we receive histogram data
+ * of the RGB and intensity values of an image and store it within a 2d Integer array.
+ */
 public class HistogramImpl implements Histogram {
 
   private final ImageModel delegate;
 
+  /**
+   * Main constructor takes in a type of ImageModel and delegates it to this class's delegate
+   * object/field.
+   * @param model the ImageModel to be set as this class' delegate.
+   */
   public HistogramImpl(ImageModel model) {
     this.delegate = model;
   }
 
   @Override
-  public int[][] getHistogramData(String name) {
+  public int[][] getHistogramData(int[][][] pixels) {
 
+    int[][][] image = pixels;
 
-    int[][][] image = delegate.getImageValues(name);
     int[][] result = new int[256][4];
     int red = 0;
     int blue = 0;
     int green = 0;
     int intensity = 0;
-
 
     for (int i = 0; i < image.length; i++) {
       for (int j = 0; j < image[0].length; j++) {
@@ -44,53 +46,9 @@ public class HistogramImpl implements Histogram {
         result[intensity][3]++;
       }
 
-
     }
     return result;
   }
-//  }Image currImage = new ImageImpl(imageValues);
-//  BufferedImage img;
-//  int width = currImage.getWidth();
-//  int height = currImage.getHeight();
-//  int[][][] pixels = currImage.getPixels();
-//  img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-//    if (name.substring(name.lastIndexOf(".") + 1).equals("ppm")) {
-//
-//
-//
-//    for (int k = 0; k < height; k++) {
-//      for (int p = 0; p < width; p++) {
-//
-//        int col = new Color(pixels[k][p][0], pixels[k][p][1], pixels[k][p][2]).getRGB();
-//        img.setRGB(p, k, col);
-//
-//      }
-//    }
-//    return img;
-//  }
-//    else if (name.substring(name.lastIndexOf(".") + 1).equals("bmp")) {
-//    for (int i = 0; i < height; i++) {
-//      for (int j = 0; j < width; j++) {
-//        img.setRGB(j, i, (currImage.getPixels()[i][j][0] << 16) |
-//                (currImage.getPixels()[i][j][1] << 8) | currImage.getPixels()[i][j][2]);
-//      }
-//    }
-//    return img;
-//
-//
-//  }
-//    else {
-//    for (int k = 0; k < height; k++) {
-//      for (int p = 0; p < width; p++) {
-//
-//        int col = new Color(pixels[k][p][0], pixels[k][p][1], pixels[k][p][2]).getRGB();
-//        img.setRGB(p, k, col);
-//
-//      }
-//    }
-//    return img;
-//  }
-//}
 
 
 
