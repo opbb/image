@@ -59,12 +59,8 @@ public interface IMEGUIView extends IMEView {
    */
   void setUpLoadedImageAndHistogram(String newName);
 
-
-
-
-
-
-
-
+  /**
+   * Updates this view's list of opened files based off of the files the model has open.
+   */
   void updateOpenedFiles();
 }
