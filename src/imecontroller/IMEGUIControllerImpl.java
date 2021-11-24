@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,10 @@ import javax.swing.event.ListSelectionListener;
 
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
+import imemodel.Image;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
+import imemodel.ImageUtil;
 import imeview.IMEGUIView;
 
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
@@ -25,6 +28,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   private final IMEGUIView view;
   private String currentImage;
   private int currentIndex;
+  private boolean doubleClickFlag;
 
 
   /**
@@ -52,35 +56,65 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    switch(e.getActionCommand()) {
+//    for (String s : view.getFiles())
+//    if (e.getActionCommand().equals(s)) {
+//      currentImage = s;
+//    }
+//    else {
+      switch (e.getActionCommand()) {
 
-      case ("Save file"):
-//        String file = view.getFilePath();
-//        currentImage = file;
-//
-//        view.setUpImageAndHistogram(currentImage);
+        case ("Save file"):
+          String file = view.getFilePath();
+          String saveTo = file;
+          Image img1 = model.getImage(currentImage);
+          try {
+            if (img1 != null) {
+              if (file.substring(file.lastIndexOf(".") + 1).equals("ppm")) {
+                ImageUtil.writePPM(img1, saveTo);
+              } else {
+                Formats.writeImageFile(img1, saveTo);
+              }
 
-        break;
+            } else {
+              view.renderMessage("The image " + saveTo + " is null.\n\n");
+            }
+          } catch (IOException ee) {
+            view.renderMessage("The image cannot be saved to " + file + ".\n\n");
+          }
 
-      case (""):
 
-      case ("Load file"):
+          break;
 
-        String file = view.getFilePath();
-        String name = file;
-//        int count = 0;
-//        while (model.hasImage(name)) {
-//          name += String.valueOf(count);
-//          count++;
-//        }
+        case (""):
 
-        if (!name.equals("")) {
-          currentImage = name;
-          model.loadImage(name, new ImageImpl(currentImage));
-          view.setUpImageAndHistogram(currentImage);
-          //view.setToMap(name, Formats.makeBF(name, model.getImageValues(name)));
-          view.filesTrack(currentImage);
-        }
+
+        case ("Load file"):
+
+//          file = view.getFilePath();
+//          String name = file;
+//          if (!name.equals("")) {
+//            currentImage = name;
+//            model.loadImage(name, new ImageImpl(currentImage));
+//            view.setUpImageAndHistogram(currentImage);
+          file = view.getFilePath();
+          String name = file;
+          int count = 0;
+          while (model.hasImage(name)) {
+            if (model.hasImage(name + count)) {
+              count++;
+            } else {
+              name += String.valueOf(count);
+            }
+          }
+
+          if (!file.equals("")) {
+            currentImage = name;
+            model.loadImage(name, new ImageImpl(file));
+            view.setUpImageAndHistogram(name);
+            view.updateOpenedFiles();
+
+
+          }
 
 
 //        JFileChooser fchooser = new JFileChooser("");
@@ -98,33 +132,31 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
           break;
 
 
+        default:
+          if (currentImage == null) {
+            view.renderMessage("There is no image loaded.");
+          } else {
+            boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
+            for (String key : commands.keySet()) {
+              if (key.equals(e.getActionCommand())) {
+                commands.get(key).execute(model, view, commands, currentImage);
+                executedCommand = true; // Record that we have executed.
+                break; // Breaks loop so that we don't waste energy checking the remaining commands.
+              }
+            }
 
 
-
-      default:
-        if (currentImage == null) {
-          view.renderMessage("There is no image loaded.");
-        } else {
-          boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
-          for (String key : commands.keySet()) {
-            if (key.equals(e.getActionCommand())) {
-              commands.get(key).execute(model, view, commands, currentImage);
-              executedCommand = true; // Record that we have executed.
-              break; // Breaks loop so that we don't waste energy checking the remaining commands.
+            // Block below check for if the given command was invalid (i.e. no command was executed).
+            if (executedCommand) {
+              view.setUpLoadedImageAndHistogram(currentImage);
+            } else {
+              throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
+                      e.getActionCommand() + "\"");
             }
           }
+          break;
+      }
 
-
-          // Block below check for if the given command was invalid (i.e. no command was executed).
-          if (executedCommand) {
-            view.setUpLoadedImageAndHistogram(currentImage);
-          } else {
-            throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
-                    e.getActionCommand() + "\"");
-          }
-        }
-        break;
-    }
   }
 
   @Override
@@ -136,30 +168,20 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-  }
+    if (doubleClickFlag) {
+      doubleClickFlag = false;
+    } else {
+      doubleClickFlag = true;
+      String[] loadedImages = model.getKeys().toArray(new String[0]);
 
-//    String[] loadedImages =  model.getKeys().toArray(new String[0]);
-//
-////    if (e.getFirstIndex() == e.getLastIndex()) {
-////      currentImage = loadedImages[e.getFirstIndex()];
-////      view.setUpLoadedImageAndHistogram(currentImage);
-////      // Do nothing, there was no new selection.
-////    } else if (currentImage == loadedImages[e.getLastIndex()]) {
-////      currentImage = loadedImages[e.getLastIndex()];
-////      view.setUpLoadedImageAndHistogram(currentImage);
-//
-//      for (String s : ) {
-//
-//        }
-//      }
-//      System.out.println(currentImage);
-//
-//    view.setUpLoadedImageAndHistogram(currentImage);
-//     // view.setUpLoadedImageAndHistogram(currentImage);
-////    } else {
-////      currentImage = loadedImages[e.getFirstIndex()];
-////      view.setUpLoadedImageAndHistogram(currentImage);
-//    //}
+      if (currentImage == loadedImages[e.getLastIndex()]) {
+        currentImage = loadedImages[e.getFirstIndex()];
+      } else {
+        currentImage = loadedImages[e.getLastIndex()];
+      }
+      view.setUpLoadedImageAndHistogram(currentImage);
+    }
+  }
   }
 
 

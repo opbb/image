@@ -38,7 +38,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   private JFileChooser fchooser;
   private String imageName;
   private JPanel rightPanel;
-  private boolean opened;
+  private ArrayList<JButton> otherFiles;
+
 
   private JLabel imageLabel;
   private JScrollPane imageVerticalScroll;
@@ -119,34 +120,25 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
 
 
-    JPanel picker = new JPanel();
+    //JPanel picker = new JPanel();
     filesPanel = new JPanel();
-
-    setUpVertPanel(picker, leftPanel);
+    //setUpVertPanel(picker, leftPanel);
+    setUpVertPanel(filesPanel, leftPanel);
     filesPanel.setBorder(BorderFactory.createTitledBorder("Open Images"));
-    picker.add(filesPanel);
+    //picker.add(filesPanel);
+    listOfFiles = new JList<String>();
+    listOfFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    lists.add(listOfFiles);
+    filesPanel.add(listOfFiles);
 
 
-
-//    DefaultListModel<String> openFiles = new DefaultListModel<>();
-//
-//    for (String file : model.getKeys()) {
-//      openFiles.addElement(file);
-//    }
-//    listOfFiles = new JList<String>(model.getKeys().toArray(new String[0]));
-//    listOfFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//    lists.add(listOfFiles);
-//
-//    filesPanel.add(new JScrollPane(listOfFiles));
 
 
     imageName = "";
     imageLabel = new JLabel();
     imagePanel = new JPanel();
     imagePanel.add(imageLabel);
-//    JScrollPane imageScroll = new JScrollPane(imageLabel);
-//
-//    imagePanel.add(imageScroll);
+
 
 
     histPanel = new JPanel();
@@ -156,6 +148,11 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
 
 
+  }
+
+  @Override
+  public void updateOpenedFiles() {
+    listOfFiles.setListData(model.getKeys().toArray(new String[0]));
   }
 
   @Override
@@ -175,50 +172,15 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
   }
 
-  @Override
-  public void setToMap(String name, BufferedImage image) {
-    lOfBf.put(name, Formats.makeBF(name, model.getImageValues(name)));
-  }
-
-  public void setLoadedImage(String name) {
-
-
-//      imagePanel.remove(imageVerticalScroll);
-//      imagePanel.revalidate();
-//      imagePanel.repaint();
-
-      imageLabel.setIcon(new ImageIcon(lOfBf.get(name)));
 
 
 
-      setUp(imagePanel, rightPanel);
-
-
-
-
-
-  }
 
   @Override
   public void setUpLoadedImageAndHistogram(String newName) {
 
 
-//    BufferedImage bf = Formats.makeBF(newName, model.getImageValues(newName));
-//
-//    ImageIcon icon = new ImageIcon(bf);
-//    Image img = icon.getImage();
-//
-//    icon.setImage(img);
-//    imageLabel.setIcon(icon);
-//
-//
-//    removeHist();
-//    histPanel = new DrawHist(newName);
-//
-//    setUp(imagePanel, rightPanel);
-//
-//    imageName = newName;
-//    setUp(histPanel, rightPanel);
+
     pixels = model.getImageValues(newName);
     BufferedImage bf = Formats.makeBF(newName, pixels);
     removeHist();
@@ -228,18 +190,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     ImageIcon icon = new ImageIcon(bf);
 
 
-
-
-
     imageLabel.setIcon(icon);
     imageVerticalScroll = new JScrollPane(imageLabel);
     imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
 
-
-
     this.imagePanel.add(imageVerticalScroll);
-
 
 
     histPanel = new DrawHist(pixels);
@@ -249,41 +205,16 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     imageName = newName;
     setUp(histPanel, rightPanel);
 
-//    removeHist();
-//
-//    BufferedImage bf = Formats.makeBF(newName, model.getImageValues(newName) );
-//    imageLabel.setIcon(new ImageIcon(bf));
-//
-//
-//
-//
-//    buildHistPanel(newName);
-////    histPanel = new DrawHist(newName);
-//
-//    setUp(imagePanel, rightPanel);
-//
-////    imageName = newName;
-//    setUpVertPanel(histPanel, rightPanel);
+
   }
 
 
-  @Override
-  public void filesTrack(String name) {
-    JButton but = new JButton(name);
-    but.addActionListener(new FileListener());
-    but.setActionCommand(name);
-    but.setPreferredSize(new Dimension(20, 20));
-    filesPanel.add(but);
-  }
 
-  private class FileListener implements ActionListener {
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-      setUpLoadedImageAndHistogram(e.getActionCommand());
-    }
-  }
+
+
+
 
   @Override
   public void setUpImageAndHistogram(String newName) {
@@ -297,60 +228,48 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         pixels = model.getImageValues(newName);
         histPanel = new DrawHist(pixels);
 
-//        buildImagePanel(newName);
+
 
 
 
         setUp(imagePanel, rightPanel);
 
         imageName = newName;
-        filesTrack(newName);
+
+
         setUp(histPanel, rightPanel);
       } else {
-        //removeHist();
-//        imagePanel.remove(imageVerticalScroll);
-//        imagePanel.revalidate();
-//        imagePanel.repaint();
-//        buildImagePanel(newName);
 
+
+        removeHist();
         imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
 
 
 
         pixels = model.getImageValues(newName);
         histPanel = new DrawHist(pixels);
+        setUp(histPanel,rightPanel);
 
 
-        //setUp(imagePanel, rightPanel);
+
 
         imageName = newName;
-        filesTrack(newName);
-        //setUp(histPanel, rightPanel);
+
       }
 
     }
 
 
 
-
+  //dont worry
   private void removeHist() {
     rightPanel.remove(histPanel);
 
   }
 
 
-  @Override
-  public void buildHistPanel(String filename) {
-    model.loadImage(filename, new ImageImpl(filename));
-//    histPanel = new DrawHist(filename);
 
-
-  }
-
-  @Override
-  public JComponent getMainComponent() {
-    return null;
-  }
+  
 
   @Override
   public void buildImagePanel(String filename) {
@@ -411,12 +330,11 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         imageVerticalScroll = new JScrollPane(imageLabel);
         imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
-//        icon.setImage(img1);
-//        imageLabel.setIcon(icon);
+
 
 
         this.imagePanel.add(imageVerticalScroll);
-//        lOfBf.put(imageName, img);
+
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
@@ -437,14 +355,14 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       Image resi = imgage.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
 
-      //imageLabel.setIcon(new ImageIcon(resi));
+
       icon.setImage(imgage);
       imageLabel.setIcon(icon);
       imageVerticalScroll = new JScrollPane(imageLabel);
       imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
       this.imagePanel.add(imageVerticalScroll);
-//      lOfBf.put(imageName, img);
+
     } else {
 
 
@@ -462,7 +380,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         imageVerticalScroll = new JScrollPane(imageLabel);
         imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
         this.imagePanel.add(imageVerticalScroll);
-//        lOfBf.put(imageName, bf);
+
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       } catch (IOException e) {
@@ -493,6 +411,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     parentPanel.add(panel);
   }
 
+  //needed for image and histogram after alterations
   private void setUp(JPanel panel, JPanel parentPanel) {
     panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
     parentPanel.add(panel);
@@ -507,8 +426,17 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     for (JList list : lists) {
       list.addListSelectionListener(controller);
     }
+
   }
 
+  public List<String> getFiles() {
+
+    List<String> st = new ArrayList<>();
+    for (JButton button : otherFiles) {
+      st.add(button.getActionCommand());
+    }
+    return st;
+  }
 
   private class DrawHist extends JPanel {
 

@@ -1,6 +1,7 @@
 package imeview;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -18,16 +19,10 @@ public interface IMEGUIView extends IMEView {
 
   void buildImagePanel(String filename);
 
-  void buildHistPanel(String filename);
-
 
   void setUpImageAndHistogram(String newName);
 
-  /**
-   * Gets the main JComponent in this view.
-   * @return the main JComponent
-   */
-  JComponent getMainComponent();
+
 
   /**
    * Gets a double as input from the user.
@@ -42,14 +37,12 @@ public interface IMEGUIView extends IMEView {
 
   void setUpLoadedImageAndHistogram(String newName);
 
-  /**
-   * Updates the list of opened files.
-   */
 
 
-  void setLoadedImage(String name);
 
-  void setToMap(String name, BufferedImage img);
 
-  void filesTrack(String name);
+
+
+
+  void updateOpenedFiles();
 }
