@@ -28,6 +28,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   private final IMEGUIView view;
   private String currentImage;
   private int currentIndex;
+  private boolean doubleClickFlag;
 
 
   /**
@@ -46,6 +47,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
     this.model = model;
     this.view = view;
     this.view.setController(this);
+    doubleClickFlag = false;
   }
 
   @Override
@@ -55,7 +57,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    switch(e.getActionCommand()) {
+    switch (e.getActionCommand()) {
 
       case ("Save file"):
         String file = view.getFilePath();
@@ -114,10 +116,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 //        }
 
 
-          break;
-
-
-
+        break;
 
 
       default:
@@ -148,37 +147,27 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void itemStateChanged(ItemEvent e) {
-    switch(e.getStateChange()) {
+    switch (e.getStateChange()) {
 
     }
   }
 
   @Override
   public void valueChanged(ListSelectionEvent e) {
-  }
+    if (doubleClickFlag) {
+      doubleClickFlag = false;
+    } else {
+      doubleClickFlag = true;
+      String[] loadedImages = model.getKeys().toArray(new String[0]);
 
-//    String[] loadedImages =  model.getKeys().toArray(new String[0]);
-//
-////    if (e.getFirstIndex() == e.getLastIndex()) {
-////      currentImage = loadedImages[e.getFirstIndex()];
-////      view.setUpLoadedImageAndHistogram(currentImage);
-////      // Do nothing, there was no new selection.
-////    } else if (currentImage == loadedImages[e.getLastIndex()]) {
-////      currentImage = loadedImages[e.getLastIndex()];
-////      view.setUpLoadedImageAndHistogram(currentImage);
-//
-//      for (String s : ) {
-//
-//        }
-//      }
-//      System.out.println(currentImage);
-//
-//    view.setUpLoadedImageAndHistogram(currentImage);
-//     // view.setUpLoadedImageAndHistogram(currentImage);
-////    } else {
-////      currentImage = loadedImages[e.getFirstIndex()];
-////      view.setUpLoadedImageAndHistogram(currentImage);
-//    //}
+      if (currentImage == loadedImages[e.getLastIndex()]) {
+        currentImage = loadedImages[e.getFirstIndex()];
+      } else {
+        currentImage = loadedImages[e.getLastIndex()];
+      }
+      view.setUpLoadedImageAndHistogram(currentImage);
+    }
   }
+}
 
 
