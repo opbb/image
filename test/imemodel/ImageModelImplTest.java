@@ -199,6 +199,7 @@ public class ImageModelImplTest {
             model2.getImageValues("backTo"));
   }
 
+
   @Test
   public void testVerticalFlip() {
 
