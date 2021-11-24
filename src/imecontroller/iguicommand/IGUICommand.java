@@ -9,7 +9,7 @@ import imeview.IMEGUIView;
 
 public interface IGUICommand {
 
-  void execute(ImageModel model, IMEGUIView view, Map<String, IGUICommand> commands, String imageName)
+  void execute(ImageModel model, IMEGUIView view, String imageName)
           throws IllegalStateException;
 
   /**

@@ -1,8 +1,6 @@
 package imecontroller.iguicommand;
 
 
-import java.util.Map;
-
 import imemodel.ExtraFilters;
 import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
@@ -13,8 +11,7 @@ import imeview.IMEGUIView;
  */
 public class SepiaGUICommand extends AbstractGUICommand {
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String,
-          IGUICommand> commands, String imageName) {
+  public void execute(ImageModel model, IMEGUIView view, String imageName) {
     ExtraFilters filter = new ExtraFiltersImpl(model);
       filter.toSepia(imageName);
   }

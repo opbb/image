@@ -1,5 +1,5 @@
 /*
-package imecontroller.iguicommand;
+package imecontroller.imecontroller.iguicommand;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

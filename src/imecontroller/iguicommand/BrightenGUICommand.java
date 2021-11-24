@@ -1,9 +1,5 @@
 package imecontroller.iguicommand;
 
-import java.util.Map;
-
-import javax.swing.*;
-
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
 
@@ -15,8 +11,7 @@ import imeview.IMEGUIView;
 public class BrightenGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String,
-          IGUICommand> commands, String imageName)
+  public void execute(ImageModel model, IMEGUIView view, String imageName)
           throws IllegalStateException {
     double amount = getDoubleInput(view,
             "Input amount to brighten (A number from -255 to 255):",

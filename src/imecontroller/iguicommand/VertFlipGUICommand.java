@@ -1,8 +1,5 @@
 package imecontroller.iguicommand;
 
-import java.util.Map;
-
-import imecontroller.icommand.ICommand;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
 
@@ -15,7 +12,7 @@ public class VertFlipGUICommand extends AbstractGUICommand {
 
   @Override
   public void execute(ImageModel model, IMEGUIView view,
-                      Map<String, IGUICommand> commands, String imageName) {
+                      String imageName) {
       model.flipVertical(imageName);
   }
 

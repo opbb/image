@@ -1,9 +1,6 @@
 package imecontroller.iguicommand;
 
 
-import java.util.Map;
-
-import imecontroller.icommand.ICommand;
 import imemodel.ExtraFilters;
 import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
@@ -16,7 +13,7 @@ public class SharpenGUICommand extends AbstractGUICommand {
 
   @Override
   public void execute(ImageModel model, IMEGUIView view,
-                      Map<String, IGUICommand> commands, String imageName) {
+                      String imageName) {
     ExtraFilters filter = new ExtraFiltersImpl(model);
       filter.sharpen(imageName);
   }

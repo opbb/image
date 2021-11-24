@@ -1,8 +1,6 @@
 package imecontroller.iguicommand;
 
 
-import java.util.Map;
-
 import imemodel.ExtraFilters;
 import imemodel.ExtraFiltersImpl;
 import imemodel.ImageModel;
@@ -15,8 +13,7 @@ public class BlurGUICommand extends AbstractGUICommand {
 
 
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String,
-          IGUICommand> commands, String imageName) {
+  public void execute(ImageModel model, IMEGUIView view, String imageName) {
     ExtraFilters filter = new ExtraFiltersImpl(model);
     filter.blur(imageName);
   }
