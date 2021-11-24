@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,11 +16,9 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import imecontroller.IMEGUIController;
-import imecontroller.icommand.ICommand;
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.Histogram;
@@ -66,8 +62,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     setTitle("Image Processor");
     setSize(800, 800);
     this.model = model;
-
-    lOfBf = new HashMap<>();
 
 
     buttons = new ArrayList<JButton>();
@@ -123,34 +117,24 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
 
 
-    JPanel picker = new JPanel();
+    //JPanel picker = new JPanel();
     filesPanel = new JPanel();
-
-    setUpVertPanel(picker, leftPanel);
+    //setUpVertPanel(picker, leftPanel);
+    setUpVertPanel(filesPanel, leftPanel);
     filesPanel.setBorder(BorderFactory.createTitledBorder("Open Images"));
-    picker.add(filesPanel);
+    //picker.add(filesPanel);
+    listOfFiles = new JList<String>();
+    listOfFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    lists.add(listOfFiles);
+    filesPanel.add(listOfFiles);
 
-
-
-//    DefaultListModel<String> openFiles = new DefaultListModel<>();
-//
-//    for (String file : model.getKeys()) {
-//      openFiles.addElement(file);
-//    }
-//    listOfFiles = new JList<String>(model.getKeys().toArray(new String[0]));
-//    listOfFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//    lists.add(listOfFiles);
-//
-//    filesPanel.add(new JScrollPane(listOfFiles));
 
 
     imageName = "";
     imageLabel = new JLabel();
     imagePanel = new JPanel();
     imagePanel.add(imageLabel);
-//    JScrollPane imageScroll = new JScrollPane(imageLabel);
-//
-//    imagePanel.add(imageScroll);
+
 
 
     histPanel = new JPanel();
@@ -184,45 +168,11 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     lOfBf.put(name, Formats.makeBF(name, model.getImageValues(name)));
   }
 
-  public void setLoadedImage(String name) {
 
-
-//      imagePanel.remove(imageVerticalScroll);
-//      imagePanel.revalidate();
-//      imagePanel.repaint();
-
-      imageLabel.setIcon(new ImageIcon(lOfBf.get(name)));
-
-
-
-      setUp(imagePanel, rightPanel);
-
-
-
-
-
-  }
 
   @Override
   public void setUpLoadedImageAndHistogram(String newName) {
 
-
-//    BufferedImage bf = Formats.makeBF(newName, model.getImageValues(newName));
-//
-//    ImageIcon icon = new ImageIcon(bf);
-//    Image img = icon.getImage();
-//
-//    icon.setImage(img);
-//    imageLabel.setIcon(icon);
-//
-//
-//    removeHist();
-//    histPanel = new DrawHist(newName);
-//
-//    setUp(imagePanel, rightPanel);
-//
-//    imageName = newName;
-//    setUp(histPanel, rightPanel);
     pixels = model.getImageValues(newName);
     BufferedImage bf = Formats.makeBF(newName, pixels);
     removeHist();
@@ -232,18 +182,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     ImageIcon icon = new ImageIcon(bf);
 
 
-
-
-
     imageLabel.setIcon(icon);
     imageVerticalScroll = new JScrollPane(imageLabel);
     imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
 
-
-
     this.imagePanel.add(imageVerticalScroll);
-
 
 
     histPanel = new DrawHist(pixels);
@@ -253,24 +197,11 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     imageName = newName;
     setUp(histPanel, rightPanel);
 
-//    removeHist();
-//
-//    BufferedImage bf = Formats.makeBF(newName, model.getImageValues(newName) );
-//    imageLabel.setIcon(new ImageIcon(bf));
-//
-//
-//
-//
-//    buildHistPanel(newName);
-////    histPanel = new DrawHist(newName);
-//
-//    setUp(imagePanel, rightPanel);
-//
-////    imageName = newName;
-//    setUpVertPanel(histPanel, rightPanel);
+
   }
 
 
+  //dont worry
   @Override
   public void updateOpenedFiles() {
     listOfFiles.setListData(model.getKeys().toArray(new String[0]));
@@ -285,6 +216,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
   }
 
+
   @Override
   public void setUpImageAndHistogram(String newName) {
 
@@ -297,21 +229,17 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         pixels = model.getImageValues(newName);
         histPanel = new DrawHist(pixels);
 
-//        buildImagePanel(newName);
+
 
 
 
         setUp(imagePanel, rightPanel);
 
         imageName = newName;
-        updateOpenedFiles();
+
         setUp(histPanel, rightPanel);
       } else {
-        //removeHist();
-//        imagePanel.remove(imageVerticalScroll);
-//        imagePanel.revalidate();
-//        imagePanel.repaint();
-//        buildImagePanel(newName);
+
 
         imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
 
@@ -321,32 +249,33 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         histPanel = new DrawHist(pixels);
 
 
-        //setUp(imagePanel, rightPanel);
+
 
         imageName = newName;
-        updateOpenedFiles();
-        //setUp(histPanel, rightPanel);
+
       }
 
     }
 
 
 
-
+  //dont worry
   private void removeHist() {
     rightPanel.remove(histPanel);
 
   }
 
 
+  //dont worry
   @Override
   public void buildHistPanel(String filename) {
     model.loadImage(filename, new ImageImpl(filename));
-//    histPanel = new DrawHist(filename);
+
 
 
   }
 
+  //dont worry
   @Override
   public JComponent getMainComponent() {
     return null;
@@ -411,12 +340,11 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         imageVerticalScroll = new JScrollPane(imageLabel);
         imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
-//        icon.setImage(img1);
-//        imageLabel.setIcon(icon);
+
 
 
         this.imagePanel.add(imageVerticalScroll);
-//        lOfBf.put(imageName, img);
+
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
@@ -437,14 +365,14 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       Image resi = imgage.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 
 
-      //imageLabel.setIcon(new ImageIcon(resi));
+
       icon.setImage(imgage);
       imageLabel.setIcon(icon);
       imageVerticalScroll = new JScrollPane(imageLabel);
       imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
       this.imagePanel.add(imageVerticalScroll);
-//      lOfBf.put(imageName, img);
+
     } else {
 
 
@@ -462,7 +390,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         imageVerticalScroll = new JScrollPane(imageLabel);
         imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
         this.imagePanel.add(imageVerticalScroll);
-//        lOfBf.put(imageName, bf);
+
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       } catch (IOException e) {
@@ -493,6 +421,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     parentPanel.add(panel);
   }
 
+  //needed for image and histogram after alterations
   private void setUp(JPanel panel, JPanel parentPanel) {
     panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
     parentPanel.add(panel);

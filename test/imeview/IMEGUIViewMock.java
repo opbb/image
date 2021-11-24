@@ -68,11 +68,6 @@ public class IMEGUIViewMock implements IMEGUIView {
   }
 
   @Override
-  public void setLoadedImage(String name) {
-    
-  }
-
-  @Override
   public void setToMap(String name, BufferedImage img) {
 
   }

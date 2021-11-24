@@ -47,7 +47,5 @@ public interface IMEGUIView extends IMEView {
    */
   void updateOpenedFiles();
 
-  void setLoadedImage(String name);
-
   void setToMap(String name, BufferedImage img);
 }
