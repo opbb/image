@@ -5,13 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.Image;
@@ -20,6 +16,12 @@ import imemodel.ImageModel;
 import imemodel.ImageUtil;
 import imeview.IMEGUIView;
 
+/**
+ * This class is the controller for the GUI within the MVC design, responsible as the
+ * ActionListener, ItemListener(For possible future implementation), and ListSelectionListener.
+ * This class when constructed already handles the inputs from the GUI and will address them
+ * as needed, i.e. no need for a run() method.
+ */
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         ItemListener, ListSelectionListener {
 
@@ -27,13 +29,12 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   private final ImageModel model;
   private final IMEGUIView view;
   private String currentImage;
-  private int currentIndex;
   private boolean doubleClickFlag;
 
 
   /**
    * A basic constructor for the IMEGUIController. Takes input from the GUI.
-   *
+   * GUI commands specifcally this time as to know their action commands.
    * @param commands the commands that this controller can use
    * @param model    the model that this controller will control
    * @param view     the view that this controller will use to display things
@@ -51,16 +52,15 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
 
   @Override
   public void run() {
-    // Run doesn't do anything because this controller is reactive rather than proactive.
+
+    //No need for this method as the controller simply acts as a listener and delegates actions
+    //to the view and model as needed.
+    return;
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-//    for (String s : view.getFiles())
-//    if (e.getActionCommand().equals(s)) {
-//      currentImage = s;
-//    }
-//    else {
+
       switch (e.getActionCommand()) {
 
         case ("Save file"):
@@ -74,7 +74,6 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
               } else {
                 Formats.writeImageFile(img1, saveTo);
               }
-
             } else {
               view.renderMessage("The image " + saveTo + " is null.\n\n");
             }
@@ -88,14 +87,8 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         case (""):
 
 
+          break;
         case ("Load file"):
-
-//          file = view.getFilePath();
-//          String name = file;
-//          if (!name.equals("")) {
-//            currentImage = name;
-//            model.loadImage(name, new ImageImpl(currentImage));
-//            view.setUpImageAndHistogram(currentImage);
           file = view.getFilePath();
           String name = file;
           int count = 0;
@@ -113,24 +106,9 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
             view.setUpImageAndHistogram(name);
             view.updateOpenedFiles();
 
-
           }
 
-
-//        JFileChooser fchooser = new JFileChooser("");
-//        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-//                "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
-//        fchooser.setFileFilter(filter);
-//        int retvalue = fchooser.showOpenDialog(view.getMainComponent());
-//        if (retvalue == JFileChooser.APPROVE_OPTION) {
-//          File f = fchooser.getSelectedFile();
-//          String newName = f.getAbsolutePath();
-//          model.loadImage(newName, new ImageImpl(newName));
-//        }
-
-
           break;
-
 
         default:
           if (currentImage == null) {

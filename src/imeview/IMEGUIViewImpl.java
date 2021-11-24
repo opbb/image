@@ -1,8 +1,17 @@
 package imeview;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import java.awt.Stroke;
+import java.awt.BasicStroke;
+import java.awt.Image;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Point;
+
+
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,14 +19,27 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JList;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
+import javax.swing.ListSelectionModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 import imecontroller.IMEGUIController;
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
@@ -26,6 +48,14 @@ import imemodel.HistogramImpl;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 
+
+/**
+ * This class acts as the GUI view of our image processor. It contains a slew of java swing
+ * components from buttons, labels, panels, and more. It delegates what the GUI to do through
+ * its buttons and alterations listening to the controller, by which this class merely designs
+ * the application/GUI side, knowing when to show a change in the image and histogram when ordered
+ * to by the controller.
+ */
 public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   private JPanel mainPanel;
@@ -38,12 +68,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   private JFileChooser fchooser;
   private String imageName;
   private JPanel rightPanel;
-  private ArrayList<JButton> otherFiles;
+
 
 
   private JLabel imageLabel;
   private JScrollPane imageVerticalScroll;
-  private JScrollPane imageHorizontalScroll;
+
 
   private Map<String, BufferedImage> lOfBf;
   private int[][][] pixels;
@@ -58,6 +88,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
 
+  /**
+   * Main and only constructor, takes in a ImageModel object, a map of commands with keys as their
+   * action command and the IGUICommand with their execute methods.
+   * @param model Image model by which to retrieve needed data from.
+   * @param commands A map of IGUICommands, needed so that the buttons can be drawn onto the GUI.
+   */
   public IMEGUIViewImpl(ImageModel model, Map<String, IGUICommand> commands) {
     super();
     setTitle("Image Processor");
@@ -120,18 +156,14 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
 
 
-    //JPanel picker = new JPanel();
+
     filesPanel = new JPanel();
-    //setUpVertPanel(picker, leftPanel);
     setUpVertPanel(filesPanel, leftPanel);
     filesPanel.setBorder(BorderFactory.createTitledBorder("Open Images"));
-    //picker.add(filesPanel);
     listOfFiles = new JList<String>();
     listOfFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     lists.add(listOfFiles);
     filesPanel.add(listOfFiles);
-
-
 
 
     imageName = "";
@@ -140,12 +172,10 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     imagePanel.add(imageLabel);
 
 
-
     histPanel = new JPanel();
 
     setUpVertPanel(histPanel, rightPanel);
     setUpVertPanel(imagePanel, rightPanel);
-
 
 
   }
@@ -166,20 +196,14 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       File f = fchooser.getSelectedFile();
       String newName = f.getAbsolutePath();
       return newName;
-    }
-    else {
+    } else {
       return "";
     }
   }
 
 
-
-
-
   @Override
   public void setUpLoadedImageAndHistogram(String newName) {
-
-
 
     pixels = model.getImageValues(newName);
     BufferedImage bf = Formats.makeBF(newName, pixels);
@@ -189,95 +213,65 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     imagePanel.repaint();
     ImageIcon icon = new ImageIcon(bf);
 
-
     imageLabel.setIcon(icon);
     imageVerticalScroll = new JScrollPane(imageLabel);
     imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
-
     this.imagePanel.add(imageVerticalScroll);
-
-
     histPanel = new DrawHist(pixels);
-
-    //setUp(imagePanel, rightPanel);
 
     imageName = newName;
     setUp(histPanel, rightPanel);
 
-
   }
-
-
-
-
-
-
-
 
 
   @Override
   public void setUpImageAndHistogram(String newName) {
 
+    if (imageName.equals("")) {
 
+      buildImagePanel(newName);
+      pixels = model.getImageValues(newName);
+      histPanel = new DrawHist(pixels);
 
-      if (imageName.equals("")) {
+      setUp(imagePanel, rightPanel);
 
+      imageName = newName;
+      setUp(histPanel, rightPanel);
 
-        buildImagePanel(newName);
-        pixels = model.getImageValues(newName);
-        histPanel = new DrawHist(pixels);
+    } else {
 
+      removeHist();
+      imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
 
+      pixels = model.getImageValues(newName);
+      histPanel = new DrawHist(pixels);
+      setUp(histPanel, rightPanel);
 
-
-
-        setUp(imagePanel, rightPanel);
-
-        imageName = newName;
-
-
-        setUp(histPanel, rightPanel);
-      } else {
-
-
-        removeHist();
-        imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
-
-
-
-        pixels = model.getImageValues(newName);
-        histPanel = new DrawHist(pixels);
-        setUp(histPanel,rightPanel);
-
-
-
-
-        imageName = newName;
-
-      }
-
+      imageName = newName;
     }
+  }
 
 
-
-  //dont worry
+  /**
+   * This method is used for removing the histogram displayed so that the updated histogram is
+   * shown when a filter or change is made.
+   */
   private void removeHist() {
     rightPanel.remove(histPanel);
 
   }
 
 
-
-  
-
   @Override
   public void buildImagePanel(String filename) {
 
-
+    //for ppm conversion
     if (filename.substring(filename.lastIndexOf(".") + 1).equals("ppm")) {
-
-      int width, height, maxRGB;
+      int width;
+      int height;
+      int maxRGB;
 
       try {
         FileInputStream file = new FileInputStream(filename);
@@ -293,11 +287,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
         //now set up the scanner to read from the string we just built
         sc = new Scanner(builder.toString());
-
-        String token;
-
-        token = sc.next();
-
 
         width = sc.nextInt();
         height = sc.nextInt();
@@ -323,21 +312,19 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         }
         ImageIcon icon = new ImageIcon(img);
         Image img1 = icon.getImage();
-        Image resi = img1.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
+
 
         imageLabel.setIcon(new ImageIcon(img1));
 
         imageVerticalScroll = new JScrollPane(imageLabel);
         imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
 
-
-
-
         this.imagePanel.add(imageVerticalScroll);
 
       } catch (FileNotFoundException e) {
         e.printStackTrace();
       }
+      //Used for bmp conversion.
     } else if (filename.substring(filename.lastIndexOf(".") + 1).equals("bmp")) {
       imemodel.Image img1 = new ImageImpl(filename);
       int height = img1.getHeight();
@@ -352,8 +339,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       }
       ImageIcon icon = new ImageIcon(img);
       Image imgage = icon.getImage();
-      Image resi = imgage.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
-
 
 
       icon.setImage(imgage);
@@ -365,13 +350,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
     } else {
 
-
+      //for jpegs and png display.
       try {
-         FileInputStream file = new FileInputStream(filename);
+        FileInputStream file = new FileInputStream(filename);
         BufferedImage bf = ImageIO.read(file);
         ImageIcon icon = new ImageIcon(bf);
         Image img = icon.getImage();
-
 
 
         icon.setImage(img);
@@ -386,9 +370,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       } catch (IOException e) {
         e.printStackTrace();
       }
-
-
-
 
 
     }
@@ -411,7 +392,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     parentPanel.add(panel);
   }
 
-  //needed for image and histogram after alterations
+  /**
+   * Used for making sure the image and histogram are setup correctly after changes have been
+   * made to the current image or a new image has been loaded in.
+   * @param panel The child panel to be setup.
+   * @param parentPanel The parent of this panel to be.
+   */
   private void setUp(JPanel panel, JPanel parentPanel) {
     panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
     parentPanel.add(panel);
@@ -429,15 +415,11 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   }
 
-  public List<String> getFiles() {
 
-    List<String> st = new ArrayList<>();
-    for (JButton button : otherFiles) {
-      st.add(button.getActionCommand());
-    }
-    return st;
-  }
-
+  /**
+   * This class represents a panel of the Histogram to be displayed of every image.
+   * It has a set size of 600 pixels wide and 100 pixels tall.
+   */
   private class DrawHist extends JPanel {
 
     private int[][][] img;
@@ -445,12 +427,15 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     private int height = 100;
 
 
+    /**
+     * Takes a 3d int array representing the pixels of the image. It needs to take a 3d int array
+     * so that it is always being fed the correct data, when changed.
+     * @param image The 3d int array of pixels.
+     */
     public DrawHist(int[][][] image) {
 
       img = image;
       setMaximumSize(new Dimension(width, height));
-
-
 
 
     }
@@ -464,15 +449,12 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     @Override
     protected void paintComponent(Graphics g) {
 
-
-
       Histogram h = new HistogramImpl(model);
 
       Graphics2D g2 = (Graphics2D) g;
       g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-
-      ArrayList<Point> graphPoints = new ArrayList<Point>();
+      ArrayList<Point> redPoints = new ArrayList<Point>();
       ArrayList<Point> bluePoints = new ArrayList<Point>();
       ArrayList<Point> greenPoints = new ArrayList<Point>();
       ArrayList<Point> intPoints = new ArrayList<Point>();
@@ -480,6 +462,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
       int maxValue = arr[0][0];
 
+      //finds the max rgb value by which to scale the image down correctly.
       for (int j = 0; j < arr.length; j++) {
         for (int i = 0; i < 3; i++) {
           if (arr[j][0] > maxValue) {
@@ -498,10 +481,13 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       }
 
 
+      //set scale so it looks nicer within a 600px wide foundation.
       double xScale = 3;
+
+      //uses the max value to determine the y scale factor.
       double yScale = ((double) height / (double) maxValue);
 
-
+      //iterates through the image and gathers the info for each color and intensity of each pixel.
       for (int i = 0; i < arr.length; i++) {
 
         int x1 = (int) (i * xScale);
@@ -509,7 +495,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         int g1 = (int) (((maxValue - arr[i][1]) * yScale));
         int b1 = (int) (((maxValue - arr[i][2]) * yScale));
         int int1 = (int) (((maxValue - arr[i][3]) * yScale));
-        graphPoints.add(new Point(x1, r1));
+        redPoints.add(new Point(x1, r1));
         bluePoints.add(new Point(x1, b1));
         greenPoints.add(new Point(x1, g1));
         intPoints.add(new Point(x1, int1));
@@ -517,21 +503,23 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       }
 
 
-
-
+      //draws the x and y axis.
       g2.drawLine(0, getHeight(), 0, 0);
       g2.drawLine(0, getHeight(), getWidth(), getHeight());
 
 
+      //draws red components
       g2.setColor(Color.red);
       g2.setStroke(GRAPH_STROKE);
-      for (int i = 0; i < graphPoints.size() - 1; i++) {
-        int x1 = graphPoints.get(i).x;
-        int y1 = graphPoints.get(i).y;
-        int x2 = graphPoints.get(i + 1).x;
-        int y2 = graphPoints.get(i + 1).y;
+      for (int i = 0; i < redPoints.size() - 1; i++) {
+        int x1 = redPoints.get(i).x;
+        int y1 = redPoints.get(i).y;
+        int x2 = redPoints.get(i + 1).x;
+        int y2 = redPoints.get(i + 1).y;
         g2.drawLine(x1, y1, x2, y2);
       }
+
+      //draws blue components
       g2.setColor(Color.blue);
       g2.setStroke(GRAPH_STROKE);
       for (int i = 0; i < bluePoints.size() - 1; i++) {
@@ -541,6 +529,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         int y2 = bluePoints.get(i + 1).y;
         g2.drawLine(x1, y1, x2, y2);
       }
+
+      //draws green components
       g2.setColor(Color.green);
       g2.setStroke(GRAPH_STROKE);
       for (int i = 0; i < greenPoints.size() - 1; i++) {
@@ -551,6 +541,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         g2.drawLine(x1, y1, x2, y2);
       }
 
+      //draws intensity components
       g2.setColor(Color.darkGray);
       g2.setStroke(GRAPH_STROKE);
       for (int i = 0; i < intPoints.size() - 1; i++) {
@@ -561,10 +552,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         g2.drawLine(x1, y1, x2, y2);
       }
 
-
     }
-
-
   }
 
   @Override
