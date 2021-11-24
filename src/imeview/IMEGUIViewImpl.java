@@ -84,6 +84,10 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
    */
   public IMEGUIViewImpl(ImageModel model, Map<String, IGUICommand> commands) {
     super();
+    if (model == null || commands == null) {
+      throw new IllegalArgumentException("The arguments must not be null.");
+    }
+
     setTitle("Image Processor");
     setSize(800, 800);
     this.model = model;
