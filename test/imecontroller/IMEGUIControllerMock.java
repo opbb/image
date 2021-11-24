@@ -8,7 +8,7 @@ import javax.swing.event.ListSelectionEvent;
 /**
  * A mock controller for testing that the view fires events correctly. Logs events.
  */
-public class IMEGUIControllerMock implements IMEGUIController implements {
+public class IMEGUIControllerMock implements IMEGUIController {
 
   StringBuilder log;
 

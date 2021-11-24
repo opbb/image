@@ -2,7 +2,7 @@ package imeview;
 
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
 
 import imecontroller.IMEGUIController;
 
@@ -54,7 +54,6 @@ public class IMEGUIViewMock implements IMEGUIView {
     return null;
   }
 
-  // Bazinga
 
   @Override
   public void setUpLoadedImageAndHistogram(String newName) {

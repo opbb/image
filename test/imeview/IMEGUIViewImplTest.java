@@ -1,6 +1,6 @@
 package imeview;
 
-import org.junit.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +12,8 @@ import imecontroller.IMEGUIControllerMock;
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.ImageModel;
 import imemodel.ImageModelMockTrue;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * A test class for IMEGUIViewImpl.
@@ -53,7 +55,39 @@ public class IMEGUIViewImplTest {
     IMEGUIView view = new IMEGUIViewImpl(mockModel, commands);
     view.setController(mockController);
 
-    Assert.assertEquals("", log.toString());
+    assertEquals("", log.toString());
+
+  }
+
+  @Test
+  public void testBuildImagePanel() {
+    IMEGUIView view = new IMEGUIViewImpl(mockModel, commands);
+    view.setController(mockController);
+    view.buildImagePanel("res/ella.png");
+
+    assertEquals("", log.toString());
+
+  }
+
+  @Test
+  public void testSetUpLoaded() {
+    IMEGUIView view = new IMEGUIViewMock(log);
+    view.setController(mockController);
+    view.setUpLoadedImageAndHistogram("res/ella.png");
+
+    assertEquals(true, mockModel.hasImage("res/ella.png"));
+    assertEquals("setController)\nsetUpLoadedImageAndHistogram) newName: res/ella.png\nhasImage) name: res/ella.png\n",
+            log.toString());
+
+  }
+
+  @Test
+  public void testSetUp() {
+    IMEGUIView view = new IMEGUIViewImpl(mockModel, commands);
+    view.setController(mockController);
+    view.setUpImageAndHistogram("res/ella.png");
+
+    assertEquals("", log.toString());
 
   }
 }
