@@ -24,19 +24,7 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JList;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.BorderFactory;
-import javax.swing.ListSelectionModel;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 
 
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -222,6 +210,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
     imageName = newName;
     setUp(histPanel, rightPanel);
+    SwingUtilities.updateComponentTreeUI(this);
 
   }
 
@@ -249,6 +238,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       histPanel = new DrawHist(pixels);
       setUp(histPanel, rightPanel);
 
+      SwingUtilities.updateComponentTreeUI(this);
       imageName = newName;
     }
   }
