@@ -231,15 +231,33 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
     } else {
 
-      removeHist();
-      imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
-
       pixels = model.getImageValues(newName);
-      histPanel = new DrawHist(pixels);
-      setUp(histPanel, rightPanel);
+      BufferedImage bf = Formats.makeBF(newName, pixels);
+      removeHist();
+      imagePanel.remove(imageVerticalScroll);
+      imagePanel.revalidate();
+      imagePanel.repaint();
+      ImageIcon icon = new ImageIcon(bf);
 
-      SwingUtilities.updateComponentTreeUI(this);
+      imageLabel.setIcon(icon);
+      imageVerticalScroll = new JScrollPane(imageLabel);
+      imageVerticalScroll.setMaximumSize(new Dimension(500, 500));
+
+      this.imagePanel.add(imageVerticalScroll);
+      histPanel = new DrawHist(pixels);
+
       imageName = newName;
+      setUp(histPanel, rightPanel);
+      SwingUtilities.updateComponentTreeUI(this);
+//      removeHist();
+//      imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
+//
+//      pixels = model.getImageValues(newName);
+//      histPanel = new DrawHist(pixels);
+//      setUp(histPanel, rightPanel);
+//
+//      SwingUtilities.updateComponentTreeUI(this);
+//      imageName = newName;
     }
   }
 
@@ -425,7 +443,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     public DrawHist(int[][][] image) {
 
       img = image;
-      setMaximumSize(new Dimension(width, height));
+      setMaximumSize(new Dimension(600, 200));
 
 
     }
@@ -493,9 +511,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       }
 
 
-      //draws the x and y axis.
-      g2.drawLine(0, getHeight(), 0, 0);
-      g2.drawLine(0, getHeight(), getWidth(), getHeight());
+
 
 
       //draws red components
@@ -541,6 +557,10 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         int y2 = intPoints.get(i + 1).y;
         g2.drawLine(x1, y1, x2, y2);
       }
+
+      //draws the x and y axis.
+      g2.drawLine(0, getHeight()/2, 0, 0);
+      g2.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
 
     }
   }
