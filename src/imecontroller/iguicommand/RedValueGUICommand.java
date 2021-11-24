@@ -1,7 +1,5 @@
 package imecontroller.iguicommand;
 
-import java.util.Map;
-
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
 
@@ -14,8 +12,7 @@ import imeview.IMEGUIView;
 public class RedValueGUICommand extends AbstractGUICommand {
 
   @Override
-  public void execute(ImageModel model, IMEGUIView view, Map<String,
-          IGUICommand> commands, String imageName) {
+  public void execute(ImageModel model, IMEGUIView view, String imageName) {
       model.getByComponent(imageName, "red");
   }
 

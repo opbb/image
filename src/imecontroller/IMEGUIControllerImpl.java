@@ -117,7 +117,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
             boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
             for (String key : commands.keySet()) {
               if (key.equals(e.getActionCommand())) {
-                commands.get(key).execute(model, view, commands, currentImage);
+                commands.get(key).execute(model, view, currentImage);
                 executedCommand = true; // Record that we have executed.
                 break; // Breaks loop so that we don't waste energy checking the remaining commands.
               }
