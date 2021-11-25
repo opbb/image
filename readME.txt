@@ -85,6 +85,8 @@ ExtraFiltersImpl: Once again through the use of code reuse, in this case composi
 This class also holds the implementation for the three new methods from the ExtraFilters interface, in which matrix manipulation along with the reuse of an original method in the Application class are utilized.
 Formats: This class contains static utility methods that help to read, write, get height, and get width of other image formats (png, jpeg, bmp). This utility class also extends the original ImageUtil class, in case for future need of that class' methods.
 
+(new 2.0)
+Added a static helper method to the Formats class in which we can make a buffered image out of any given image path. 
 
 (new 2.0)
 Histogram: Extends the original model interface and has one new public method which receives the histogram data of a given image's pixels.
