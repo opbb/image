@@ -60,9 +60,6 @@ public class Main {
   public static void main(String[] args) {
     ImageModel model = new ImageModelImpl();
 
-    //added the feature of reading a .txt file filled with commands and disregards comments.
-
-
     IMEController controller = null;
     if (args.length == 0) {
       Map<String, IGUICommand> commands = IGUICommand.generateMapFromList(Arrays.asList(
@@ -114,27 +111,12 @@ public class Main {
               new SaveCommand(),
               new InputFromFileCommand()));
       IMEView view = new IMEViewImpl(model);
-      //new IMEControllerImpl(commands, model, view).run();
-
-      //added the feature of reading a .txt file filled with commands and disregards comments.
-
-
-        //controller = new IMEGUIController(commands, model, view);
-//    } else {
-//      commands.add(new SaveCommand()),
-//      commands.add(new LoadCommand()),
-//
-//            new InputFromFileCommand(),
-//            new SaveCommand(),
-//            new LoadCommand()));
-//       view = new IMEViewImpl(model);
-
-        if (args[0].equals("-text")) {
-          controller = new IMEControllerImpl(commands, model, view);
-        } else if (args[0].equals("-file") && args.length >= 2) {
-          controller = new IMEFileController(commands, model, view, args[1]);
-        }
+      if (args[0].equals("-text")) {
+        controller = new IMEControllerImpl(commands, model, view);
+      } else if (args[0].equals("-file") && args.length >= 2) {
+        controller = new IMEFileController(commands, model, view, args[1]);
       }
+    }
 
 
     if (controller == null) {
@@ -145,7 +127,6 @@ public class Main {
     controller.run();
 
 
-
   }
-  }
+}
 

@@ -12,6 +12,6 @@ import javax.swing.event.ListSelectionListener;
  * also a type of ActionListener, ItemListener, and ListSelectionListener.
  */
 public interface IMEGUIController extends IMEController, ActionListener,
-        ItemListener, ListSelectionListener {
+        ListSelectionListener {
 
 }

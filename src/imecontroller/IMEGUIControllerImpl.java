@@ -25,7 +25,7 @@ import imeview.IMEGUIView;
  * as needed, i.e. no need for a run() method.
  */
 public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
-        ItemListener, ListSelectionListener {
+        ListSelectionListener {
 
   private final Map<String, IGUICommand> commands;
   private final ImageModel model;
@@ -138,13 +138,6 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
         break;
     }
 
-  }
-
-  @Override
-  public void itemStateChanged(ItemEvent e) {
-    switch (e.getStateChange()) {
-
-    }
   }
 
   @Override
