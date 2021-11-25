@@ -72,6 +72,13 @@ public class Formats extends ImageUtil {
 
   }
 
+  /**
+   * Makes a buffered image.
+   *
+   * @param name the name of the file, used to check file format
+   * @param pixels the values of the image
+   * @return a buffered image of the pixel values for the relevant file type
+   */
   public static BufferedImage makeBF(String name, int[][][] pixels) {
 
     BufferedImage img;

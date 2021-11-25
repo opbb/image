@@ -29,7 +29,7 @@ public interface IMEGUIView extends IMEView {
   /**
    * This method allows for the display of the loaded image into the GUI along with its histogram
    * data. Alternatively it handles the case of multiple images loaded as well.
-   * @param newName
+   * @param newName the name of the file to be set up
    */
   void setUpImageAndHistogram(String newName);
 

@@ -12,7 +12,7 @@ public class HoriFlipGUICommand extends AbstractGUICommand {
   @Override
   public void execute(ImageModel model, IMEGUIView view,
                       String imageName) {
-      model.flipHorizontal(imageName);
+    model.flipHorizontal(imageName);
   }
 
   @Override

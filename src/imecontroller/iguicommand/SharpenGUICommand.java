@@ -15,7 +15,7 @@ public class SharpenGUICommand extends AbstractGUICommand {
   public void execute(ImageModel model, IMEGUIView view,
                       String imageName) {
     ExtraFilters filter = new ExtraFiltersImpl(model);
-      filter.sharpen(imageName);
+    filter.sharpen(imageName);
   }
 
   @Override

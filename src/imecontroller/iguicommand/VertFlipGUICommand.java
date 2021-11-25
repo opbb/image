@@ -13,7 +13,7 @@ public class VertFlipGUICommand extends AbstractGUICommand {
   @Override
   public void execute(ImageModel model, IMEGUIView view,
                       String imageName) {
-      model.flipVertical(imageName);
+    model.flipVertical(imageName);
   }
 
   @Override
