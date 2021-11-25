@@ -7,23 +7,10 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Map;
 
-import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 
-import imecontroller.iguicommand.BlueValueGUICommand;
-import imecontroller.iguicommand.BlurGUICommand;
-import imecontroller.iguicommand.BrightenGUICommand;
-import imecontroller.iguicommand.GreenValueGUICommand;
-import imecontroller.iguicommand.HoriFlipGUICommand;
 import imecontroller.iguicommand.IGUICommand;
-import imecontroller.iguicommand.IntensityValueGUICommand;
-import imecontroller.iguicommand.LumaValueGUICommand;
 import imecontroller.iguicommand.MockGUICommand;
-import imecontroller.iguicommand.RedValueGUICommand;
-import imecontroller.iguicommand.SepiaGUICommand;
-import imecontroller.iguicommand.SharpenGUICommand;
-import imecontroller.iguicommand.ValueGUICommand;
-import imecontroller.iguicommand.VertFlipGUICommand;
 import imemodel.ImageImpl;
 import imemodel.ImageModel;
 import imemodel.ImageModelMockFalse;
