@@ -1,7 +1,6 @@
 package imeview;
 
 
-
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Image;
@@ -61,17 +60,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   private JPanel histPanel;
   private String imageName;
   private JPanel rightPanel;
-
-
-
   private JLabel imageLabel;
   private JScrollPane imageVerticalScroll;
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> bc83db837aa5a89190012d98f07747f23cbab806
   private int[][][] pixels;
 
 
@@ -85,7 +75,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   /**
    * Main and only constructor, takes in a ImageModel object, a map of commands with keys as their
    * action command and the IGUICommand with their execute methods.
-   * @param model Image model by which to retrieve needed data from.
+   *
+   * @param model    Image model by which to retrieve needed data from.
    * @param commands A map of IGUICommands, needed so that the buttons can be drawn onto the GUI.
    */
   public IMEGUIViewImpl(ImageModel model, Map<String, IGUICommand> commands) {
@@ -97,13 +88,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     setTitle("Image Processor");
     setSize(800, 800);
     this.model = model;
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> bc83db837aa5a89190012d98f07747f23cbab806
     buttons = new ArrayList<JButton>();
     lists = new ArrayList<JList>();
 
@@ -157,7 +141,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     }
 
 
-
     JPanel filesPanel = new JPanel();
     setUpVertPanel(filesPanel, leftPanel);
     filesPanel.setBorder(BorderFactory.createTitledBorder("Open Images"));
@@ -188,7 +171,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   @Override
   public String getFilePath() {
-    JFileChooser  fchooser = new JFileChooser(".");
+    JFileChooser fchooser = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
     fchooser.setFileFilter(filter);
@@ -408,7 +391,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   /**
    * Used for making sure the image and histogram are setup correctly after changes have been
    * made to the current image or a new image has been loaded in.
-   * @param panel The child panel to be setup.
+   *
+   * @param panel       The child panel to be setup.
    * @param parentPanel The parent of this panel to be.
    */
   private void setUp(JPanel panel, JPanel parentPanel) {
@@ -443,6 +427,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     /**
      * Takes a 3d int array representing the pixels of the image. It needs to take a 3d int array
      * so that it is always being fed the correct data, when changed.
+     *
      * @param image The 3d int array of pixels.
      */
     public DrawHist(int[][][] image) {
@@ -514,9 +499,6 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
         intPoints.add(new Point(x1, int1));
 
       }
-
-
-
 
 
       //draws red components

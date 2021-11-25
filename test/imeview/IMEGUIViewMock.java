@@ -31,6 +31,7 @@ public class IMEGUIViewMock implements IMEGUIView {
    * @param log StringBuilder used to append strings of inputs together.
    */
   public IMEGUIViewMock(StringBuilder log) {
+    this.log = log;
   }
 
   /**

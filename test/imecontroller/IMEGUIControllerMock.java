@@ -31,11 +31,6 @@ public class IMEGUIControllerMock implements IMEGUIController {
   }
 
   @Override
-  public void itemStateChanged(ItemEvent e) {
-    log.append("itemStateChanged) stateChange: " + e.getStateChange() + "\n");
-  }
-
-  @Override
   public void valueChanged(ListSelectionEvent e) {
     log.append("actionPerformed) firstIndex: " + e.getFirstIndex() +
             " lastIndex: " + e.getLastIndex() + "\n");
