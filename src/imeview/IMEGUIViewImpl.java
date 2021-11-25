@@ -59,14 +59,11 @@ import imemodel.ImageModel;
  */
 public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
-  private JPanel mainPanel;
   private ArrayList<JButton> buttons; // A list of buttons so we can give them all action listeners.
   private ArrayList<JList> lists; // A list of lists so we can give them all action listeners.
-  private final Map<String, IGUICommand> commands; // Commands to have buttons for.
   private final ImageModel model;
   private JPanel imagePanel;
   private JPanel histPanel;
-  private JFileChooser fchooser;
   private String imageName;
   private JPanel rightPanel;
 
@@ -76,10 +73,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   private JScrollPane imageVerticalScroll;
 
 
-  private Map<String, BufferedImage> lOfBf;
   private int[][][] pixels;
-
-  private JPanel filesPanel;
 
 
   JButton loadButton;
@@ -105,14 +99,10 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     setSize(800, 800);
     this.model = model;
 
-    lOfBf = new HashMap<>();
-
-
     buttons = new ArrayList<JButton>();
     lists = new ArrayList<JList>();
-    this.commands = commands;
 
-    mainPanel = new JPanel();
+    JPanel mainPanel = new JPanel();
     // The main panel will be separated into a left and right half by sub-panels.
     mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.LINE_AXIS));
     //scroll bars around this main panel.
@@ -151,7 +141,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       if (command.length() > 0) {
         String displayName = command.substring(0, 1).toUpperCase(); // First letter uppercase.
         if (command.length() > 1) {
-          displayName = displayName.concat(command.substring(1).toLowerCase()); // Remaining letters lowercase.
+          // Remaining letters lowercase.
+          displayName = displayName.concat(command.substring(1).toLowerCase());
         }
         JButton button = new JButton(displayName);
         button.setActionCommand(command);
@@ -162,7 +153,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
 
 
-    filesPanel = new JPanel();
+    JPanel filesPanel = new JPanel();
     setUpVertPanel(filesPanel, leftPanel);
     filesPanel.setBorder(BorderFactory.createTitledBorder("Open Images"));
     listOfFiles = new JList<String>();
@@ -192,7 +183,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
 
   @Override
   public String getFilePath() {
-    fchooser = new JFileChooser(".");
+    JFileChooser  fchooser = new JFileChooser(".");
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "JPG & PPM & PNG & BMP Images", "ppm", "png", "bmp", "jpg");
     fchooser.setFileFilter(filter);
@@ -568,8 +559,8 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       }
 
       //draws the x and y axis.
-      g2.drawLine(0, getHeight()/2, 0, 0);
-      g2.drawLine(0, getHeight()/2, getWidth(), getHeight()/2);
+      g2.drawLine(0, getHeight() / 2, 0, 0);
+      g2.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2);
 
     }
   }

@@ -6,8 +6,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.Map;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
 import imemodel.Image;
@@ -35,6 +37,7 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   /**
    * A basic constructor for the IMEGUIController. Takes input from the GUI.
    * GUI commands specifcally this time as to know their action commands.
+   *
    * @param commands the commands that this controller can use
    * @param model    the model that this controller will control
    * @param view     the view that this controller will use to display things
@@ -61,85 +64,85 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
   @Override
   public void actionPerformed(ActionEvent e) {
 
-      switch (e.getActionCommand()) {
+    switch (e.getActionCommand()) {
 
-        case ("Save file"):
-          String file = view.getFilePath();
-          String saveTo = file;
-          Image img1 = model.getImage(currentImage);
-          try {
-            if (img1 != null) {
-              if (file.substring(file.lastIndexOf(".") + 1).equals("ppm")) {
-                ImageUtil.writePPM(img1, saveTo);
-              } else {
-                Formats.writeImageFile(img1, saveTo);
-              }
+      case ("Save file"):
+        String file = view.getFilePath();
+        String saveTo = file;
+        Image img1 = model.getImage(currentImage);
+        try {
+          if (img1 != null) {
+            if (file.substring(file.lastIndexOf(".") + 1).equals("ppm")) {
+              ImageUtil.writePPM(img1, saveTo);
             } else {
-              view.renderMessage("The image " + saveTo + " is null.\n\n");
+              Formats.writeImageFile(img1, saveTo);
             }
-          } catch (IOException ee) {
-            view.renderMessage("The image cannot be saved to " + file + ".\n\n");
-          }
-
-
-          break;
-
-        case (""):
-
-
-          break;
-        case ("Load file"):
-          file = view.getFilePath();
-          String name = file;
-          int count = 0;
-          while (model.hasImage(name)) {
-            if (model.hasImage(name + count)) {
-              count++;
-            } else {
-              name += String.valueOf(count);
-            }
-          }
-
-          if (!file.equals("")) {
-            currentImage = name;
-            model.loadImage(name, new ImageImpl(file));
-            view.setUpImageAndHistogram(name);
-            view.updateOpenedFiles();
-
-          }
-
-          break;
-
-        default:
-          if (currentImage == null) {
-            view.renderMessage("There is no image loaded.");
           } else {
-            boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
-            for (String key : commands.keySet()) {
-              if (key.equals(e.getActionCommand())) {
-                commands.get(key).execute(model, view, currentImage);
-                executedCommand = true; // Record that we have executed.
-                break; // Breaks loop so that we don't waste energy checking the remaining commands.
-              }
-            }
+            view.renderMessage("The image " + saveTo + " is null.\n\n");
+          }
+        } catch (IOException ee) {
+          view.renderMessage("The image cannot be saved to " + file + ".\n\n");
+        }
 
 
-            // Block below check for if the given command was invalid (i.e. no command was executed).
-            if (executedCommand) {
-              view.setUpLoadedImageAndHistogram(currentImage);
-            } else {
-              throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
-                      e.getActionCommand() + "\"");
+        break;
+
+      case (""):
+
+
+        break;
+      case ("Load file"):
+        file = view.getFilePath();
+        String name = file;
+        int count = 0;
+        while (model.hasImage(name)) {
+          if (model.hasImage(name + count)) {
+            count++;
+          } else {
+            name += String.valueOf(count);
+          }
+        }
+
+        if (!file.equals("")) {
+          currentImage = name;
+          model.loadImage(name, new ImageImpl(file));
+          view.setUpImageAndHistogram(name);
+          view.updateOpenedFiles();
+
+        }
+
+        break;
+
+      default:
+        if (currentImage == null) {
+          view.renderMessage("There is no image loaded.");
+        } else {
+          boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
+          for (String key : commands.keySet()) {
+            if (key.equals(e.getActionCommand())) {
+              commands.get(key).execute(model, view, currentImage);
+              executedCommand = true; // Record that we have executed.
+              break; // Breaks loop so that we don't waste energy checking the remaining commands.
             }
           }
-          break;
-      }
+
+
+          // Block below check for if the given command was invalid (i.e. no command was executed).
+          if (executedCommand) {
+            view.setUpLoadedImageAndHistogram(currentImage);
+          } else {
+            throw new IllegalStateException("Couldn't recognize the actionCommand \"" +
+                    e.getActionCommand() + "\"");
+          }
+        }
+        break;
+    }
 
   }
 
   @Override
   public void itemStateChanged(ItemEvent e) {
-    switch(e.getStateChange()) {
+    switch (e.getStateChange()) {
 
     }
   }
@@ -160,6 +163,6 @@ public class IMEGUIControllerImpl implements IMEGUIController, ActionListener,
       view.setUpLoadedImageAndHistogram(currentImage);
     }
   }
-  }
+}
 
 

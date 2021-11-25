@@ -12,7 +12,7 @@ public class GreenValueGUICommand extends AbstractGUICommand {
 
   @Override
   public void execute(ImageModel model, IMEGUIView view, String imageName) {
-      model.getByComponent(imageName, "green");
+    model.getByComponent(imageName, "green");
   }
 
   @Override

@@ -1,7 +1,5 @@
 package imeview;
 
-import java.util.List;
-
 /**
  * This interface represents the View of the M, V, C design and has for now two methods. The first
  * method renders a message and the other is an overridden toString. The view is responsible for

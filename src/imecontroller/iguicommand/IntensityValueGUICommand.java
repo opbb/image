@@ -11,7 +11,7 @@ public class IntensityValueGUICommand extends AbstractGUICommand {
 
   @Override
   public void execute(ImageModel model, IMEGUIView view, String imageName) {
-      model.getByComponent(imageName, "intensity");
+    model.getByComponent(imageName, "intensity");
   }
 
   @Override

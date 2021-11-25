@@ -13,7 +13,7 @@ public class SepiaGUICommand extends AbstractGUICommand {
   @Override
   public void execute(ImageModel model, IMEGUIView view, String imageName) {
     ExtraFilters filter = new ExtraFiltersImpl(model);
-      filter.toSepia(imageName);
+    filter.toSepia(imageName);
   }
 
   @Override

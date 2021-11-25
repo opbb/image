@@ -1,14 +1,7 @@
 package imecontroller.iguicommand;
 
 import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
-
-import imecontroller.InputUtils;
-import imecontroller.icommand.ICommand;
-import imemodel.ImageModel;
 import imeview.IMEGUIView;
-import imeview.IMEView;
 
 /**
  * An abstract class for commands which defines some helpers.

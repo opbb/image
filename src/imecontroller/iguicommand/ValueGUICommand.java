@@ -11,7 +11,7 @@ public class ValueGUICommand extends AbstractGUICommand {
 
   @Override
   public void execute(ImageModel model, IMEGUIView view, String imageName) {
-      model.getByComponent(imageName, "value");
+    model.getByComponent(imageName, "value");
   }
 
   @Override

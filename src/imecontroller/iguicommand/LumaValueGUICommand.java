@@ -11,7 +11,7 @@ import imeview.IMEGUIView;
 public class LumaValueGUICommand extends AbstractGUICommand {
   @Override
   public void execute(ImageModel model, IMEGUIView view, String imageName) {
-      model.greyscaleByLuma(imageName);
+    model.greyscaleByLuma(imageName);
   }
 
   @Override

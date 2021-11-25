@@ -7,8 +7,20 @@ import java.util.Map;
 import imemodel.ImageModel;
 import imeview.IMEGUIView;
 
+/**
+ * An interface for command objects designed to be used with a GUI,
+ * which take their own user input and execute themselves on a given ImageModel.
+ */
 public interface IGUICommand {
 
+  /**
+   * Executes the command.
+   *
+   * @param model the ImageModel on which to execute the command
+   * @param view the view to get input from
+   * @param imageName the image to execute the command on
+   * @throws IllegalStateException
+   */
   void execute(ImageModel model, IMEGUIView view, String imageName)
           throws IllegalStateException;
 
