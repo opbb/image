@@ -1,5 +1,9 @@
 This file acts as a list of supported commands:
 
+=================================================
+SCRIPT COMMANDS:
+=================================================
+
 Below are the commands, anything within brackets [] are just to explain what should be given to perform the command's operation
 
 load [image-to-load] [name-to-call-image-by]
@@ -53,3 +57,50 @@ value [image-to-get-value-of] [name-to-call-image-by]
 
 save [image-to-save] [file-directory/path]
 ^This command will save the given file to a given filepath, and supported file extensions are .ppm, .png, .jpeg, and .bmp.
+
+=================================================
+GUI COMMANDS:
+=================================================
+
+-------------------------------------------------
+In Out Panel:
+-------------------------------------------------
+-To load an image, click the "Load" button in the top left, then use the file browser that appears to select the image you'd like to load.
+
+-To save the image that is currently being displayed, click the "Save" button, then use the file browser that appears to select where youd like to save the image to. Use the bar at the bottom of the file browser to name the image. Remember to end your name with one of ".ppm", ".bpm", ".png" or ".jpeg" to determine the format the image is saved in.
+
+-------------------------------------------------
+Image Modifiers Panel:
+-------------------------------------------------
+-To convert the image to grayscale, press the button in the Image Modifiers panel on the left which corresponds to what you would like to grayscale the image based off of. You can grayscale by taking the "Red-value", "Green-value", "Blue-value", "Intensity-value", "Luma-value" and "Value".
+
+-To apply a sepia filter to the image, press the "Sepia" button on the left.
+
+-To sharpen the image, press the "Sharpen" button on the left.
+
+-To blur the image, press the "Blur" button on the left.
+
+-To flip the image, press the button for the direction in which you want to flip on the left. These buttons are "Horizontal-flip" and "Vertical-flip".
+
+-To brighten or darken the image, press the "Brighten" button on the left, then in the pop up window put in a number between -255 and 255 (inclusive) which represents how much you would like to brighten/darken the image. Positive values brighten the image and negative values darken it. These values can have decimals.
+
+-------------------------------------------------
+Open Images Panel:
+-------------------------------------------------
+Note: This panel will appear once you have at least 1 loaded image.
+
+-To see what images you have loaded, simply look at the list in the bottom left corner. The images are named after the file path which they came from.
+
+-To swap between loaded images, click on the image in the list in the bottom left corner which you want to swap to.
+
+
+-------------------------------------------------
+Image Panel:
+-------------------------------------------------
+Note: The currently selected image will be displayed in the top right. All image modifiers that you use will be applied to this image, and if you save you will be saving this image.
+
+
+-------------------------------------------------
+Histogram Panel:
+-------------------------------------------------
+Note: A histogram of the intensity values of the image, as well as the intensity values of the red, green and blue components, will be displayed in the bottom right of the screen. The values go from 0 on the left to 255 on the right, with their relative frequency being plotted on the y axis. The black line represents overall intensity values, and the red, green and blue lines represent the intensity values for their respective colors.
