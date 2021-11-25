@@ -71,13 +71,12 @@ public class IMEGUIViewImplTest {
 
   @Test
   public void testSetUpLoaded() {
-    IMEGUIView view = new IMEGUIViewMock(log);
+    IMEGUIView view = new IMEGUIViewMock(new StringBuilder());
     view.setController(mockController);
     view.setUpLoadedImageAndHistogram("res/ella.png");
 
     assertEquals(true, mockModel.hasImage("res/ella.png"));
-    assertEquals("setController)\nsetUpLoadedImageAndHistogram) newName: " +
-                    "res/ella.png\nhasImage) name: res/ella.png\n",
+    assertEquals("hasImage) name: res/ella.png\n",
             log.toString());
 
   }

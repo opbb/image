@@ -140,8 +140,8 @@ public class HistogramImplTest {
             "[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], " +
             "[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], " +
             "[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], " +
-            "[0, 0, 0, 0], [0, 0, 0, 0]]", Arrays.deepToString(hist1.getHistogramData
-            (model.getImageValues("pic3"))));
+            "[0, 0, 0, 0], [0, 0, 0, 0]]", Arrays.deepToString(hist1.getHistogramData(model.
+            getImageValues("pic3"))));
 
     assertEquals(256, hist1.getHistogramData(model.getImageValues("pic3")).length);
     assertEquals(4, hist1.getHistogramData(model.getImageValues("pic3"))[0].length);

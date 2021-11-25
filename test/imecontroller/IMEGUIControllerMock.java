@@ -1,7 +1,6 @@
 package imecontroller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 
 import javax.swing.event.ListSelectionEvent;
 
@@ -30,10 +29,7 @@ public class IMEGUIControllerMock implements IMEGUIController {
     log.append("actionPerformed) actionCommand: " + e.getActionCommand() + "\n");
   }
 
-  @Override
-  public void itemStateChanged(ItemEvent e) {
-    log.append("itemStateChanged) stateChange: " + e.getStateChange() + "\n");
-  }
+
 
   @Override
   public void valueChanged(ListSelectionEvent e) {

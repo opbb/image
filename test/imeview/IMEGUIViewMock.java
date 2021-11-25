@@ -8,7 +8,7 @@ import imecontroller.IMEGUIController;
 
 /**
  * This is a mock GUIView of the IMEGUIView interface, in which we give the class stub methods to
- * add to a string builder (log)
+ * add to a string builder (log).
  */
 public class IMEGUIViewMock implements IMEGUIView {
 
@@ -31,6 +31,7 @@ public class IMEGUIViewMock implements IMEGUIView {
    * @param log StringBuilder used to append strings of inputs together.
    */
   public IMEGUIViewMock(StringBuilder log) {
+    this.log = log;
   }
 
   /**
