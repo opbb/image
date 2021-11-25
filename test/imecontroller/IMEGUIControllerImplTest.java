@@ -167,4 +167,20 @@ public class IMEGUIControllerImplTest {
             "getKeys)\n" +
             "setUpLoadedImageAndHistogram) newName: key0\n", log.toString());
   }
+
+  // Tests that the controller isn't messed up by the second call of valueChanged() from the
+  // mouse being released.
+  @Test
+  public void testValueChanged3() {
+    ListSelectionEvent e = new ListSelectionEvent(mockViewLoad, 1,
+            0,false);
+    IMEGUIController controller = new IMEGUIControllerImpl(commands, mockModelTrue, mockViewLoad);
+    controller.valueChanged(e);
+    e = new ListSelectionEvent(mockViewLoad, 0,
+            0,false);
+    controller.valueChanged(e);
+    Assert.assertEquals("setController)\n" +
+            "getKeys)\n" +
+            "setUpLoadedImageAndHistogram) newName: key0\n", log.toString());
+  }
 }
