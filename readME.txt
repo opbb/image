@@ -30,8 +30,29 @@ SharpenCommand: Command which will sharpen a given image.
 SepiaCommand: Command that will apply the sepia tone to a given image.
 InputFromFileCommand: Command that will create a readable object of the file with commands to the controller.
 
+IGUICommand: contains two public facing methods and one static utility method, the first, execute simply does the action associated with the command from the given parameters, and the command text is used as its actionCommand.
+AbstractGUICommand: Abstract command class in which each GUICommand has a method protected that is used for when the user wants to brighten an image and is prompted asking for a number (double).
+RedValueGUICommand: Displays the red component of the displayed image.
+BlueValueGUICommand: Displays the blue component of the displayed image.
+GreenValueGUICommand: Displays the green component of the displayed image.
+LumaValueGUICommand : Command which will greyscale the displayed image by its pixels luma component.
+IntensityValueGUICommand: Command which will greyscale the displayed image by its pixels' intensity component.
+ValueGUICommand: Command which will greyscale the displayed image by its pixels' value component.
+BrightenGUICommand: Command which brightens the displayed Image by a given prompted amount (number) but is double.
+HoriFlipGUICommand: Command which will horizontally flip the displayed image.
+VertFlipGUICommand: Command which will vertically flip the displayed image.
+BlurGUICommand: Command which will blur the displayed image.
+SharpenGUICommand: Command which will sharpen the displayed image.
+SepiaGUICommand: Command that will apply the sepia tone to the displayed image.
+
+IMEGUIController: A interface used to abide to SOLID principles in which we use this new interface to improve readability within methods, constructors, and tests.
+IMEGUIControllerImpl: This class is the main actionlistener, listselectionlistener, and itemlistener for our GUI's buttons and associated actions. ActionListener for the buttons and ItemListener for the choosing multiple loaded images.
+
+
+
 IMEController: An interface defining the public methods of the controller.
 IMEControllerImpl: The main controller class with all of the implementation.
+
 IMEFileController: The secondary controller class, which offers support in reading commands from a .txt file.
 
 InputUtils: An interface with some static utility methods used reusing code for handling exceptions related to inputs.
@@ -63,6 +84,13 @@ ExtraFilters: This is a new interface, through the use of composition, that exte
 ExtraFiltersImpl: Once again through the use of code reuse, in this case composition, we have adhered to SOLID principles through the use of a delegate object of type ImageModel, allowing us to keep old implementation that has been tried and tested, while adding new implementation.
 This class also holds the implementation for the three new methods from the ExtraFilters interface, in which matrix manipulation along with the reuse of an original method in the Application class are utilized.
 Formats: This class contains static utility methods that help to read, write, get height, and get width of other image formats (png, jpeg, bmp). This utility class also extends the original ImageUtil class, in case for future need of that class' methods.
+
+(new 2.0)
+Added a static helper method to the Formats class in which we can make a buffered image out of any given image path.
+
+(new 2.0)
+Histogram: Extends the original model interface and has one new public method which receives the histogram data of a given image's pixels.
+HistogramImpl: has the one public facing method of getting histogram data, and delegates the rest of the methods to the delegate object when constructed.
 ====================================================================================
 
 View:
@@ -70,6 +98,11 @@ Our view contains the model, and is able to represent it with a toString(). It a
 
 IMEView: The interface defining the public methods of the view.
 IMEViewImpl: The implementaion of the view. Contain a model it can represent.
+
+IMEGUIView: This interface contains multiple public facing methods used to generate and affect the GUI when actions are done.
+IMEGUIViewImpl: This class contains all public facing methods from the IMEGUIView interface, as well as some helper private methods, and a private JPanel class for the histogram.
+
+
 
 ====================================================================================
 
