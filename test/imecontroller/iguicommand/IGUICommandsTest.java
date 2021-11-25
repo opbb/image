@@ -14,6 +14,11 @@ import imemodel.ImageModel;
 import imemodel.ImageModelMockTrue;
 import imeview.IMEGUIView;
 import imeview.IMEGUIViewMock;
+
+/**
+ * This class tests the GUICommands used within the IMEGUIControllerImpl class
+ * with the use of mocks. 
+ */
 public class IGUICommandsTest {
 
   StringBuilder log;
