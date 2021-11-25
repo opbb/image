@@ -5,8 +5,12 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * This class tests the getHistogramData class mostly and checks that the size of the array is
+ * as it should along with its computation of the data.
+ */
 public class HistogramImplTest {
 
   private ImageModel model;
@@ -74,8 +78,8 @@ public class HistogramImplTest {
             "[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], " +
             "[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], " +
             "[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], " +
-            "[0, 0, 0, 0], [0, 1, 0, 0]]", Arrays.deepToString(hist1.getHistogramData
-            (model.getImageValues("pic1"))));
+            "[0, 0, 0, 0], [0, 1, 0, 0]]", Arrays.deepToString(hist1.getHistogramData(model.
+            getImageValues("pic1"))));
 
     assertEquals(256, hist1.getHistogramData(model.getImageValues("pic1")).length);
     assertEquals(4, hist1.getHistogramData(model.getImageValues("pic1"))[0].length);

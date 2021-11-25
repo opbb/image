@@ -6,17 +6,30 @@ import javax.swing.JButton;
 
 import imecontroller.IMEGUIController;
 
+/**
+ * This is a mock GUIView of the IMEGUIView interface, in which we give the class stub methods to
+ * add to a string builder (log)
+ */
 public class IMEGUIViewMock implements IMEGUIView {
 
   ActionListener listener;
   StringBuilder log;
   String mockFilePath;
 
+  /**
+   * Default Constructor for this mock class.
+   * @param log A StringBuilder used to accumulate strings for testing.
+   * @param mockFilePath A MockFilePath used for tracking files used.
+   */
   public IMEGUIViewMock(StringBuilder log, String mockFilePath) {
     this.log = log;
     this.mockFilePath = mockFilePath;
   }
 
+  /**
+   * Constructor used only for needing a log.
+   * @param log StringBuilder used to append strings of inputs together.
+   */
   public IMEGUIViewMock(StringBuilder log) {
   }
 

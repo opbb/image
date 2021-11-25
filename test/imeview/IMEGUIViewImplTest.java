@@ -76,7 +76,8 @@ public class IMEGUIViewImplTest {
     view.setUpLoadedImageAndHistogram("res/ella.png");
 
     assertEquals(true, mockModel.hasImage("res/ella.png"));
-    assertEquals("setController)\nsetUpLoadedImageAndHistogram) newName: res/ella.png\nhasImage) name: res/ella.png\n",
+    assertEquals("setController)\nsetUpLoadedImageAndHistogram) newName: " +
+                    "res/ella.png\nhasImage) name: res/ella.png\n",
             log.toString());
 
   }
