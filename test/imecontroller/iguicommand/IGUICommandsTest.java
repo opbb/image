@@ -27,7 +27,7 @@ public class IGUICommandsTest {
   public void setUp() {
     log = new StringBuilder();
     mockModel = new ImageModelMockTrue(log);
-    mockView = new IMEGUIViewMock(log);
+    mockView = new IMEGUIViewMock(log, "");
     commands = new HashMap<>();
     //commands.put("horizontal-flip", new HoriFlipGUICommand());
     filterMock = new FilterMock(log);

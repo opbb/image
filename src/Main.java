@@ -1,32 +1,31 @@
 import java.util.Arrays;
 import java.util.Map;
 
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
 
-import javax.swing.*;
-
+import imecontroller.IMEController;
+import imecontroller.IMEControllerImpl;
 import imecontroller.IMEFileController;
 import imecontroller.IMEGUIControllerImpl;
 import imecontroller.icommand.BlueValueCommand;
 import imecontroller.icommand.BlurCommand;
 import imecontroller.icommand.BrightenCommand;
 import imecontroller.icommand.CloseCommand;
-import imecontroller.icommand.InputFromFileCommand;
-import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.GreenValueCommand;
 import imecontroller.icommand.HoriFlipCommand;
 import imecontroller.icommand.ICommand;
+import imecontroller.icommand.InputFromFileCommand;
 import imecontroller.icommand.IntensityValueCommand;
 import imecontroller.icommand.LoadCommand;
+import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.RedValueCommand;
-
 import imecontroller.icommand.SaveCommand;
 import imecontroller.icommand.SepiaCommand;
 import imecontroller.icommand.SharpenCommand;
 import imecontroller.icommand.ValueCommand;
 import imecontroller.icommand.VertFlipCommand;
-import imecontroller.IMEController;
-import imecontroller.IMEControllerImpl;
-
 import imecontroller.iguicommand.BlueValueGUICommand;
 import imecontroller.iguicommand.BlurGUICommand;
 import imecontroller.iguicommand.BrightenGUICommand;
@@ -40,7 +39,6 @@ import imecontroller.iguicommand.SepiaGUICommand;
 import imecontroller.iguicommand.SharpenGUICommand;
 import imecontroller.iguicommand.ValueGUICommand;
 import imecontroller.iguicommand.VertFlipGUICommand;
-
 import imemodel.ImageModel;
 import imemodel.ImageModelImpl;
 import imeview.IMEGUIViewImpl;

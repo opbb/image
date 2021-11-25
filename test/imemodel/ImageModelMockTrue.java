@@ -1,7 +1,9 @@
 package imemodel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * A mock which logs the function that was called and the inputs it was given.
@@ -90,7 +92,11 @@ public class ImageModelMockTrue implements ImageModel {
   @Override
   public Set<String> getKeys() {
     log.append("getKeys)\n");
-    return null;
+    Set set = new TreeSet<String>();
+    set.add("key0");
+    set.add("key1");
+    set.add("key2");
+    return set;
   }
 
   @Override

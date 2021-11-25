@@ -24,7 +24,20 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
+import javax.swing.ListSelectionModel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
+
 
 
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -253,15 +266,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
       imageName = newName;
       setUp(histPanel, rightPanel);
       SwingUtilities.updateComponentTreeUI(this);
-//      removeHist();
-//      imageLabel.setIcon(new ImageIcon(Formats.makeBF(newName, model.getImageValues(newName))));
-//
-//      pixels = model.getImageValues(newName);
-//      histPanel = new DrawHist(pixels);
-//      setUp(histPanel, rightPanel);
-//
-//      SwingUtilities.updateComponentTreeUI(this);
-//      imageName = newName;
+
     }
   }
 

@@ -87,7 +87,20 @@ public class IMEGUIViewImplTest {
     view.setController(mockController);
     view.setUpImageAndHistogram("res/ella.png");
 
-    assertEquals("", log.toString());
+    assertEquals("getImageValues) name: res/ella.png\n", log.toString());
 
   }
+
+  @Test
+  public void testUpdate() {
+    IMEGUIView view = new IMEGUIViewImpl(mockModel, commands);
+    view.setController(mockController);
+    view.updateOpenedFiles();
+
+    assertEquals("getKeys)\n", log.toString());
+
+  }
+
+
+
 }

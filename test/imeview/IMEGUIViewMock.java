@@ -10,9 +10,14 @@ public class IMEGUIViewMock implements IMEGUIView {
 
   ActionListener listener;
   StringBuilder log;
+  String mockFilePath;
+
+  public IMEGUIViewMock(StringBuilder log, String mockFilePath) {
+    this.log = log;
+    this.mockFilePath = mockFilePath;
+  }
 
   public IMEGUIViewMock(StringBuilder log) {
-    this.log = log;
   }
 
   /**
@@ -51,7 +56,7 @@ public class IMEGUIViewMock implements IMEGUIView {
   @Override
   public String getFilePath() {
     log.append("getFilePath)\n");
-    return null;
+    return mockFilePath;
   }
 
 
