@@ -1,7 +1,5 @@
 package imeview;
 
-
-
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Image;
@@ -68,10 +66,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   private JScrollPane imageVerticalScroll;
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> bc83db837aa5a89190012d98f07747f23cbab806
   private int[][][] pixels;
 
 
@@ -98,12 +93,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     setSize(800, 800);
     this.model = model;
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> bc83db837aa5a89190012d98f07747f23cbab806
     buttons = new ArrayList<JButton>();
     lists = new ArrayList<JList>();
 
