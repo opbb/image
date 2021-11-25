@@ -1,29 +1,26 @@
 package imeview;
 
 
-import java.awt.Stroke;
-import java.awt.BasicStroke;
-import java.awt.Image;
+
+import java.awt.image.BufferedImage;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Stroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Point;
-
-
+import java.awt.BasicStroke;
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 import javax.imageio.ImageIO;
-
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -37,10 +34,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
-
-
-
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import imecontroller.IMEGUIController;
 import imecontroller.iguicommand.IGUICommand;
 import imemodel.Formats;
@@ -76,7 +71,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
   private JScrollPane imageVerticalScroll;
 
 
-  private Map<String, BufferedImage> lOfBf;
+
   private int[][][] pixels;
 
   private JPanel filesPanel;
@@ -105,7 +100,7 @@ public class IMEGUIViewImpl extends JFrame implements IMEGUIView {
     setSize(800, 800);
     this.model = model;
 
-    lOfBf = new HashMap<>();
+
 
 
     buttons = new ArrayList<JButton>();
