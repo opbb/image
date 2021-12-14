@@ -19,11 +19,21 @@ public class SharpenCommand extends AbstractCommand {
           throws IllegalStateException {
 
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
     ExtraFilters filter = new ExtraFiltersImpl(model);
 
-    if (setUpImage(model, view, fromImage, toImage)) {
-      filter.sharpen(toImage);
+    String maskedOrToImage = getStringInput(sc);
+    if (sc.hasNext()) {
+      String toImage = getStringInput(sc);
+      editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+              (ImageModel m) -> {new ExtraFiltersImpl(m).sharpen("masked-copy");});
+
+
+    }
+
+    else {
+      if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+        filter.sharpen(maskedOrToImage);
+      }
     }
   }
 

@@ -922,5 +922,25 @@ public class ICommandsTest {
     sc = new Scanner(new StringReader(""));
     command.execute(mockModelTrue, mockView, sc, commands);
   }
+
+
+  @Test
+  public void testResizeCommandHelpers() {
+    ICommand command = new ResizeCommand();
+    Assert.assertEquals("resize [number-to-adjust-height] [number-to-adjust-width] " +
+                    "[image to resize of] " +
+            "[new image name]",
+            command.helpMessage());
+    Assert.assertEquals("resize", command.commandText());
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testResizeCommandException0() {
+    ICommand command = new ResizeCommand();
+    sc = new Scanner(new StringReader(""));
+    command.execute(mockModelTrue, mockView, sc, commands);
+  }
+
+
 }
 

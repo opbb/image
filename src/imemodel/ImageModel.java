@@ -96,5 +96,29 @@ public interface ImageModel {
    */
   Set<String> getKeys();
 
+  /**
+   * This method resizes an image by the given dimensions, only support for now is downsizing.
+   * @param newHeight the new height dimension of the image.
+   * @param newWidth the new width dimension of the image.
+   * @param imageName the new image name.
+   */
+  void resize(int newHeight, int newWidth, String imageName);
 
+
+  /**
+   * This method takes in a masked image of same dimensions as the original but checks for any
+   * pixels that are black within this masked image and creates a copy of the original image but
+   * only with the pixels to be edited.
+   * @param name the name of the image to get a masked version of.
+   * @param maskedImage the masked image as a black and white, same sized image of the original.
+   */
+  void maskedImagify(String name, String maskedImage);
+
+  /**
+   * This method is utilized after a transformation or filter has been applied, allows the filter
+   * to only be applied to the masked copy and then transposes this copy onto the desired image.
+   * @param name the name of the image to transpose the masked copy on to.
+   * @param maskedImage the name of the masked image.
+   */
+  void applyMaskedChanges(String name, String maskedImage);
 }

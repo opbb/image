@@ -80,7 +80,10 @@ public class IMEFileController implements IMEController {
       boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
       for (Map.Entry<String, ICommand> entry : commands.entrySet()) {
         if (entry.getKey().equals(input)) {
-          entry.getValue().execute(model, view, sc, commands);
+          Scanner inputScanner = new Scanner(new StringReader(sc.nextLine()));
+          entry.getValue().execute(model, view, inputScanner, commands);
+
+//          entry.getValue().execute(model, view, sc, commands);
           executedCommand = true; // Record that we have executed.
           view.renderMessage("Ran " + entry.getKey() + " command.\n");
           break; // Breaks loop so that we don't waste energy checking the remaining commands.

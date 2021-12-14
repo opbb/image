@@ -119,4 +119,21 @@ public class HistogramImpl implements Histogram {
   public Set<String> getKeys() {
     return delegate.getKeys();
   }
+
+  @Override
+  public void resize(int newHeight, int newWidth, String imageName) {
+    delegate.resize(newHeight, newWidth, imageName);
+  }
+
+  @Override
+  public void maskedImagify(String name, String maskedImage) {
+
+    delegate.maskedImagify(name, maskedImage);
+  }
+
+  @Override
+  public void applyMaskedChanges(String name, String maskedImage) {
+
+    delegate.applyMaskedChanges(name, maskedImage);
+  }
 }

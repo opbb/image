@@ -100,6 +100,21 @@ public class ImageModelMockTrue implements ImageModel {
   }
 
   @Override
+  public void resize(int newHeight, int newWidth, String imageName) {
+
+  }
+
+  @Override
+  public void maskedImagify(String name, String maskedImage) {
+
+  }
+
+  @Override
+  public void applyMaskedChanges(String name, String maskedImage) {
+
+  }
+
+  @Override
   public String toString() {
     return "toString) This is a mock model.\n";
   }

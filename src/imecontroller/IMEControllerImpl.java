@@ -1,6 +1,7 @@
 package imecontroller;
 
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -88,7 +89,14 @@ public class IMEControllerImpl implements IMEController {
         boolean executedCommand = false; // Boolean flag so that we know if we executed or not.
         for (String key : commands.keySet()) {
           if (key.equals(input)) {
-            commands.get(key).execute(model, view, sc, commands);
+            //allows the use of masked images.
+            Scanner inputScanner = new Scanner(new StringReader(sc.nextLine()));
+            try {
+              commands.get(key).execute(model, view, inputScanner, commands);
+            }
+            catch (IllegalStateException e) {
+              view.renderMessage("Too few inputs were given.\n\n");
+            }
             executedCommand = true; // Record that we have executed.
             break; // Breaks loop so that we don't waste energy checking the remaining commands.
           }

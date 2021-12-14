@@ -73,12 +73,8 @@ public class IMEGUIControllerImplTest {
             "updateOpenedFiles)\n", log.toString());
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testActionPerformedLoadException0() {
-    IMEGUIViewMock mockViewFail = new IMEGUIViewMock(log, "no-file");
-    IMEGUIController controller = new IMEGUIControllerImpl(commands, mockModelFalse, mockViewFail);
-    mockViewFail.fireActionEvent("Load file");
-  }
+
+
 
   @Test
   public void testActionPerformedSave() {

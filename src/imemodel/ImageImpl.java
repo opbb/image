@@ -13,10 +13,10 @@ public class ImageImpl implements Image {
   private int[][][] pixels;
 
   //the height of the image
-  private final int height;
+  private int height;
 
   //the width of the image
-  private final int width;
+  private int width;
 
 
   /**
@@ -92,15 +92,16 @@ public class ImageImpl implements Image {
 
       try {
         this.pixels = Formats.readImageFIle(file);
-        this.height = Formats.getImageFileHeight(file);
-        this.width = Formats.getImageFIleWidth(file);
+        //this.height = Formats.getImageFileHeight(file);
+        this.height = pixels.length;
+        //this.width = Formats.getImageFIleWidth(file);
+        this.width = pixels[0].length;
       } catch (IOException e) {
         throw new IllegalArgumentException("Was not able to read this file.");
       }
 
     }
   }
-
 
 
   @Override
@@ -126,7 +127,15 @@ public class ImageImpl implements Image {
     return this.width;
   }
 
+  @Override
+  public void setHeight(int height) {
+    this.height = height;
+  }
 
+  @Override
+  public void setWidth(int width) {
+    this.width = width;
+  }
 
 
 }

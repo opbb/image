@@ -69,17 +69,9 @@ public class IMEGUIViewImplTest {
 
   }
 
-  @Test
-  public void testSetUpLoaded() {
-    IMEGUIView view = new IMEGUIViewMock(new StringBuilder());
-    view.setController(mockController);
-    view.setUpLoadedImageAndHistogram("res/ella.png");
 
-    assertEquals(true, mockModel.hasImage("res/ella.png"));
-    assertEquals("hasImage) name: res/ella.png\n",
-            log.toString());
 
-  }
+
 
   @Test
   public void testSetUp() {
@@ -100,7 +92,6 @@ public class IMEGUIViewImplTest {
     assertEquals("getKeys)\n", log.toString());
 
   }
-
 
 
 }

@@ -18,10 +18,24 @@ public class RedValueCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
+    String maskedOrToImage = getStringInput(sc);
+    if (sc.hasNext()) {
+      String toImage = getStringInput(sc);
+      editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+              (ImageModel m) -> {m.getByComponent("masked-copy", "red");});
 
-    if (setUpImage(model, view, fromImage, toImage)) {
-      model.getByComponent(toImage, "red");
+
+    }
+
+    //      model.duplicateImage(fromImage, toImage);
+//      model.maskedImagify(toImage, maskedOrToImage);
+//      model.getByComponent("masked-copy", "red");
+//      model.applyMaskedChanges(toImage, maskedOrToImage);
+
+    else {
+      if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+        model.getByComponent(maskedOrToImage, "red");
+      }
     }
   }
 

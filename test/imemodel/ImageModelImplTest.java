@@ -8,6 +8,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -221,15 +222,15 @@ public class ImageModelImplTest {
 
     //testing with new image.
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}}, {{56, 109, 215}},
-        {{34, 90, 249}}, {{56, 89, 191}}}));
+            {{34, 90, 249}}, {{56, 89, 191}}}));
     model2.flipVertical("Horses");
     assertArrayEquals(new int[][][]{{{56, 89, 191}},
-        {{34, 90, 249}}, {{56, 109, 215}}, {{77, 189, 208}}},
+                    {{34, 90, 249}}, {{56, 109, 215}}, {{77, 189, 208}}},
             model2.getImageValues("Horses"));
     //flip the same image back to its original.
     model2.flipVertical("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
+                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
 
 
@@ -256,15 +257,15 @@ public class ImageModelImplTest {
 
     //testing with new image.
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     model2.flipHorizontal("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
+                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
     //flip the same image back to its original.
     model2.flipHorizontal("Horses");
     assertArrayEquals(new int[][][]{{{77, 189, 208}},
-        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
+                    {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}},
             model2.getImageValues("Horses"));
 
 
@@ -305,7 +306,7 @@ public class ImageModelImplTest {
 
 
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     assertEquals("Over\n" +
             "[[[25, 25, 25], [50, 75, 100], [205, 210, 160], [169, 68, 6]]]\n" +
             "\n" +
@@ -333,7 +334,7 @@ public class ImageModelImplTest {
     assertEquals("[Image1, Img2]", model2.getKeys().toString());
 
     model2.loadImage("Horses", new ImageImpl(new int[][][]{{{77, 189, 208}},
-        {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
+            {{56, 109, 215}}, {{34, 90, 249}}, {{56, 89, 191}}}));
     assertEquals("[Horses, Image1, Img2]", model2.getKeys().toString());
 
 
@@ -355,6 +356,130 @@ public class ImageModelImplTest {
   public void testConst4() {
     model1 = new ImageModelImpl();
     assertFalse(model1.hasImage("Image1"));
+  }
+
+
+  @Test
+  public void testResize() {
+    model1.loadImage("ella", new ImageImpl("res/ella.png"));
+    model1.resize(100, 100, "ella");
+
+    assertEquals(100, model1.getImage("ella").getHeight());
+    assertEquals(100, model1.getImage("ella").getWidth());
+
+    model1.resize(1, 1, "ella");
+    assertEquals(1, model1.getImage("ella").getHeight());
+    assertEquals(1, model1.getImage("ella").getWidth());
+
+    model1.loadImage("mk", new ImageImpl("res/value-with-mk.png"));
+    model1.resize(42, 59, "mk");
+
+    assertEquals(42, model1.getImage("mk").getHeight());
+    assertEquals(59, model1.getImage("mk").getWidth());
+
+    model1.loadImage("mk", new ImageImpl("res/sepia-with-mk.png"));
+    model1.resize(68, 142, "mk");
+
+    assertEquals(68, model1.getImage("mk").getHeight());
+    assertEquals(142, model1.getImage("mk").getWidth());
+
+  }
+
+  @Test
+  public void testMaskify() {
+    model1.loadImage("ella", new ImageImpl("res/ella.png"));
+    model1.loadImage("mk", new ImageImpl("res/ella-masked.png"));
+    model1.maskedImagify("ella", "mk");
+
+    assertTrue(model1.hasImage("masked-copy"));
+
+  }
+
+  @Test
+  public void testApplyMaskedChanges() {
+
+    model1.loadImage("ella", new ImageImpl("res/ella.png"));
+    model1.loadImage("mk", new ImageImpl("res/ella-masked.png"));
+    model1.maskedImagify("ella", "mk");
+    model1.greyscaleByLuma("masked-copy");
+
+    String expected = Arrays.deepToString(model1.getImageValues("ella"));
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+
+    model1.maskedImagify("ella", "mk");
+    model1.brighten("masked-copy", 100);
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+
+    model1.maskedImagify("ella", "mk");
+    model1.getByComponent("masked-copy", "red");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+    model1.maskedImagify("ella", "mk");
+    model1.getByComponent("masked-copy", "green");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+    model1.maskedImagify("ella", "mk");
+    model1.getByComponent("masked-copy", "blue");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+
+    model1.maskedImagify("ella", "mk");
+    model1.getByComponent("masked-copy", "intensity");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+
+    model1.maskedImagify("ella", "mk");
+    model1.getByComponent("masked-copy", "value");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(model1.getImageValues("ella")));
+
+
+    model1.maskedImagify("ella", "mk");
+    ExtraFilters extra = new ExtraFiltersImpl(model1);
+    extra.toSepia("masked-copy");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(extra.getImageValues("ella")));
+
+
+    model1.maskedImagify("ella", "mk");
+    extra = new ExtraFiltersImpl(model1);
+    extra.sharpen("masked-copy");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(extra.getImageValues("ella")));
+
+    model1.maskedImagify("ella", "mk");
+    extra = new ExtraFiltersImpl(model1);
+    extra.blur("masked-copy");
+
+
+    model1.applyMaskedChanges("ella", "mk");
+    assertNotEquals(expected, Arrays.deepToString(extra.getImageValues("ella")));
+
+
   }
 
 

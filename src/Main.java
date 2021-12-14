@@ -1,9 +1,7 @@
 import java.util.Arrays;
 import java.util.Map;
 
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
+import javax.swing.*;
 
 import imecontroller.IMEController;
 import imecontroller.IMEControllerImpl;
@@ -21,6 +19,7 @@ import imecontroller.icommand.IntensityValueCommand;
 import imecontroller.icommand.LoadCommand;
 import imecontroller.icommand.LumaValueCommand;
 import imecontroller.icommand.RedValueCommand;
+import imecontroller.icommand.ResizeCommand;
 import imecontroller.icommand.SaveCommand;
 import imecontroller.icommand.SepiaCommand;
 import imecontroller.icommand.SharpenCommand;
@@ -35,6 +34,7 @@ import imecontroller.iguicommand.IGUICommand;
 import imecontroller.iguicommand.IntensityValueGUICommand;
 import imecontroller.iguicommand.LumaValueGUICommand;
 import imecontroller.iguicommand.RedValueGUICommand;
+import imecontroller.iguicommand.ResizeGUICommand;
 import imecontroller.iguicommand.SepiaGUICommand;
 import imecontroller.iguicommand.SharpenGUICommand;
 import imecontroller.iguicommand.ValueGUICommand;
@@ -74,12 +74,8 @@ public class Main {
               new BlurGUICommand(),
               new IntensityValueGUICommand(),
               new SharpenGUICommand(),
+              new ResizeGUICommand(),
               new SepiaGUICommand()));
-      IMEGUIViewImpl view = new IMEGUIViewImpl(model, commands);
-      view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      view.setVisible(true);
-      IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
-      view.setResizable(true);
       try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
       } catch (ClassNotFoundException e) {
@@ -91,6 +87,12 @@ public class Main {
       } catch (UnsupportedLookAndFeelException e) {
         e.printStackTrace();
       }
+      IMEGUIViewImpl view = new IMEGUIViewImpl(model, commands);
+      view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      view.setVisible(true);
+      IMEGUIViewImpl.setDefaultLookAndFeelDecorated(false);
+      view.setResizable(true);
+
       controller = new IMEGUIControllerImpl(commands, model, view);
     } else {
       Map<String, ICommand> commands = ICommand.generateMapFromList(Arrays.asList(
@@ -108,6 +110,7 @@ public class Main {
               new CloseCommand(),
               new SharpenCommand(),
               new SepiaCommand(),
+              new ResizeCommand(),
               new SaveCommand(),
               new InputFromFileCommand()));
       IMEView view = new IMEViewImpl(model);

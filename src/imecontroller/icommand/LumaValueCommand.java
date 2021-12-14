@@ -16,10 +16,19 @@ public class LumaValueCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
+    String maskedOrToImage = getStringInput(sc);
+    if (sc.hasNext()) {
+      String toImage = getStringInput(sc);
+      editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+              (ImageModel m) -> {m.greyscaleByLuma("masked-copy");});
 
-    if (setUpImage(model, view, fromImage, toImage)) {
-      model.greyscaleByLuma(toImage);
+
+    }
+
+    else {
+      if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+        model.greyscaleByLuma(maskedOrToImage);
+      }
     }
   }
 

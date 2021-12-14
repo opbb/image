@@ -20,4 +20,6 @@ public abstract class AbstractGUICommand implements IGUICommand {
           throws InputMismatchException, IllegalStateException {
     return view.getDoubleInput(message, def);
   }
+
+
 }

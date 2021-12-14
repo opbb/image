@@ -1,0 +1,7 @@
+load res/ella.png el
+
+resize 100 50 el el-100-50
+resize 50 60 el el-50-60
+
+save el-100-50 res/ella-100-50.png
+save el-50-60 res/ella-50-60.png

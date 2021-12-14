@@ -2,6 +2,7 @@ package imecontroller.icommand;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import imecontroller.InputUtils;
 import imemodel.ImageModel;
 import imeview.IMEView;
@@ -42,6 +43,7 @@ public abstract class AbstractCommand implements ICommand {
     return InputUtils.getStringInput(sc);
   }
 
+
   /**
    * Ensures that the given image to edit exists, and returns false if it doesn't.
    * If the given image exists, then it makes a renamed duplicate of it to execute the command on.
@@ -64,4 +66,32 @@ public abstract class AbstractCommand implements ICommand {
       return false;
     }
   }
+
+
+  /**
+   * Sets up a masked image taking in the original image, the new edited image, and the masked
+   * image, as well as the method call to what filter to be applied.
+   *
+   * @param model       the Image model we get an effect from.
+   * @param view        the view to show that the program has duplicated/loaded an image.
+   * @param toImage     the name of the new image.
+   * @param maskedImage the name of the masked image.
+   * @param meth        the name of the method/filter/effect to be applied.
+   */
+  protected void editMaskedImage(ImageModel model, IMEView view, String fromImage,
+                                 String toImage, String maskedImage, MethodCaller meth) {
+
+    if (setUpImage(model, view, fromImage, toImage)) {
+
+
+      model.maskedImagify(toImage, maskedImage);
+      meth.execute(model);
+      model.applyMaskedChanges(toImage, maskedImage);
+
+    }
+
+
+  }
 }
+
+

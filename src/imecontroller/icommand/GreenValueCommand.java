@@ -17,10 +17,19 @@ public class GreenValueCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
+    String maskedOrToImage = getStringInput(sc);
+    if (sc.hasNext()) {
+      String toImage = getStringInput(sc);
+      editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+              (ImageModel m) -> {
+                m.getByComponent("masked-copy", "green");
+              });
 
-    if (setUpImage(model, view, fromImage, toImage)) {
-      model.getByComponent(toImage, "green");
+
+    } else {
+      if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+        model.getByComponent(maskedOrToImage, "green");
+      }
     }
   }
 

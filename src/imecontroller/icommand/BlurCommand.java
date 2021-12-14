@@ -18,11 +18,22 @@ public class BlurCommand extends AbstractCommand {
   public void execute(ImageModel model, IMEView view, Scanner sc, Map<String, ICommand> commands)
           throws IllegalStateException {
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
+
     ExtraFilters filter = new ExtraFiltersImpl(model);
 
-    if (setUpImage(model, view, fromImage, toImage)) {
-      filter.blur(toImage);
+    String maskedOrToImage = getStringInput(sc);
+    if (sc.hasNext()) {
+      String toImage = getStringInput(sc);
+      editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+              (ImageModel m) -> {new ExtraFiltersImpl(m).blur("masked-copy");});
+
+
+    }
+
+    else {
+      if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+        filter.blur(maskedOrToImage);
+      }
     }
   }
 

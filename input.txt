@@ -1,7 +1,0 @@
-load res/when-you-walking.ppm walking
-
-brighten 10 walking walking-bright
-
-brighten -30 walking walking-dark
-
-save walking-dark res/test-output0.ppm

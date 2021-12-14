@@ -20,11 +20,17 @@ public class BrightenCommand extends AbstractCommand {
     try {
       double amount = getDoubleInput(view, sc);
       String fromImage = getStringInput(sc);
-      String toImage = getStringInput(sc);
+      String maskedOrToImage = getStringInput(sc);
+      if (sc.hasNext()) {
+        String toImage = getStringInput(sc);
+        editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+                (ImageModel m) -> {m.brighten("masked-copy", amount);});
 
-
-      if (setUpImage(model,view,fromImage,toImage)) {
-        model.brighten(toImage, amount);
+      }
+      else {
+        if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+          model.brighten(maskedOrToImage, amount);
+        }
       }
     } catch (InputMismatchException e) {
 

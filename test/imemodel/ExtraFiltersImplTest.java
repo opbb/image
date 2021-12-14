@@ -303,6 +303,21 @@ public class ExtraFiltersImplTest {
       return null;
     }
 
+    @Override
+    public void resize(int newHeight, int newWidth, String imageName) {
+
+    }
+
+    @Override
+    public void maskedImagify(String name, String maskedImage) {
+
+    }
+
+    @Override
+    public void applyMaskedChanges(String name, String maskedImage) {
+
+    }
+
     public StringBuilder getLog() {
       return log;
     }

@@ -505,24 +505,67 @@ public class IMEControllerImplTest {
   }
 
 
+
   @Test
-  public void testRunCommandInputs() {
-    StringReader input = new StringReader("mock this-is-the-next-input q");
-    new IMEControllerImpl(mockCommands, mockModelTrue, mockView, input).run();
-    Assert.assertEquals("commandText)\n" +
-            "toString) This is a mock view.\n" +
-            "renderMessage) message: null\n" +
-            "\n" +
-            "Input new command: \n" +
-            "commandText)\n" +
-            "toString) This is a mock view.\n" +
-            "model: toString) This is a mock model.\n" +
-            " view: null scanner: this-is-the-next-input commands: mock-mock\n" +
-            "toString) This is a mock view.\n" +
-            "renderMessage) message: null\n" +
-            "\n" +
-            "Input new command: \n" +
-            "renderMessage) message: You have quit the program.\n", log.toString());
+  public void testRunWithMasked() {
+    StringBuilder expectedOutput = new StringBuilder();
+    testRunHelper(expectedOutput, commands, model, view,
+            new PrintInteraction("|===============\n" +
+                    "| Loaded images:\n" +
+                    "|===============\n" +
+                    "\n" +
+                    "Input new command: "),
+            new InputInteraction("load res/ella.png test\n"),
+            new PrintInteraction("|===============\n" +
+                    "| Loaded images:\n" +
+                    "| test\n" +
+                    "|===============\n" +
+                    "\n" +
+                    "Input new command: "),
+            new InputInteraction("load res/ella-masked.png mk\n"),
+            new PrintInteraction("|===============\n" +
+                    "| Loaded images:\n" +
+                    "| test\n" +
+                    "| mk\n" +
+                    "|===============\n" +
+                    "\n" +
+                    "Input new command: "),
+            new InputInteraction("brighten 15 test mk test-bright\n"),
+            new PrintInteraction("|===============\n" +
+                    "| Loaded images:\n" +
+                    "| test\n" +
+                    "| masked-copy\n" +
+                    "| mk\n" +
+                    "| test-bright\n" +
+                    "|===============\n" +
+                    "\n" +
+                    "Input new command: "),
+            new InputInteraction("red-value test mk test-red\n"),
+            new PrintInteraction("|===============\n" +
+                    "| Loaded images:\n" +
+                    "| test\n" +
+                    "| masked-copy\n" +
+                    "| test-red\n" +
+                    "| mk\n" +
+                    "| test-bright\n" +
+                    "|===============\n" +
+                    "\n" +
+                    "Input new command: "),
+            new InputInteraction("horizontal-flip test test-flip\n"),
+            new PrintInteraction("|===============\n" +
+                    "| Loaded images:\n" +
+                    "| test\n" +
+                    "| masked-copy\n" +
+                    "| test-red\n" +
+                    "| test-flip\n" +
+                    "| mk\n" +
+                    "| test-bright\n" +
+                    "|===============\n" +
+                    "\n" +
+                    "Input new command: "),
+            new InputInteraction("quit\n"),
+            new PrintInteraction("You have quit the program."));
+    Assert.assertEquals(expectedOutput.toString(), out.toString());
   }
 
 

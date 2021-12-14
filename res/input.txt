@@ -1,0 +1,41 @@
+load res/ella.png el
+load res/ella-masked.png mk
+
+sepia el mk sep
+save sep res/sep.png
+
+sharpen el mk sharp
+save sharp res/sharp.png
+
+value el mk val
+save val res/val.png
+
+red-value el mk red
+save red res/red.png
+
+blue-value el mk blue
+save blue res/blue.png
+
+green-value el mk green
+save green res/green.png
+
+luma-value el mk luma
+save luma res/luma.png
+
+intensity-value el mk int
+save int res/int.png
+
+blur el mk blur
+save blur res/blur.png
+
+brighten 100 el mk bright
+save bright res/bright.png
+
+
+
+
+
+
+
+
+

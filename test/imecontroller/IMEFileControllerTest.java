@@ -197,6 +197,26 @@ public class IMEFileControllerTest {
             "renderMessage) message: Ran mock command.\n\n", log.toString());
   }
 
+  @Test
+  public void testRunMasked() {
+    StringBuilder expectedOutput = new StringBuilder();
+    testRunHelper(expectedOutput, commands, model, view,
+            new InputInteraction("load res/ella.png test     \n" +
+                    "load res/ella-masked.png mk     \n" +
+                    "brighten    15    test mk test-bright\n" +
+                    "#this is a comment\n" +
+                    "         " +
+                    "             horizontal-flip   test               test-flip\n" +
+                    "# another comments al; jfdngkjsfjks\n" +
+                    "save test-flip res/test-output.ppm\n"),
+            new PrintInteraction("Ran load command.\n" +
+                    "Ran load command.\n" +
+                    "Ran brighten command.\n" +
+                    "Ran horizontal-flip command.\n" +
+                    "Ran save command.\n"));
+    Assert.assertEquals(expectedOutput.toString(), out.toString());
+  }
+
 
   private void testRunHelper(StringBuilder expectedOutput, Map<String, ICommand> commands,
                              ImageModel model, IMEView view, Interaction... interactions) {

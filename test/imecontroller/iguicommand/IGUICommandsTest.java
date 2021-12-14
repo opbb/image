@@ -224,4 +224,24 @@ public class IGUICommandsTest {
     IGUICommand command = new SharpenGUICommand();
     Assert.assertEquals("sharpen", command.commandText());
   }
+
+
+  @Test
+  public void testReiszeGUICommand() {
+    IGUICommand command = new ResizeGUICommand();
+    command.execute(mockModel, mockView, "input0");
+    Assert.assertEquals(
+            "getDoubleInput) message: Input the height of which to downsize an image to def: " +
+                    "0.0\n" +
+            "getDoubleInput) message: Input the width of which to downsize an image to def: " +
+                    "0.0\n" +
+            "getImageValues) name: input0\n" +
+            "getImageValues) name: input0\n", log.toString());
+  }
+
+  @Test
+  public void testReiszeGUICommandHelper() {
+    IGUICommand command = new ResizeGUICommand();
+    Assert.assertEquals("resize", command.commandText());
+  }
 }

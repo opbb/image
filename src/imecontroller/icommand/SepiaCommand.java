@@ -18,12 +18,23 @@ public class SepiaCommand extends AbstractCommand {
           throws IllegalStateException {
 
     String fromImage = getStringInput(sc);
-    String toImage = getStringInput(sc);
+
+
     ExtraFilters filter = new ExtraFiltersImpl(model);
 
+    String maskedOrToImage = getStringInput(sc);
+    if (sc.hasNext()) {
+      String toImage = getStringInput(sc);
+      editMaskedImage(model, view, fromImage, toImage, maskedOrToImage,
+              (ImageModel m) -> {new ExtraFiltersImpl(m).toSepia("masked-copy");});
 
-    if (setUpImage(model, view, fromImage, toImage)) {
-      filter.toSepia(toImage);
+
+    }
+
+    else {
+      if (setUpImage(model, view, fromImage, maskedOrToImage)) {
+        filter.toSepia(maskedOrToImage);
+      }
     }
   }
 

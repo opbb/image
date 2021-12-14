@@ -35,4 +35,16 @@ public interface Image {
    */
   int getWidth();
 
+  /**
+   * This method sets the height of the image, used only in resizing an image.
+   * @param height the number by which to set the height dimension of an image to.
+   */
+  void setHeight(int height);
+
+  /**
+   * This method sets the width of the image, used in resizing an image.
+   * @param width the number by which to set the new width of an image.
+   */
+  void setWidth(int width);
+
 }
