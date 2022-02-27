@@ -1,25 +1,15 @@
-Tom and Oliver's IME:
+Tom and Oliver's Image Processor :
 
-Images used in this assignment were the same as previously used as assignment did not say to include a new image, but rather just to not use an image that has been provided to use before
+This was a project for our Object Oriented Design class in which we created a basic image processor from scratch. This project was completed in 4 parts over the course of a month, with each part having us update our IME with new features and functionality. We used the Model-View-Controller design pattern for this project to make maintaining our code and adding new features more streamlined. 
 
-All that was changed for level 1 of the extra credit was within our model for the most part, this including 1 new public method, and 1 private helper method.
-The first method was implemented directly into the model that uses the algebra derived from the assignment's description to loop through the image and downsize its dimensions using a scale factor.
-The second private method simply also used the algebra provided in the assignment's description to fix the rgb values of each pixel.
-Finally a new command was added to both the regular ICommands and GUICommands following our command design pattern.
+Our image processor can import, edit, and export images in the BPM, PPM, PNG and JPG formats. It can store multiple images at a time, allowing you to swap between them and make modifications to them individually before exporting. The processor can modify the images through basic filters such as grayscaling, extracting a specific color from the image, or brightening/darkening the image. It can also flip the image, as well as apply more advanced filters, such as sepia, sharpen and blur. 
 
-For level 2, two public and two private methods were added to our ImageModelImpl class, the first public method loops through the masked image and checks for black pixels and then creates a masked image of only these
-pixels and loads it in to the hashmap of images so that we may edit it. These x and y coordinates are created and stored using the two private methods of getting the rows and columns of these coordinates
-in the masked image. The last public method transposes this image onto the original for it to be shown to the user.
-We had to alter most of the commands that were required for this part of extra credit due to the need for supporting a 3rd argument in every command.
-To do this we made a new scanner in the controller that reads the entire line given to us by the user rather than just the words, and added one protected method in AbstractCommand to set up this system and apply the desired effect.
+This repository contains the code for the first 3 parts of the assignment. For the 4th part of this assignment, we were given the code from another group and asked to implement a feature to turn the image into a mosaic with a user-specified number of tiles. This code can be found in the "customerIME" repository.
 
-NOTE: The model's getImageValues method was altered slightly due to obsolete and longer time complexity than needed.
-
+====================================================================================
 
 Note about sample image "when-you-walking": I was given written permission to use this image by both its creator and subject.
 Note about new sample image "ella": I took this photograph, and I am giving myself permission to use it. Also, I asked the subject to wag twice for yes, and she did.
-
-For our design we used the Controller, Model, View pattern. We kept those 3 packages separated and interacting only through very controlled channels.
 
 ====================================================================================
 
