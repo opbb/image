@@ -9,7 +9,8 @@ modifications to them individually before exporting. The processor can modify th
 or brightening/darkening the image. It can also flip the image, as well as apply more advanced filters, such as sepia, sharpen and blur. 
 
 This repository contains the code for the first 3 parts of the assignment. For the 4th part of this assignment, we were given the code from another group and asked to implement 
-a feature to turn the image into a mosaic with a user-specified number of tiles. This code can be found in the "customerIME" repository.
+a feature to turn the image into a mosaic with a user-specified number of tiles. We were also asked to stick to their design choices as closely as possible while implementing
+this new feature. The code for the 4th part of the assignment is in another repository that we cannot make public as it is predominantly not our code.
 
 ====================================================================================
 
