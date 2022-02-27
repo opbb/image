@@ -1,10 +1,15 @@
 Tom and Oliver's Image Processor :
 
-This was a project for our Object Oriented Design class in which we created a basic image processor from scratch. This project was completed in 4 parts over the course of a month, with each part having us update our IME with new features and functionality. We used the Model-View-Controller design pattern for this project to make maintaining our code and adding new features more streamlined. 
+This was a project for our Object Oriented Design class in which we created a basic image processor from scratch. This project was completed in 4 parts over the course of a 
+month, with each part having us update our IME with new features and functionality. We used the Model-View-Controller design pattern for this project to make maintaining our 
+code and adding new features more streamlined. 
 
-Our image processor can import, edit, and export images in the BPM, PPM, PNG and JPG formats. It can store multiple images at a time, allowing you to swap between them and make modifications to them individually before exporting. The processor can modify the images through basic filters such as grayscaling, extracting a specific color from the image, or brightening/darkening the image. It can also flip the image, as well as apply more advanced filters, such as sepia, sharpen and blur. 
+Our image processor can import, edit, and export images in the BPM, PPM, PNG and JPG formats. It can store multiple images at a time, allowing you to swap between them and make 
+modifications to them individually before exporting. The processor can modify the images through basic filters such as grayscaling, extracting a specific color from the image, 
+or brightening/darkening the image. It can also flip the image, as well as apply more advanced filters, such as sepia, sharpen and blur. 
 
-This repository contains the code for the first 3 parts of the assignment. For the 4th part of this assignment, we were given the code from another group and asked to implement a feature to turn the image into a mosaic with a user-specified number of tiles. This code can be found in the "customerIME" repository.
+This repository contains the code for the first 3 parts of the assignment. For the 4th part of this assignment, we were given the code from another group and asked to implement 
+a feature to turn the image into a mosaic with a user-specified number of tiles. This code can be found in the "customerIME" repository.
 
 ====================================================================================
 
